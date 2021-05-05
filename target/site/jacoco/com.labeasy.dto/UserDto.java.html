@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">labeasy</a> &gt; <a href="index.source.html" class="el_package">com.labeasy.dto</a> &gt; <span class="el_source">UserDto.java</span></div><h1>UserDto.java</h1><pre class="source lang-java linenums">package com.labeasy.dto;
+
+
+import lombok.*;
+
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * @author : Nasruddin khan
+ */
+@Getter
+<span class="nc" id="L14">@Setter</span>
+<span class="nc" id="L15">@AllArgsConstructor</span>
+<span class="nc" id="L16">@NoArgsConstructor</span>
+<span class="nc" id="L17">@Builder</span>
+public class UserDto  {
+
+    @JsonProperty(&quot;reg_id&quot;)
+<span class="nc" id="L21">    private String regId;</span>
+
+    @JsonProperty(&quot;first_name&quot;)
+<span class="nc" id="L24">    private String firstName;</span>
+
+    @JsonProperty(&quot;middle_name&quot;)
+<span class="nc" id="L27">    private String middleName;</span>
+
+    @JsonProperty(&quot;last_name&quot;)
+<span class="nc" id="L30">    private String lastName;</span>
+
+    @JsonProperty(&quot;gender&quot;)
+<span class="nc" id="L33">    private String gender;</span>
+
+    @JsonProperty(&quot;dob&quot;)
+<span class="nc" id="L36">    private LocalDate dob;</span>
+
+    @JsonProperty(&quot;mobile_no&quot;)
+<span class="nc" id="L39">    private String mobileNo;</span>
+
+    @JsonProperty(&quot;alt_mobile_no&quot;)
+<span class="nc" id="L42">    private String altMobileNo;</span>
+
+    @JsonProperty(&quot;email_id&quot;)
+<span class="nc" id="L45">    private String emailId;</span>
+
+    @JsonProperty(&quot;password&quot;)
+<span class="nc" id="L48">    private String password;</span>
+
+    @JsonProperty(&quot;secret_key&quot;)
+<span class="nc" id="L51">    private String secretKey;</span>
+
+    @JsonProperty(&quot;company_id&quot;)
+<span class="nc" id="L54">    private String companyId;</span>
+
+    @JsonProperty(&quot;role&quot;)
+<span class="nc" id="L57">    private String role;</span>
+
+    @JsonProperty(&quot;pan_card_no&quot;)
+<span class="nc" id="L60">    private String panCardNo;</span>
+
+    @JsonProperty(&quot;aadhaar_card_no&quot;)
+<span class="nc" id="L63">    private String aadhaarCardNo;</span>
+
+    @JsonProperty(&quot;status&quot;)
+<span class="nc" id="L66">    private String status;</span>
+
+    @JsonProperty(&quot;is_smartphone&quot;)
+<span class="nc" id="L69">    private Boolean isSmartPhone;</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

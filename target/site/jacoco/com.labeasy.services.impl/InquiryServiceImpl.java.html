@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InquiryServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">labeasy</a> &gt; <a href="index.source.html" class="el_package">com.labeasy.services.impl</a> &gt; <span class="el_source">InquiryServiceImpl.java</span></div><h1>InquiryServiceImpl.java</h1><pre class="source lang-java linenums">package com.labeasy.services.impl;
+import static com.labeasy.utils.ObjectUtilMapper.map;
+import static com.labeasy.utils.ObjectUtilMapper.mapAll;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.labeasy.dto.InquiryDto;
+import com.labeasy.eception.NotFoundException;
+import com.labeasy.entity.Inquiry;
+import com.labeasy.enums.ApplicationErrors;
+import com.labeasy.enums.ApplicationStatus;
+import com.labeasy.repsoitory.InquiryRepository;
+import com.labeasy.services.InquiryService;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * @author Nasruddin
+ */
+@Service
+@Transactional
+<span class="fc" id="L26">@Slf4j</span>
+public class InquiryServiceImpl implements InquiryService {
+
+    private final InquiryRepository inquiryRepository;
+
+    /**
+     * @param inquiryRepository
+     */
+    @Autowired
+<span class="fc" id="L35">    public InquiryServiceImpl(final InquiryRepository inquiryRepository) {</span>
+<span class="fc" id="L36">        this.inquiryRepository = inquiryRepository;</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * @param inquiryDto
+     * @return
+     */
+    @Override
+    public InquiryDto addInquiry(final InquiryDto inquiryDto) {
+<span class="nc" id="L45">        Inquiry inquiry = map(inquiryDto, Inquiry.class);</span>
+<span class="nc" id="L46">        inquiry = inquiryRepository.save(inquiry);</span>
+<span class="nc" id="L47">        return map(inquiry, InquiryDto.class);</span>
+    }
+
+    private Inquiry findInquiryById(final Long inqId) {
+<span class="nc" id="L51">        return inquiryRepository.findById(inqId).orElseThrow(() -&gt;</span>
+<span class="nc" id="L52">                new NotFoundException(ApplicationErrors.INQ_ID_NOT_FOUND.getValue()));</span>
+    }
+
+    /**
+     * @param inqId
+     * @return
+     */
+    @Override
+    public InquiryDto findByInquiryId(final Long inqId) {
+<span class="nc" id="L61">        final Inquiry inquiry = findInquiryById(inqId);</span>
+<span class="nc" id="L62">        return map(inquiry, InquiryDto.class);</span>
+    }
+
+    /**
+     * @param inquiryDto
+     * @param inqId
+     * @return
+     */
+    @Override
+    public InquiryDto updateInquiry(final InquiryDto inquiryDto, final Long inqId) {
+<span class="nc" id="L72">        findByInquiryId(inqId);</span>
+<span class="nc" id="L73">        inquiryDto.setInqId(inqId);</span>
+<span class="nc" id="L74">        return addInquiry(inquiryDto);</span>
+    }
+
+    /**
+     * @param inqId
+     */
+    @Override
+    public void deleteInquiry(final Long inqId) {
+<span class="nc" id="L82">        final Inquiry inquiry = findInquiryById(inqId);</span>
+<span class="nc" id="L83">        inquiry.setStatus(ApplicationStatus.INACTIVE.getValue());</span>
+<span class="nc" id="L84">        inquiryRepository.save(inquiry);</span>
+<span class="nc" id="L85">    }</span>
+
+    @Override
+    public List&lt;InquiryDto&gt; findAllInquires() {
+<span class="nc" id="L89">        final List&lt;Inquiry&gt; inquiries = inquiryRepository.findByStatus(ApplicationStatus.ACTIVE.getValue());</span>
+<span class="nc" id="L90">        return mapAll(inquiries, InquiryDto.class);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
