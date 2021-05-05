@@ -43,6 +43,7 @@ public class InquiryServiceImpl implements InquiryService {
     @Override
     public InquiryDto addInquiry(final InquiryDto inquiryDto) {
         Inquiry inquiry = map(inquiryDto, Inquiry.class);
+        inquiry.setStatus(ApplicationStatus.ACTIVE.getValue());
         inquiry = inquiryRepository.save(inquiry);
         return map(inquiry, InquiryDto.class);
     }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- Basic -->
-<title>Assistance Tracker</title>
+<title>Easy-Lab</title>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">

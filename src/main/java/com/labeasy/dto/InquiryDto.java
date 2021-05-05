@@ -1,17 +1,19 @@
 package com.labeasy.dto;
 
+import static com.labeasy.constant.MessageConstants.EMAIL_EMPTY_VLD;
+import static com.labeasy.constant.MessageConstants.MOB_NO_EMPTY_VLD;
+import static com.labeasy.constant.MessageConstants.NAME_EMPTY_VLD;
+
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import static com.labeasy.constant.MessageConstants.NAME_EMPTY_VLD;
-import static com.labeasy.constant.MessageConstants.MOB_NO_EMPTY_VLD;
-import static com.labeasy.constant.MessageConstants.EMAIL_EMPTY_VLD;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author Nasruddin
@@ -22,7 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+@ToString
 public class InquiryDto {
     @JsonProperty("inq_id")
     private Long inqId;
