@@ -30,14 +30,16 @@ public class Inquiry extends BaseBean implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator =  "inquiryseq")
 	@SequenceGenerator(name = "inquiryseq", sequenceName = "inquiry_seq" , allocationSize = 1,initialValue =  1)
     private Long inqId;
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
-    @Column(name = "mobile_no")
+    @Column(name = "mobile_no", length = 10)
     private String mobileNo;
-    @Column(name = "email_id")
+    @Column(name = "email_id",  length = 60)
     private String emailId;
-    @Column(name = "status")
+    @Column(name = "status" )
     private String status;
     @Column(name = "company_Id")
     private Long companyId;
+    @Column(name = "remarks")
+    private String remarks;
 }

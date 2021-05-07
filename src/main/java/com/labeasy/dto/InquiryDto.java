@@ -41,5 +41,6 @@ public class InquiryDto {
     private String status;
     @JsonProperty("company_Id")
     private Long companyId;
-
+    @JsonProperty("remarks")
+    private String remarks;
 }

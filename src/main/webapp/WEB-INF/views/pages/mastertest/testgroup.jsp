@@ -1,18 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="ISO-8859-1"%>
 <section class="content">
 	<div class="box box-danger">
 		<div class="box-header with-border">
-			<h3 class="box-title">Add Inquiry</h3>
+			<h3 class="box-title"> Test Group</h3>
 			<div class="box-tools pull-right">
 			<!-- click to open inquiry form  -->
-				<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
-					title="Add inquriy">
+			<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
+					title="Add TestGroup">
 					<em class="fa fa-plus" data-toggle="modal"
-						data-target="#inquiry-modal"></em>
+						data-target="#test-group"></em>
 				</button>
+			
 			</div>
 		</div>
 		<div class="box-body">
@@ -20,7 +20,7 @@
 							class="table table-sm table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Inquiry Id</th>
+									<th>Sr Id</th>
 									<th>Name</th>
 									<th>Email</th>
 									<th>Mobile No</th>
@@ -28,12 +28,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${inquires}" var="inq">
+								
 									<tr>
-										<td>${inq.inqId}</td>
-										<td>${inq.name}</td>
-										<td>${inq.emailId}</td>
-										<td>${inq.mobileNo}</td>
+										<td>101</td>
+									<td>Nasruddin khan</td>
+									<td>Nasruddinkhan44@gmail.com</td>
+									<td>9987353738</td>
 										<td><div class="box-tools pull-center">
 												<a
 													href="#"><button
@@ -48,12 +48,12 @@
 
 											</div></td>
 									</tr>
-								</c:forEach>
+								
 							</tbody>
 						</table>
-					</div>
+		</div>
 		<!-- Model start  -->	
-		<div class="modal fade" id="inquiry-modal">
+		<div class="modal fade" id="test-group">
 			<div class="modal-dialog">
 				<form method="POST" id="inqury-form">
 					<div class="modal-content">
@@ -97,6 +97,5 @@
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
-		<!-- /.modal -->
 	</div>
 </section>

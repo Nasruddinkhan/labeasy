@@ -23,5 +23,26 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/inquiry/inquiry.jsp" />
 	</definition>
+	<definition name="appointment" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/appointment/appointments.jsp" />
+	</definition>
+	<definition name="add_appointment" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/appointment/addappointment.jsp" />
+	</definition>
+	<definition name="testgroup" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/mastertest/testgroup.jsp" />
+	</definition>
+	<definition name="testname" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/mastertest/testname.jsp" />
+	</definition>
 	
+
 </tiles-definitions>
