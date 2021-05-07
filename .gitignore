@@ -79,7 +79,7 @@ atlassian-ide-plugin.xml
 
 # JetBrains templates
 **___jb_tmp___
-
+.settings/**/**
 .idea/
 
 *.iml
@@ -92,13 +92,13 @@ modules.xml
 
 # Compiled class file
 *.class
-
+target/
 # Log file
 *.log
 
 # BlueJ files
 *.ctxt
-
+.settings/
 # Package Files #
 *.jar
 *.war
