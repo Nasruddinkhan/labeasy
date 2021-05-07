@@ -81,7 +81,7 @@ atlassian-ide-plugin.xml
 **___jb_tmp___
 .settings/**/**
 .idea/
-
+bin/
 *.iml
 modules.xml
 .idea/misc.xml
@@ -106,4 +106,5 @@ target/
 *.ear
 *.zip
 *.tar.gz
+
 *.rar
