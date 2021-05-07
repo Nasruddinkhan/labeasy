@@ -1,2 +1,0 @@
-# labeasy
-Lab Easy LIMS
