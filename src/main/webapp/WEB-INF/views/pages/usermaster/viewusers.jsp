@@ -6,24 +6,27 @@
 <section class="content">
 	<div class="box box-danger">
 		<div class="box-header with-border">
-			<h3 class="box-title"> Test Group</h3>
+			<h3 class="box-title">View Users</h3>
 			<div class="box-tools pull-right">
 			<!-- click to open inquiry form  -->
-			<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
-					title="Add Test Group">
-					<em class="fa fa-plus" data-toggle="modal"
-						data-target="#test-group"> Add Test Group</em>
+				<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
+					title="View Appointments">
+					<a href="${pageContext.request.contextPath}/user-master/add-new-user"><i class="fa fa-plus"></i>
+						 Add New User</a>
 				</button>
 			</div>
 		</div>
+		
 		<div class="box-body">
 						<table id="example1"
 							class="table table-sm table-bordered table-striped">
 							<thead>
 								<tr>
-									<th width="12%">Group Id</th>
-									<th width="33%">Group Name</th>
-									<th>Description</th>
+									<th width="12%">Id</th>
+									<th width="33%">Name</th>
+									<th>Mobile</th>
+									<th>Role</th>
+									<th>Last login</th>
 									<th width="10%">Action</th>
 								</tr>
 							</thead>
@@ -33,6 +36,8 @@
 										<td>${testGroup.groupId}</td>
 										<td>${testGroup.name}</td>
 										<td>${testGroup.description}</td>
+										<td></td>
+										<td></td>
 										<td><div class="box-tools pull-center">
 												<a
 													href="#"><button

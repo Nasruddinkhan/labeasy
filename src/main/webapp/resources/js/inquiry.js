@@ -29,6 +29,7 @@ $.fn.serializeObject = function()
 	addInquiryCreated = function(response) {
 	toastr.options.timeOut = 5000; // 1.5s
 		if(response.inq_id >0){
+			window.location.href="/labeasy/inquiry/show-inquiry-page";
 			$('#inquiry-modal').modal('hide');
    		 	toastr.success('Inquiry save successfully!');
    		 	$('#inqury-form')[0].reset();

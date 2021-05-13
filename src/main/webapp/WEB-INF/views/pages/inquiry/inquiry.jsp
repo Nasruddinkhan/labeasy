@@ -5,13 +5,13 @@
 <section class="content">
 	<div class="box box-danger">
 		<div class="box-header with-border">
-			<h3 class="box-title">Add Inquiry</h3>
+			<h3 class="box-title">Inquiries</h3>
 			<div class="box-tools pull-right">
 			<!-- click to open inquiry form  -->
 				<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
 					title="Add inquriy">
 					<em class="fa fa-plus" data-toggle="modal"
-						data-target="#inquiry-modal"></em>
+						data-target="#inquiry-modal"> Add Inquiry</em>
 				</button>
 			</div>
 		</div>
@@ -20,11 +20,11 @@
 							class="table table-sm table-bordered table-striped">
 							<thead>
 								<tr>
-									<th>Inquiry Id</th>
+									<th width="12%">Inquiry Id</th>
 									<th>Name</th>
-									<th>Email</th>
-									<th>Mobile No</th>
-									<th>Action</th>
+									<th width="13%">Mobile No</th>
+									<th width="27%">Email</th>
+									<th width="10%">Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -32,8 +32,8 @@
 									<tr>
 										<td>${inq.inqId}</td>
 										<td>${inq.name}</td>
-										<td>${inq.emailId}</td>
 										<td>${inq.mobileNo}</td>
+										<td>${inq.emailId}</td>
 										<td><div class="box-tools pull-center">
 												<a
 													href="#"><button
