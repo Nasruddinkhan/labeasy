@@ -20,3 +20,5 @@ public class MasterTestController {
 		return "testname";
 	}
 }
+
+
