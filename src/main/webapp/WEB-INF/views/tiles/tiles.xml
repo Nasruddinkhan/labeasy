@@ -23,12 +23,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/inquiry/inquiry.jsp" />
 	</definition>
-	<definition name="appointment" extends="base-definition">
+	<definition name="viewappointments" extends="base-definition">
 		<put-attribute name="title" value="Welcome" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/pages/appointment/appointments.jsp" />
+			value="/WEB-INF/views/pages/appointment/viewappointments.jsp" />
 	</definition>
-	<definition name="add_appointment" extends="base-definition">
+	<definition name="addappointment" extends="base-definition">
 		<put-attribute name="title" value="Welcome" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/appointment/addappointment.jsp" />
@@ -43,6 +43,24 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/mastertest/testname.jsp" />
 	</definition>
+
+	
+	<definition name="addrole" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/usermaster/addrole.jsp" />
+	</definition>
+	<definition name="adduser" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/usermaster/adduser.jsp" />
+	</definition>
+	<definition name="viewusers" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/usermaster/viewusers.jsp" />
+	</definition>
+	
 	
 
 </tiles-definitions>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- Basic -->
-<title>Easy-Lab</title>
+<title>LabEasy</title>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -416,11 +416,13 @@ absolute
 		var myContextPath = "${pageContext.request.contextPath}"
 	</script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/js/inquiry.js"></script>
-	<!-- Page script -->
+	
 	<script src="${pageContext.request.contextPath}/resources/js/toastr.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/inquiry.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/testgroup.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/testnames.js"></script>
+	
 
 	<script>
 	
