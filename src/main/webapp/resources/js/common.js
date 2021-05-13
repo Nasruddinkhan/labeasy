@@ -2,6 +2,22 @@
  * nasru common.js Apr 19, 2020
  */
 (function() {
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
  toastr.options.timeOut = 1500;
 	ajaxGetCall = function(url, callbackfunction) {
 		var rootURL = window.location.origin;

@@ -19,23 +19,22 @@ import com.labeasy.services.TestNamesService;
 @RequestMapping("/master-test")
 public class TestNamesController {
 	
-	@Autowired
-	TestNamesService testNamesService;
-	
-
-
-	/*
-	 * public TestNamesController(final TestNamesService testNamesService) {
-	 * super(); this.testNamesService = testNamesService; }
-	 */
-	
+	private final TestNamesService testNamesService;
+	private final TestGroupService testGroupService;
 	
 	@Autowired
-	TestGroupService testGroupService;
-	
+	public TestNamesController(TestNamesService testNamesService, TestGroupService testGroupService) {
+		super();
+		this.testNamesService = testNamesService;
+		this.testGroupService = testGroupService;
+	}
+
 	private void onLoads(ModelMap model) {
 		model.addAttribute("testNameList", testNamesService.findAllTestName());
 		model.addAttribute("testGroupList", testGroupService.findAllTestGroup());
+		model.addAttribute("menuopen", "menu-open");
+
+		
 	}
 	
 	@GetMapping("/show-test-name")
