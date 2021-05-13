@@ -425,11 +425,10 @@ absolute
 	
 
 	<script>
-	
 		$(function() {
-			//Initialize Select2 Elements
 			$('.select2').select2()
-		
+			$( "#treeview-menu-plus"). addClass('${menuopen}');
+			$( "#treeview-menu-plus-ul").css("display", "block");
 		});
 		$(function() {
 			$('#example1').DataTable()

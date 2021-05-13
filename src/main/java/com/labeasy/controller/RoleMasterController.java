@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/role-master")
 public class RoleMasterController {
 	
-
-	
 	private void onLoads(ModelMap model) {
 		//model.addAttribute("testGroupList", testMasterService.findAllTestGroup());
 	}

@@ -1,5 +1,6 @@
 package com.labeasy.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import com.labeasy.services.InquiryService;
 @RequestMapping("/inquiry")
 public class InquiryController {
 	public final InquiryService inquiryService;
-
+	@Autowired
 	public InquiryController(final InquiryService inquiryService) {
 		super();
 		this.inquiryService = inquiryService;
@@ -37,7 +38,6 @@ public class InquiryController {
 	@PostMapping("/save-inquiry")
 	@ResponseBody
 	public ResponseEntity<InquiryDto> saveInquiry(@RequestBody InquiryDto inquiryDto) {
-		System.out.println("InquiryController.saveInquiry() [" + inquiryDto + "]");
 		return new ResponseEntity<>(inquiryService.addInquiry(inquiryDto), HttpStatus.CREATED);
 	}
 }
