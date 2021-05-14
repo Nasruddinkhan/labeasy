@@ -21,6 +21,8 @@
 
 		<form:form method="POST" action="" modelAttribute="appointment"
 			autocomplete="off">
+			<form:hidden  path="" value="" id="testList" class="form-control" />
+
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-3">
@@ -132,7 +134,7 @@
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Payment mode :</label>
-						<form:select path="" class="form-control">
+						<form:select path="" class="form-control ">
 							<form:option value="">--select--</form:option>
 							<form:option value="">Online</form:option>
 							<form:option value="">Card</form:option>
@@ -159,7 +161,9 @@
 								<c:forEach items="${testNameList}" var="testName">
 									<tr>
 
-										<td><form:checkbox path="" value="" /> ${testName.name}</td>
+										<td><input type="checkbox" id="test${testName.testId}"
+											onclick="selectTest(${testName.price},${testName.testId});" />
+											${testName.name}</td>
 										<td>${testName.testcode}</td>
 										<td>${testName.price}</td>
 									</tr>
@@ -177,30 +181,36 @@
 							<div class="box-body">
 								<div class="col-sm-12">
 									<div class="form-group col-sm-6">
-										<label for="Country Code" style="font-size: 11px;">Selected Test:</label>
-										<form:input type="text" path=""
+										<label for="Country Code"  style="font-size: 11px;">Selected
+											Test:</label>
+										<form:input type="text" path="" id="selected_test"
 											class="form-group form-control" readonly="true" value="0" />
 									</div>
 									<div class="form-group col-sm-6">
 
-										<label for="Country Code" style="font-size: 11px;">Total Amt:</label>
-										<form:input type="text" path=""
+										<label for="Country Code" style="font-size: 11px;">Total
+											Amt:</label>
+										<form:input type="text" path="" id="total_amt"
 											class="form-group form-control" readonly="true" value="0" />
 									</div>
 									<div class="form-group col-sm-6">
-										<label for="Country Code" style="font-size: 11px;">Discount (if any):</label>
-										<form:input type="text" path=""
+										<label for="Country Code" style="font-size: 11px;">Discount
+											(if any):</label>
+										<form:input type="number" path="" id="discount"
 											class="form-group form-control" />
 									</div>
-									<div class="form-group col-sm-6" >
-										<label for="Country Code" style="font-size: 11px;">Paid Amount:</label>
-										<form:input type="text" path=""
+									<div class="form-group col-sm-6">
+										<label for="Country Code" style="font-size: 11px;">Paid
+											Amount:</label>
+										<form:input type="number"  path="" id="paid_amt"
 											class="form-group form-control" />
 
 									</div>
 									<div class="form-group col-sm-12">
-										<label for="Country Code"  style="font-size: 11px;">Balance amount :</label>
+										<label for="Country Code" style="font-size: 11px;">Balance
+											amount :</label>
 										<form:input type="text" path=""
+											id="balance_id"
 											class="form-group form-control" readonly="true" value="0" />
 									</div>
 								</div>
@@ -210,11 +220,11 @@
 
 				</div>
 			</div>
-			 <div class="box-footer">
+			<div class="box-footer">
 				<div class="col-sm-12 col-sm-offset-5">
 					<button type="submit" class="btn btn-primary">Save</button>
 				</div>
-			</div> 
+			</div>
 			<!-- /.box-body -->
 		</form:form>
 

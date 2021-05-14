@@ -79,7 +79,28 @@ $.fn.serializeObject = function()
 	  toastr.success(successMsg);
 	}
      
+   isChecked = function(id) {
+        return $('#' + id).is(":checked");
+    }
+    addition = function(no1, no2) {
+        return (no1 + no2);
+    }
 
+    substraction = function(no1, no2) {
+        return (no1 - no2);
+    }
+    addObjectInArray = function(objList, obj) {
+        objList.push(obj);
+        return [...new Set(objList)] ;
+    }
+  
+    removeObjectFromArray = function(objList, obj) {
+        const index = objList.indexOf(obj);
+        if (index > -1) {
+            objList.splice(index, 1);
+        }
+        return  [...new Set(objList)];
+    }
 	viewMemebers =function(memberId){
 		$('#modal-default').modal('show');
 		alert('viewMemebers'+memberId);
