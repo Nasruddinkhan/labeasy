@@ -22,8 +22,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        enable_lazy_load_no_trans: true
     show-sql: true
     hibernate:
       ddl-auto: update
   profiles: local
-      
+  

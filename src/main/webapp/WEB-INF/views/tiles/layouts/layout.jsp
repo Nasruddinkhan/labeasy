@@ -68,9 +68,17 @@
 
 
 
+
+
+
+
 %
 {
 opacity
+
+
+
+
 
 
 
@@ -80,7 +88,15 @@ opacity
 
 
 
+
+
+
+
 0
+
+
+
+
 
 
 ;
@@ -89,11 +105,23 @@ left
 
 
 
+
+
+
+
 -9999px
+
+
+
+
 
 
 ;
 position
+
+
+
+
 
 
 
@@ -103,7 +131,15 @@ position
 
 
 
+
+
+
+
 absolute
+
+
+
+
 
 
 ;
@@ -119,9 +155,17 @@ keyframes seconds { 0% {
 
 
 
+
+
+
+
 %
 {
 opacity
+
+
+
+
 
 
 
@@ -131,7 +175,15 @@ opacity
 
 
 
+
+
+
+
 0
+
+
+
+
 
 
 ;
@@ -140,12 +192,24 @@ left
 
 
 
+
+
+
+
 :
 
 
 
 
+
+
+
+
 -9999px
+
+
+
+
 
 
 ;
@@ -154,12 +218,24 @@ position
 
 
 
+
+
+
+
 :
 
 
 
 
+
+
+
+
 absolute
+
+
+
+
 
 
 ;
@@ -416,23 +492,30 @@ absolute
 		var myContextPath = "${pageContext.request.contextPath}"
 	</script>
 
-	
+	<script
+		src="${pageContext.request.contextPath}/resources/js/appconstant.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/toastr.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/inquiry.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/testgroup.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/testnames.js"></script>
-	
+	<script
+		src="${pageContext.request.contextPath}/resources/js/inquiry.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/testgroup.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/testnames.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/appointment.js"></script>
+
 
 	<script>
 		$(function() {
 			$('.select2').select2()
-			$( "#treeview-menu-plus"). addClass('${menuopen}');
-			$( "#treeview-menu-plus-ul").css("display", "block");
+			$("#treeview-menu-plus").addClass('${menuopen}');
+			$("#treeview-menu-plus-ul").css("display", "block");
 		});
 		$(function() {
+			
 			$('#example1').DataTable()
-			$('#example2').DataTable({
+			$('#appointment').DataTable({
 				'paging' : true,
 				'lengthChange' : false,
 				'searching' : false,

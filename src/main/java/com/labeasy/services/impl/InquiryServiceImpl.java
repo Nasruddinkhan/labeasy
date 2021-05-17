@@ -16,14 +16,12 @@ import com.labeasy.enums.ApplicationStatus;
 import com.labeasy.repsoitory.InquiryRepository;
 import com.labeasy.services.InquiryService;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author Nasruddin
  */
 @Service
 @Transactional
-@Slf4j
+
 public class InquiryServiceImpl implements InquiryService {
 
     private final InquiryRepository inquiryRepository;

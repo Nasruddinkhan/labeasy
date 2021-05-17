@@ -19,104 +19,63 @@
 			</div>
 		</div>
 
-		<form:form method="POST" action="" modelAttribute="appointment"
+		<form:form method="POST"  modelAttribute="appointment"
+				action="${pageContext.request.contextPath}/appointment/add-appointment"
 			autocomplete="off">
+			<form:hidden  path="testList"  id="testList" class="form-control" />
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Name :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="name" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Age :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="age" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Gender :</label>
-						<form:select path="" class="form-control">
+						<form:select path="gender" class="form-control">
 							<form:option value="">--select--</form:option>
-							<form:option value="">Male</form:option>
-							<form:option value="">Female</form:option>
-							<form:option value="">Transgender</form:option>
+							<form:option value="M">Male</form:option>
+							<form:option value="F">Female</form:option>
+							<form:option value="T">Transgender</form:option>
 						</form:select>
 					</div>
 
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Mobile :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="mobileNo" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Reffered by :</label>
-						<%-- <form:select  path=""
-						class="form-control">
-						<form:option value="">--select--</form:option>
-						<form:option value="">Select</form:option>
-						<form:option value="">Ramesh</form:option>
-						<form:option value="">Rohan</form:option>
-						<form:option value="">Rajesh</form:option>
-					</form:select> --%>
 						<form:input type="text" path="" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Email :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="emailId" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Address :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="address" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">City :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="cityId" class="form-control" />
 					</div>
-					<%-- <div class="form-group col-sm-3">
-					<label for="Country Code">Pincode :</label>
-					<form:input type="text" path=""
-						class="form-control" readonly="true"/>
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">State :</label>
-					<form:input type="text" path=""
-						class="form-control" readonly="true"/>
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Country :</label>
-					<form:input type="text" path=""
-						class="form-control" readonly="true"/>
-				</div> --%>
 					<div class="form-group col-sm-12">
 						<label for="Country Code">Remarks (reason for test) :</label>
-						<form:textarea type="text" path="" class="form-control" />
+						<form:textarea type="text" path="remarks" class="form-control" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="box-body">
-					<%-- <div class="form-group col-sm-3">
-					<label for="Country Code">Test Group :</label> 
-					<form:select  path=""
-						class="form-control" disabled="true">
-						<form:option value="">--select--</form:option>
-						<form:option value="">All</form:option>
-						<form:option value="">Test Group1</form:option>
-						<form:option value="">Test Group2</form:option>
-						<form:option value="">Test Group3</form:option>
-					</form:select> 			
-				</div>	
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Test Package :</label> 
-					<form:select  path=""
-						class="form-control" disabled="true">
-						<form:option value="">--select--</form:option>
-						<form:option value="">Test Package1</form:option>
-						<form:option value="">Test Package2</form:option>
-						<form:option value="">Test Package3</form:option>
-					</form:select> 			
-				</div> --%>
 					<div class="form-group col-sm-3">
-						<label for="Country Code">Appointment date&time :</label>
+						<label for="Country Code">Appointment date & time :</label>
 						<div class='input-group date' id='datetimepicker1'>
-							<form:input type='text' class="form-control" path="" />
+							<form:input type='text' class="form-control"
+							 path="" />
 							<span class="input-group-addon"> <span
 								class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -132,26 +91,26 @@
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Payment mode :</label>
-						<form:select path="" class="form-control">
+						<form:select path="andInvoiceDto.paymentMode" class="form-control ">
 							<form:option value="">--select--</form:option>
-							<form:option value="">Online</form:option>
-							<form:option value="">Card</form:option>
-							<form:option value="">Cash</form:option>
+							<form:option value="O">Online</form:option>
+							<form:option value="F">Offline</form:option>
 						</form:select>
 					</div>
 
 				</div>
 			</div>
+			<p id="mydesc">Define the test list data</p>
+			
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-9">
-						<table id="example1"
-							class="table table-sm table-bordered table-striped">
+						<table id="example1" class="table" aria-describedby="mydesc">
 							<thead>
 								<tr>
-									<th>Test Name</th>
-									<th>Test Code</th>
-									<th>Cost</th>
+									<th id="">Test Name</th>
+									<th id="">Test Code</th>
+									<th id="">Cost</th>
 
 								</tr>
 							</thead>
@@ -159,7 +118,9 @@
 								<c:forEach items="${testNameList}" var="testName">
 									<tr>
 
-										<td><form:checkbox path="" value="" /> ${testName.name}</td>
+										<td><input type="checkbox" id="test${testName.testId}"
+											onclick="selectTest(${testName.price},${testName.testId});" />
+											${testName.name}</td>
 										<td>${testName.testcode}</td>
 										<td>${testName.price}</td>
 									</tr>
@@ -177,30 +138,37 @@
 							<div class="box-body">
 								<div class="col-sm-12">
 									<div class="form-group col-sm-6">
-										<label for="Country Code" style="font-size: 11px;">Selected Test:</label>
-										<form:input type="text" path=""
+										<label for="Country Code"  style="font-size: 11px;">Selected
+											Test:</label>
+										<form:input type="text" path="" id="selected_test"
 											class="form-group form-control" readonly="true" value="0" />
 									</div>
 									<div class="form-group col-sm-6">
 
-										<label for="Country Code" style="font-size: 11px;">Total Amt:</label>
-										<form:input type="text" path=""
+										<label for="Country Code" style="font-size: 11px;">Total
+											Amt:</label>
+										<form:input type="text" path="totalAmmount" id="total_amt"
 											class="form-group form-control" readonly="true" value="0" />
 									</div>
 									<div class="form-group col-sm-6">
-										<label for="Country Code" style="font-size: 11px;">Discount (if any):</label>
-										<form:input type="text" path=""
+										<label for="Country Code" style="font-size: 11px;">Discount
+											(if any):</label>
+										<form:input type="text" path="discountAmmount" id="discount" onkeyup="discountAndPaidAmmount(this);"
 											class="form-group form-control" />
 									</div>
-									<div class="form-group col-sm-6" >
-										<label for="Country Code" style="font-size: 11px;">Paid Amount:</label>
-										<form:input type="text" path=""
+									<div class="form-group col-sm-6">
+										<label for="Country Code" style="font-size: 11px;">Paid
+											Amount:</label>
+										<form:input  type="text"  onkeyup="discountAndPaidAmmount(this)"  
+												path="andInvoiceDto.advancePayment" id="paid_amt"
 											class="form-group form-control" />
 
 									</div>
 									<div class="form-group col-sm-12">
-										<label for="Country Code"  style="font-size: 11px;">Balance amount :</label>
-										<form:input type="text" path=""
+										<label for="Country Code" style="font-size: 11px;">Balance
+											amount :</label>
+										<form:input type="text" path="andInvoiceDto.paymentAmmount"
+											id="balance_id"
 											class="form-group form-control" readonly="true" value="0" />
 									</div>
 								</div>
@@ -210,11 +178,11 @@
 
 				</div>
 			</div>
-			 <div class="box-footer">
+			<div class="box-footer">
 				<div class="col-sm-12 col-sm-offset-5">
 					<button type="submit" class="btn btn-primary">Save</button>
 				</div>
-			</div> 
+			</div>
 			<!-- /.box-body -->
 		</form:form>
 
