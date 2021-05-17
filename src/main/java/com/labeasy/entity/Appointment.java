@@ -1,6 +1,7 @@
 package com.labeasy.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -61,6 +62,14 @@ public class Appointment extends BaseBean implements Serializable {
 	private Double discountAmmount;
 	@Column(name = "discount_reason", length = 100)
 	private String discountReason;
+	@Column(name = "prefred_lab", length = 100)
+	private String prefredLab;
+	@Column(name = "appointment_date")
+	private LocalDateTime appointmentDate;
+	@Column(name = "reffred_by", length = 100)
+	private String reffredBy;
+	@Column(name = "assign_to", length = 100)
+	private String assignTo;
 
 	@ManyToMany
 	@JoinTable(name = "appointment_test_mapping", joinColumns = {

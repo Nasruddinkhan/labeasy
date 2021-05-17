@@ -29,5 +29,10 @@ public class AppointmentDto {
 	private String discountReason;
 	private BillingAndInvoiceDto andInvoiceDto;
 	private String testList;
-	
+	private String prefredLab;
+	private String appointmentDate;
+	private String reffredBy;
+	private String assignTo;
+
+
 }
