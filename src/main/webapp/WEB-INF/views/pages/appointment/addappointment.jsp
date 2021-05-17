@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Reffered by :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="reffredBy" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Email :</label>
@@ -75,7 +75,7 @@
 						<label for="Country Code">Appointment date & time :</label>
 						<div class='input-group date' id='datetimepicker1'>
 							<form:input type='text' class="form-control"
-							 path="" />
+							 path="appointmentDate" />
 							<span class="input-group-addon"> <span
 								class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -83,11 +83,11 @@
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Test preferred Lab :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="prefredLab" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Appointment assign to :</label>
-						<form:input type="text" path="" class="form-control" />
+						<form:input type="text" path="assignTo" class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Payment mode :</label>
