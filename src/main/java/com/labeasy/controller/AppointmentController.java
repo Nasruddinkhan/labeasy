@@ -8,38 +8,45 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.labeasy.dto.InquiryDto;
+import com.labeasy.dto.AppointmentDto;
+import com.labeasy.dto.BillingAndInvoiceDto;
+import com.labeasy.services.AppointmentService;
 import com.labeasy.services.TestNamesService;
 
 @Controller
 @RequestMapping("/appointment")
 public class AppointmentController {
 
-	
+	private final TestNamesService testNamesService;
+	private final AppointmentService appointmentService;
+
 	@Autowired
-	TestNamesService testNamesService;
-	
-	private void onLoads(ModelMap model){
-		model.addAttribute("appointment", "");
+	public AppointmentController(final TestNamesService testNamesService, final AppointmentService appointmentService) {
+		this.testNamesService = testNamesService;
+		this.appointmentService = appointmentService;
+	}
+
+	private void addAppointmentOnLoadData(ModelMap model) {
+		AppointmentDto appointmentDto = new AppointmentDto();
+		appointmentDto.setAndInvoiceDto(new BillingAndInvoiceDto());
+		model.addAttribute("appointment", appointmentDto);
 		model.addAttribute("testNameList", testNamesService.findAllTestName());
 	}
-	
+
 	@GetMapping("/view-appointment-page")
 	public String viewAppointments(ModelMap model) {
-		
 		return "viewappointments";
 	}
-	
+
 	@GetMapping("/show-appointment-page")
 	public String showAppointment(ModelMap model) {
-		onLoads(model);
+		addAppointmentOnLoadData(model);
 		return "addappointment";
 	}
-	
+
 	@PostMapping("/add-appointment")
-	public String addAppointments(ModelMap model) {
-	        return "add_appointment";
+	public String addAppointments(@ModelAttribute AppointmentDto appointmentDto) {
+		 appointmentService.addAppointment(appointmentDto);
+		return "redirect:view-appointment-page";
 	}
-	
-	
 }

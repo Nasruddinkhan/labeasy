@@ -101,9 +101,12 @@ $.fn.serializeObject = function()
         }
         return  [...new Set(objList)];
     }
-	viewMemebers =function(memberId){
-		$('#modal-default').modal('show');
-		alert('viewMemebers'+memberId);
-		$('#viewmember_id').html(memberId);
+    validationErrorMsg = function(mg) {
+		toastr.options.timeOut = 5000; // 1.5s		
+   		toastr.error(mg);	
 	}
+	isNumericOnly= function(value){
+        return value.match(ApiConstant.NUMBER_PATTERN);
+	}
+	
 })();

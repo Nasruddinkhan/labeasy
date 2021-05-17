@@ -4,10 +4,6 @@ import static com.labeasy.constant.MessageConstants.EMAIL_EMPTY_VLD;
 import static com.labeasy.constant.MessageConstants.MOB_NO_EMPTY_VLD;
 import static com.labeasy.constant.MessageConstants.NAME_EMPTY_VLD;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

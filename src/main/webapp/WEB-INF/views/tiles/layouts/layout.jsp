@@ -70,9 +70,13 @@
 
 
 
+
+
 %
 {
 opacity
+
+
 
 
 
@@ -86,7 +90,11 @@ opacity
 
 
 
+
+
 0
+
+
 
 
 
@@ -99,13 +107,19 @@ left
 
 
 
+
+
 -9999px
+
+
 
 
 
 
 ;
 position
+
+
 
 
 
@@ -119,7 +133,11 @@ position
 
 
 
+
+
 absolute
+
+
 
 
 
@@ -139,9 +157,13 @@ keyframes seconds { 0% {
 
 
 
+
+
 %
 {
 opacity
+
+
 
 
 
@@ -155,7 +177,11 @@ opacity
 
 
 
+
+
 0
+
+
 
 
 
@@ -168,6 +194,8 @@ left
 
 
 
+
+
 :
 
 
@@ -175,7 +203,11 @@ left
 
 
 
+
+
 -9999px
+
+
 
 
 
@@ -188,6 +220,8 @@ position
 
 
 
+
+
 :
 
 
@@ -195,7 +229,11 @@ position
 
 
 
+
+
 absolute
+
+
 
 
 
@@ -454,7 +492,8 @@ absolute
 		var myContextPath = "${pageContext.request.contextPath}"
 	</script>
 
-
+	<script
+		src="${pageContext.request.contextPath}/resources/js/appconstant.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/toastr.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 	<script
@@ -474,8 +513,9 @@ absolute
 			$("#treeview-menu-plus-ul").css("display", "block");
 		});
 		$(function() {
+			
 			$('#example1').DataTable()
-			$('#example2').DataTable({
+			$('#appointment').DataTable({
 				'paging' : true,
 				'lengthChange' : false,
 				'searching' : false,
