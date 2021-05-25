@@ -8,12 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.labeasy.dto.TestGroupDto;
 import com.labeasy.dto.TestNamesDto;
-import com.labeasy.entity.TestGroup;
 import com.labeasy.entity.TestNames;
 import com.labeasy.enums.ApplicationStatus;
-import com.labeasy.repsoitory.TestGroupRepository;
 import com.labeasy.repsoitory.TestNamesRepository;
 import com.labeasy.services.TestNamesService;
 

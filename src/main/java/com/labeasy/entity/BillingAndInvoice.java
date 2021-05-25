@@ -23,7 +23,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table(name = "billing")
-public class BillingAndInvoice  extends BaseBean implements Serializable {
+public class BillingAndInvoice extends BaseBean implements Serializable {
 
 	/**
 	 * 
@@ -34,17 +34,21 @@ public class BillingAndInvoice  extends BaseBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_seq")
 	@SequenceGenerator(name = "billing_seq", sequenceName = "billing_seq", allocationSize = 1, initialValue = 1)
 	private Long billingId;
-	@Column(name = "payment_ammount")
+	@Column(name = "due_amount")
 	private Double paymentAmmount;
 	@Column(name = "payment_mode", length = 15)
 	private String paymentMode;
 	@Column(name = "advance_payment")
 	private Double advancePayment;
-	@Column(name = "total_ammount")
-	private Double totalAmmount;
 	@Column(name = "payment_date")
 	private LocalDateTime paymentDate;
-    @JoinColumn(name =  "appointment_id")
+	@JoinColumn(name = "appointment_id")
 	@ManyToOne(fetch = FetchType.EAGER)
-    private Appointment appointment;
+	private Appointment appointment;
+	@Column(name = "total_ammount")
+	private Double totalAmmount;
+	@Column(name = "discount_ammount")
+	private Double discountAmmount;
+	@Column(name = "discount_reason", length = 100)
+	private String discountReason;
 }

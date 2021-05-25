@@ -19,10 +19,10 @@
 			</div>
 		</div>
 
-		<form:form method="POST"  modelAttribute="appointment"
-				action="${pageContext.request.contextPath}/appointment/add-appointment"
+		<form:form method="POST" modelAttribute="appointment"
+			action="${pageContext.request.contextPath}/appointment/add-appointment"
 			autocomplete="off">
-			<form:hidden  path="testList"  id="testList" class="form-control" />
+			<form:hidden path="testList" id="testList" class="form-control" />
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-3">
@@ -71,14 +71,19 @@
 			</div>
 			<div class="row">
 				<div class="box-body">
-					<div class="form-group col-sm-3">
-						<label for="Country Code">Appointment date & time :</label>
-						<div class='input-group date' id='datetimepicker1'>
-							<form:input type='text' class="form-control"
-							 path="appointmentDate" />
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-calendar"></span>
-							</span>
+					<div class="form-group col-sm-2">
+						<label for="Country Code">Appointment date  :</label>
+						<div class="input-group">
+							<input type="text" class="form-control pull-right"
+								path="appointmentDate" id="appointmentDate">
+						</div>
+					</div>
+					<div class="form-group col-sm-1">
+						<label for="Country Code"> Time :</label>
+						<div class="input-group bootstrap-timepicker">
+
+							<input type="text" class="form-control pull-right timepicker" 
+								path="appointmentTime" id="appointmentTime">
 						</div>
 					</div>
 					<div class="form-group col-sm-3">
@@ -91,7 +96,8 @@
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Payment mode :</label>
-						<form:select path="andInvoiceDto.paymentMode" class="form-control ">
+						<form:select path="andInvoiceDto.paymentMode"
+							class="form-control ">
 							<form:option value="">--select--</form:option>
 							<form:option value="O">Online</form:option>
 							<form:option value="F">Offline</form:option>
@@ -100,18 +106,17 @@
 
 				</div>
 			</div>
-			<p id="mydesc">Define the test list data</p>
-			
+
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-9">
-						<table id="example1" class="table" aria-describedby="mydesc">
+						<table id="testDatatable"
+							class="table table-sm table-bordered table-striped">
 							<thead>
 								<tr>
-									<th id="">Test Name</th>
-									<th id="">Test Code</th>
-									<th id="">Cost</th>
-
+									<th>Test Name</th>
+									<th>Test Code</th>
+									<th>Cost</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -131,14 +136,11 @@
 					</div>
 
 					<div class="form-group col-sm-3">
-						<%-- <label for="Country Code">Number of group selected :</label>
-					<form:input type="text" path=""
-						class="form-group form-control" readonly="true" value="0"/> --%>
 						<div class="row">
 							<div class="box-body">
 								<div class="col-sm-12">
 									<div class="form-group col-sm-6">
-										<label for="Country Code"  style="font-size: 11px;">Selected
+										<label for="Country Code" style="font-size: 11px;">Selected
 											Test:</label>
 										<form:input type="text" path="" id="selected_test"
 											class="form-group form-control" readonly="true" value="0" />
@@ -147,20 +149,22 @@
 
 										<label for="Country Code" style="font-size: 11px;">Total
 											Amt:</label>
-										<form:input type="text" path="totalAmmount" id="total_amt"
-											class="form-group form-control" readonly="true" value="0" />
+										<form:input type="text" path="andInvoiceDto.totalAmmount"
+											id="total_amt" class="form-group form-control"
+											readonly="true" value="0" />
 									</div>
 									<div class="form-group col-sm-6">
 										<label for="Country Code" style="font-size: 11px;">Discount
 											(if any):</label>
-										<form:input type="text" path="discountAmmount" id="discount" onkeyup="discountAndPaidAmmount(this);"
+										<form:input type="text" path="andInvoiceDto.discountAmmount"
+											id="discount" onkeyup="discountAndPaidAmmount(this);"
 											class="form-group form-control" />
 									</div>
 									<div class="form-group col-sm-6">
 										<label for="Country Code" style="font-size: 11px;">Paid
 											Amount:</label>
-										<form:input  type="text"  onkeyup="discountAndPaidAmmount(this)"  
-												path="andInvoiceDto.advancePayment" id="paid_amt"
+										<form:input type="text" onkeyup="discountAndPaidAmmount(this)"
+											path="andInvoiceDto.advancePayment" id="paid_amt"
 											class="form-group form-control" />
 
 									</div>
@@ -168,8 +172,8 @@
 										<label for="Country Code" style="font-size: 11px;">Balance
 											amount :</label>
 										<form:input type="text" path="andInvoiceDto.paymentAmmount"
-											id="balance_id"
-											class="form-group form-control" readonly="true" value="0" />
+											id="balance_id" class="form-group form-control"
+											readonly="true" value="0" />
 									</div>
 								</div>
 							</div>
