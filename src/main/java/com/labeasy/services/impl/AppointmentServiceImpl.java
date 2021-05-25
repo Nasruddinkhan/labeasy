@@ -40,11 +40,18 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Set<BillingAndInvoice> billingAndInvoices = new HashSet<>();
 		billingAndInvoices.add(andInvoice);
 		appointment.setBillingAndInvoices(billingAndInvoices);
-		appointment.setTestNames(testNamesRepository
-				.findAllById(transformGenricList(removeFirstLastElementOnstring.apply(appointmentDto.getTestList()), Long::parseLong))
-				.stream().collect(Collectors.toSet()));
+		setTestNames(appointment, appointmentDto.getTestList());
 		return map(appointmentRepository.save(appointment), AppointmentDto.class);
 	}
-
+	/**
+	 * 
+	 * @param appointment
+	 * @param testList
+	 */
+	private void setTestNames(Appointment appointment,String testList ) {
+		appointment.setTestNames(testNamesRepository
+				.findAllById(transformGenricList(removeFirstLastElementOnstring.apply(testList), Long::parseLong))
+				.stream().collect(Collectors.toSet()));
+	}
 
 }

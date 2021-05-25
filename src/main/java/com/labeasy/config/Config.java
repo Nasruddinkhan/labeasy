@@ -7,6 +7,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -26,6 +27,11 @@ public class Config implements WebMvcConfigurer {
 		return tilesConfigurer;
 	}
 
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login");
+	}
+
 	@Bean
 	public InternalResourceViewResolver resolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -43,8 +49,6 @@ public class Config implements WebMvcConfigurer {
 		TilesViewResolver viewResolver = new TilesViewResolver();
 		registry.viewResolver(viewResolver);
 	}
-
-
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -2,6 +2,7 @@ package com.labeasy.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,6 +41,10 @@ public class Appointment extends BaseBean implements Serializable {
 	private Long appointmentId;
 	@Column(name = "name", length = 50)
 	private String name;
+	@Column(name = "room_no_bldg_name", length = 50)
+	private String roomNoBldNo;
+	@Column(name = "area_locality_street_name", length = 50)
+	private String areLocStreetName;
 	@Column(name = "mobile_no", length = 10)
 	private String mobileNo;
 	@Column(name = "email_id", length = 60)
@@ -48,7 +53,7 @@ public class Appointment extends BaseBean implements Serializable {
 	private String status;
 	@Column(name = "remarks")
 	private String remarks;
-	@Column(name = "gender", length = 1)
+	@Column(name = "gender", columnDefinition = "char(1)")
 	private String gender;
 	@Column(name = "age")
 	private Integer age;
@@ -56,16 +61,14 @@ public class Appointment extends BaseBean implements Serializable {
 	private String address;
 	@Column(name = "city_id")
 	private String cityId;
-	@Column(name = "total_ammount")
-	private Double totalAmmount;
-	@Column(name = "discount_ammount")
-	private Double discountAmmount;
-	@Column(name = "discount_reason", length = 100)
-	private String discountReason;
 	@Column(name = "prefred_lab", length = 100)
 	private String prefredLab;
 	@Column(name = "appointment_date")
 	private LocalDateTime appointmentDate;
+	
+	@Column(name = "appointment_time")
+	private LocalTime appointmentTime;
+	
 	@Column(name = "reffred_by", length = 100)
 	private String reffredBy;
 	@Column(name = "assign_to", length = 100)
