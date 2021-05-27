@@ -1,6 +1,7 @@
 package com.labeasy.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
@@ -49,7 +50,7 @@ public class Appointment extends BaseBean implements Serializable {
 	private String mobileNo;
 	@Column(name = "email_id", length = 60)
 	private String emailId;
-	@Column(name = "status")
+	@Column(name = "status", columnDefinition = "char(1) ")
 	private String status;
 	@Column(name = "remarks")
 	private String remarks;
@@ -64,11 +65,9 @@ public class Appointment extends BaseBean implements Serializable {
 	@Column(name = "prefred_lab", length = 100)
 	private String prefredLab;
 	@Column(name = "appointment_date")
-	private LocalDateTime appointmentDate;
-	
+	private LocalDate appointmentDate;
 	@Column(name = "appointment_time")
 	private LocalTime appointmentTime;
-	
 	@Column(name = "reffred_by", length = 100)
 	private String reffredBy;
 	@Column(name = "assign_to", length = 100)

@@ -342,9 +342,10 @@
 			})
 		});
 	//$('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
-		$('#appointmentDate').datepicker();
+		$('#appointmentDate').datepicker({ format: 'yyyy-mm-dd' });
 		   $('.timepicker').timepicker({
-			      showInputs: false
+			      showInputs: false,
+			      format: 'HH:mm'
 			    })
 		
 	</script>
