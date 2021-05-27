@@ -26,7 +26,7 @@
 									<th>Status</th>
 									<th>Assigned to</th>
 									<th>Balance</th>
-									<th>Action</th>
+									<th >Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -36,16 +36,36 @@
 										<td>Hamid khan</td>
 										<td>9987353738</td>
 										<td>30-Nov-2021 10:00 PM</td>
-										<td>New</td>
+										<td><i class="fa fa-circle "></i> New</td>
 										<td>Ramesh</td>
 										<td>100</td>
-										<td><div class="box-tools pull-center">
-												<a
-													href="#"><button
-														type="button" class="btn btn-sm btn-danger btn-box-tool">
+										<td><div class="box-tools pull-center"> 
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
 
-														<i class="fa fa-trash" style="color: white"></i>
-													</button> </a>
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
 
 											</div></td>
 									</tr>
@@ -54,16 +74,75 @@
 										<td>Wahid khan</td>
 										<td>9987353453</td>
 										<td>22-Dec-2021 09:00 AM</td>
-										<td>New</td>
+										<td><i class="fa fa-user-md"></i> Assigned</td>
 										<td>Mohan</td>
 										<td>200</td>
 										<td><div class="box-tools pull-center">
-												<a
-													href="#"><button
-														type="button" class="btn btn-sm btn-danger btn-box-tool">
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
 
-														<i class="fa fa-trash" style="color: white"></i>
-													</button> </a>
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
+
+										</div></td>
+									</tr>
+									<tr>
+										<td><em data-toggle="modal" data-target="#appointment-status"><a href="#"><u>AP103</u></a></em></td>
+										<td>Kadir khan</td>
+										<td>9987353876</td>
+										<td>13-Oct-2021 12:30 AM</td>
+										<td><i class="fa fa-motorcycle"></i> Visiting</td>
+										<td>Kundan</td>
+										<td>150</td>
+										<td><div class="box-tools pull-center">
+												
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
+
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
 
 											</div></td>
 									</tr>
@@ -72,19 +151,158 @@
 										<td>Kadir khan</td>
 										<td>9987353876</td>
 										<td>13-Oct-2021 12:30 AM</td>
-										<td>New</td>
+										<td><i class="fa fa-medkit"></i> Collected</td>
 										<td>Kundan</td>
 										<td>150</td>
 										<td><div class="box-tools pull-center">
-												 <a
-													href="#"><button
-														type="button" class="btn btn-sm btn-danger btn-box-tool">
+												
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
 
-														<i class="fa fa-trash" style="color: white"></i>
-													</button> </a>
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
 
 											</div></td>
 									</tr>
+									<tr>
+										<td><em data-toggle="modal" data-target="#appointment-status"><a href="#"><u>AP103</u></a></em></td>
+										<td>Kadir khan</td>
+										<td>9987353876</td>
+										<td>13-Oct-2021 12:30 AM</td>
+										<td><i class="fa fa-hospital-o"></i> Dropped</td>
+										<td>Kundan</td>
+										<td>150</td>
+										<td><div class="box-tools pull-center">
+												
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
+
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
+
+											</div></td>
+									</tr>
+									<tr>
+										<td><em data-toggle="modal" data-target="#appointment-status"><a href="#"><u>AP103</u></a></em></td>
+										<td>Kadir khan</td>
+										<td>9987353876</td>
+										<td>13-Oct-2021 12:30 AM</td>
+										<td><i class="fa fa-cog fa-spin"></i> Processing</td>
+										<td>Kundan</td>
+										<td>150</td>
+										<td><div class="box-tools pull-center">
+												
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
+
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
+
+											</div></td>
+									</tr>
+									<tr>
+										<td><em data-toggle="modal" data-target="#appointment-status"><a href="#"><u>AP103</u></a></em></td>
+										<td>Kadir khan</td>
+										<td>9987353876</td>
+										<td>13-Oct-2021 12:30 AM</td>
+										<td><i class="fa fa-check-circle"></i> Tested</td>
+										<td>Kundan</td>
+										<td>150</td>
+										<td><div class="box-tools pull-center">
+												
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-info btn-box-tool">
+												<i class="fa fa-edit" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#"><button
+												type="button" class="btn btn-sm btn-danger btn-box-tool">
+
+												<i class="fa fa-trash" style="color: white"></i>
+											</button> 
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-warning btn-box-tool">
+												<i class="fa fa-upload" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-success btn-box-tool">
+												<i class="fa fa-whatsapp" style="color: white"></i>
+											</button>
+											</a>
+											<a href="#">
+											<button type="button" class="btn btn-sm btn-primary btn-box-tool">
+												<i class="fa fa-envelope" style="color: white"></i>
+											</button>
+											</a>
+
+											</div></td>
+									</tr>
+									
 								
 							</tbody>
 						</table>
