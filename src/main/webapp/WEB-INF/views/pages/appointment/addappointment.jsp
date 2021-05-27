@@ -23,8 +23,9 @@
 			action="${pageContext.request.contextPath}/appointment/add-appointment"
 			autocomplete="off">
 			<form:hidden path="testList" id="testList" class="form-control" />
-			<div class="row">
-				<div class="box-body">
+
+			<div class="box-body">
+				<div class="row">
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Name :</label>
 						<form:input type="text" path="name" class="form-control" />
@@ -47,6 +48,8 @@
 						<label for="Country Code">Mobile :</label>
 						<form:input type="text" path="mobileNo" class="form-control" />
 					</div>
+				</div>
+				<div class="row">
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Reffered by :</label>
 						<form:input type="text" path="reffredBy" class="form-control" />
@@ -63,27 +66,40 @@
 						<label for="Country Code">City :</label>
 						<form:input type="text" path="cityId" class="form-control" />
 					</div>
-					<div class="form-group col-sm-12">
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-3">
+						<label for="Country Code">Room No :</label>
+						<form:input type="text" path="roomNoBldNo" class="form-control" />
+					</div>
+					<div class="form-group col-sm-3">
+						<label for="Country Code">Area Location Street :</label>
+						<form:input type="text" path="areLocStreetName" class="form-control" />
+					</div>
+					<div class="form-group col-sm-6">
 						<label for="Country Code">Remarks (reason for test) :</label>
 						<form:textarea type="text" path="remarks" class="form-control" />
 					</div>
 				</div>
 			</div>
+
+
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-2">
-						<label for="Country Code">Appointment date  :</label>
+						<label for="Country Code">Appointment date :</label>
 						<div class="input-group">
-							<input type="text" class="form-control pull-right"
-								path="appointmentDate" id="appointmentDate">
+							<form:input type="text" class="form-control pull-right"
+								path="appointmentDate" id="appointmentDate" />
 						</div>
 					</div>
 					<div class="form-group col-sm-1">
 						<label for="Country Code"> Time :</label>
 						<div class="input-group bootstrap-timepicker">
 
-							<input type="text" class="form-control pull-right timepicker" 
-								path="appointmentTime" id="appointmentTime">
+							<form:input type="text"
+								class="form-control pull-right timepicker"
+								path="appointmentTime" id="appointmentTime" />
 						</div>
 					</div>
 					<div class="form-group col-sm-3">
@@ -106,6 +122,7 @@
 
 				</div>
 			</div>
+
 
 			<div class="row">
 				<div class="box-body">
@@ -167,6 +184,14 @@
 											path="andInvoiceDto.advancePayment" id="paid_amt"
 											class="form-group form-control" />
 
+									</div>
+									
+									<div class="form-group col-sm-12">
+										<label for="Country Code" style="font-size: 11px;">Discount Reason
+											amount :</label>
+										<form:input type="text" path="andInvoiceDto.discountReason"
+											 class="form-group form-control"
+											  />
 									</div>
 									<div class="form-group col-sm-12">
 										<label for="Country Code" style="font-size: 11px;">Balance

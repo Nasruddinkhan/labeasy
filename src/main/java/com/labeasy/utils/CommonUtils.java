@@ -1,7 +1,10 @@
 package com.labeasy.utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -13,5 +16,9 @@ public interface CommonUtils {
 
 	public static <T, U> List<U> transformGenricList(List<T> list, Function<T, U> function) {
 		return list.stream().map(function).collect(Collectors.toList());
+	}
+	
+	public static LocalDate transformTheDateFormat(BiFunction<String, DateTimeFormatter, LocalDate> biFunction, String date, DateTimeFormatter format) {
+		return biFunction.apply(date, format);
 	}
 }

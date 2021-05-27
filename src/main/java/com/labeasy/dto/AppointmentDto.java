@@ -1,6 +1,7 @@
 package com.labeasy.dto;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
+@Setter 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -29,10 +30,12 @@ public class AppointmentDto {
 	private BillingAndInvoiceDto andInvoiceDto;
 	private String testList;
 	private String prefredLab;
-	private LocalDateTime appointmentDate;
+	private String appointmentDate;
+	private LocalTime appointmentTime;
 	private String reffredBy;
 	private String assignTo;
 	private String roomNoBldNo;
 	private String areLocStreetName;
 
+	
 }
