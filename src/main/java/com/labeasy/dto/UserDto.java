@@ -7,9 +7,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * @author : Nasruddin khan
- */
+
 @Getter
 @Setter
 @AllArgsConstructor
