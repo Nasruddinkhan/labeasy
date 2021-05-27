@@ -25,7 +25,10 @@ public class AppointmentController {
 		this.testNamesService = testNamesService;
 		this.appointmentService = appointmentService;
 	}
-
+	/**
+	 * 
+	 * @param model
+	 */
 	private void addAppointmentOnLoadData(ModelMap model) {
 		AppointmentDto appointmentDto = new AppointmentDto();
 		appointmentDto.setAndInvoiceDto(new BillingAndInvoiceDto());
