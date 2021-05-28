@@ -10,9 +10,9 @@
 			<div class="box-tools pull-right">
 			<!-- click to open inquiry form  -->
 			<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
-					title="Add TestGroup">
+					title="Add user Role">
 					<em class="fa fa-plus" data-toggle="modal"
-						data-target="#test-group"></em>
+						data-target="#add-role-modal"> Add user Role</em>
 				</button>
 			
 			</div>
@@ -29,11 +29,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${testGroupList}" var="testGroup">
+								<c:forEach items="${userRoleList}" var="userRole">
 									<tr>
-										<td>${testGroup.groupId}</td>
-										<td>${testGroup.name}</td>
-										<td>${testGroup.description}</td>
+										<td>${userRole.roleId}</td>
+										<td>${userRole.roleName}</td>
+										<td>${userRole.description}</td>
 										<td><div class="box-tools pull-center">
 												<a
 													href="#"><button
@@ -53,9 +53,9 @@
 						</table>
 		</div>
 		<!-- Model start  -->	
-		<div class="modal fade" id="test-group">
+		<div class="modal fade" id="add-role-modal">
 			<div class="modal-dialog">
-				<form method="POST" id="add-group-form" autocomplete="off">
+				<form method="POST" id="add-role-form" autocomplete="off">
 					<div class="modal-content">
 						
 						<div class="modal-header">
@@ -68,8 +68,8 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
-									<label >Role Name :</label> <input type="text" id="name"
-										name="name" class="form-control" />
+									<label >Role Name :</label> <input type="text" id="rolename"
+										name="rolename" class="form-control" />
 								</div>
 								<div class="form-group col-sm-6">
 									<label >Description :</label> <input type="text" id="description"
@@ -80,7 +80,7 @@
 							<!-- /.box-body -->
 						</div>
 						<div class="modal-footer">
-							<button type="button" onclick="addGroup()" class="btn btn-primary">Save</button>
+							<button type="button" onclick="addUserRole()" class="btn btn-primary">Save</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->

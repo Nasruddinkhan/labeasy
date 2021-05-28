@@ -1,11 +1,11 @@
 package com.labeasy.dto;
 
 
-import lombok.*;
-
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Getter
@@ -14,8 +14,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @NoArgsConstructor
 @Builder
 public class UserDto  {
+	
 
-    @JsonProperty("reg_id")
+	
+	private String userId;
+    private String firstName;
+    private String lastName;
+    private String fatherSpouseName;
+    private String gender;
+    private String dob;
+    private String doj;
+    //private String password;
+    private String mobileNo;
+    private String alternateMobileNo;
+    private String emailId;
+    private String adharCardNo;
+    private String panCardNo;
+    private String otherIdCardNo;
+    private String remarks;
+    private Long roleId;
+	private AddressDto address;
+    private String reportingUserId;
+	
+	
+	
+
+   /* @JsonProperty("reg_id")
     private String regId;
 
     @JsonProperty("first_name")
@@ -65,5 +89,5 @@ public class UserDto  {
 
     @JsonProperty("is_smartphone")
     private Boolean isSmartPhone;
-
+*/
 }
