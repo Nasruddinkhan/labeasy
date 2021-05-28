@@ -321,6 +321,8 @@
 		src="${pageContext.request.contextPath}/resources/js/testnames.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/appointment.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/addrole.js"></script>
 
 
 	<script>

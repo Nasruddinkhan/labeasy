@@ -46,10 +46,10 @@
 		</a>
 			<ul class="treeview-menu ">
 				<li><a
-					href="${pageContext.request.contextPath}/role-master/add-new-role"><i
+					href="${pageContext.request.contextPath}/role-master/show-user-role"><i
 						class="fa fa-plus text-yellow"></i> Add Role</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/role-master/add-new-role"><i
+					href="${pageContext.request.contextPath}/role-master/show-user-role"><i
 						class="fa fa-plus text-yellow"></i>Define Role Menus</a></li>
 			</ul></li>			
 		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
@@ -59,7 +59,7 @@
 		</a>
 			<ul class="treeview-menu ">
 				<li><a
-					href="${pageContext.request.contextPath}/user-master/add-new-user"><i
+					href="${pageContext.request.contextPath}/user-master/show-add-user-page"><i
 						class="fa fa-user-plus text-white"></i> Add New User</a></li>
 						
 				<li><a

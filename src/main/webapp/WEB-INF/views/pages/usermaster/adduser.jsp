@@ -7,7 +7,7 @@
 <section class="content">
 	<div class="box box-danger">
 		<div class="box-header with-border">
-			<h3 class="box-title">Add New User</h3>
+			<h3 class="box-title"><b>Add New User</b></h3>
 			<div class="box-tools pull-right">
 			<!-- click to open inquiry form  -->
 				<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
@@ -17,104 +17,164 @@
 				</button>
 			</div>
 		</div>
-		
-		<form:form method="POST"
-				action=""
-				modelAttribute="user" autocomplete="off">
+		<form:form method="POST"  modelAttribute="user"
+				action="${pageContext.request.contextPath}/user-master/add-new-user"
+			autocomplete="off">
 		<div class="row">
 			<div class="box-body">
 				<div class="form-group col-sm-3">
 					<label for="Country Code">First Name :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="firstName" id="firstName"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Last Name :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="lastName" id="lastName"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Father/Spouse Name :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="fatherSpouseName" id="fatherSpouseName"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Gender :</label> 
-					<form:select  path=""
+					<form:select  path="gender" id="gender"
 						class="form-control">
 						<form:option value="">--select--</form:option>
-						<form:option value="">Male</form:option>
-						<form:option value="">Female</form:option>
-						<form:option value="">Transgender</form:option>
+						<form:option value="M">Male</form:option>
+						<form:option value="F">Female</form:option>
+						<form:option value="T">Transgender</form:option>
 					</form:select>
 				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="box-body">
+				
 				<div class="form-group col-sm-3">
 					<label for="Country Code">DOB :</label>
 						<div class='input-group date' id='datetimepicker1'>
-			               <form:input type='text' class="form-control" path="" />
-            				   <span class="input-group-addon">
-               					<span class="glyphicon glyphicon-calendar"></span>
-               				   </span>
-            			</div>
+							<form:input type='text' class="form-control"
+							 path="dob" id="dob" />
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+				</div>
+				<div class="form-group col-sm-3">
+					<label for="Country Code">Date of joining :</label>
+						<div class='input-group date' id='datetimepicker1'>
+							<form:input type='text' class="form-control"
+							 path="doj" id="doj" />
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Contact :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="mobileNo" id="mobileNo"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Alternate Contact :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="alternateMobileNo" id="alternateMobileNo"
 						class="form-control"/>
 				</div>
+				
+			</div>		
+		</div>
+		<div class="row">
+			<div class="box-body">	
+			
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Email :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="emailId" id="emailId"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Adhar Card No :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="adharCardNo" id="adharCardNo"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">PAN Card No :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="panCardNo" id="panCardNo"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Other ID Card No :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="otherIdCardNo" id="otherIdCardNo"
 						class="form-control"/>
 				</div>
-
+			</div>
+		</div>			
+		<div class="row">
+			<div class="box-body">
 				<div class="form-group col-sm-3">
-					<label for="Country Code">Address :</label>
-					<form:input type="text" path=""
+					<label for="Country Code">Address Line1 :</label>
+					<form:input type="text" path="address.addressLine1" id="addressLine1"
+						class="form-control"/>
+				</div>
+				<div class="form-group col-sm-3">
+					<label for="Country Code">Address Line2 :</label>
+					<form:input type="text" path="address.addressLine2" id="addressLine2"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">City :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="address.city" id="city"
 						class="form-control"/>
 				</div>
-
+				<div class="form-group col-sm-3">
+					<label for="Country Code">Pin code :</label>
+					<form:input type="text" path="address.pinCode" id="pinCode"
+						class="form-control"/>
+				</div>
+				
+			</div>
+		</div>					
+		<div class="row">
+			<div class="box-body">
+				<div class="form-group col-sm-3">
+					<label for="Country Code">State :</label>
+					<form:input type="text" path="address.state" id="state"
+						class="form-control"/>
+				</div>
+			
+				<div class="form-group col-sm-3">
+					<label for="Country Code">Country :</label>
+					<form:input type="text" path="address.country" id="country"
+						class="form-control"/>
+				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Remarks :</label>
-					<form:input type="text" path=""
+					<form:input type="text" path="remarks" id="remarks"
 						class="form-control"/>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Role :</label> 
-					<form:select  path=""
+					<form:select  path="roleId" id="roleId"
 						class="form-control">
 						<form:option value="">--select--</form:option>
-						<form:option value="">Supervisor</form:option>
-						<form:option value="">Executive</form:option>
-						<form:option value="">Sales</form:option>
-						<form:option value="">Flabo</form:option>
+						<form:option value="1">Supervisor</form:option>
+						<form:option value="2">Executive</form:option>
+						<form:option value="3">Sales</form:option>
+						<form:option value="4">Flabo</form:option>
 					</form:select>
 				</div>
+			</div>
+		</div>					
+		<div class="row">
+			<div class="box-body">
+				<div class="form-group col-sm-3">
+					<label for="Country Code">Reporting person :</label>
+					<form:input type="text" path="reportingUserId" id="reportingUserId"
+						class="form-control"/>
+				</div>
+				
 			</div>
 		</div>
 
