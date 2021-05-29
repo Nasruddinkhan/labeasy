@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.labeasy.dto.MyUserDetails;
 import com.labeasy.entity.User;
-import com.labeasy.services.impl.UserService;
+import com.labeasy.services.UserService;
 
 @Component
 public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

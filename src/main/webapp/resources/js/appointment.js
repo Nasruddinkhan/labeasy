@@ -31,7 +31,22 @@
         }
         return true;
     }
-
+	setOnLoadData = function(appId, testList){
+		const appointmentId = parseInt(appId);
+		if(appointmentId > 0){
+		 const tests =	JSON.parse(testList)
+		 $(ApiConstant.SELECTED_TEST_ID).val(tests.length);
+		 tests.forEach(ele=> isCheckedSelectedTest(ele));
+		}else{
+				$(ApiConstant.TOTAL_AMT_ID).val(0)
+		
+		}
+		
+	}
+	isCheckedSelectedTest = function(testId){
+		console.log("#test"+testId);
+		$("#test" + testId).prop('checked', true);
+	}
     discountAndPaidAmmount = function(obj) {
         if (discountAndPaidValidation(obj)) {
         	 const totalAmout = parseFloat($(ApiConstant.TOTAL_AMT_ID).val());

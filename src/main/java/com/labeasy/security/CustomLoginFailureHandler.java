@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import com.labeasy.eception.NotFoundException;
 import com.labeasy.entity.User;
 import com.labeasy.repsoitory.UserRepository;
-import com.labeasy.services.impl.UserService;
+import com.labeasy.services.UserService;
 import com.labeasy.utils.CommonUtils;
 
 @Component
