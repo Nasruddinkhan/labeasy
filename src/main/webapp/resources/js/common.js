@@ -20,11 +20,18 @@ $.fn.serializeObject = function()
 };
  toastr.options.timeOut = 1500;
 	ajaxGetCall = function(url, callbackfunction) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	console.log(token);
+	console.log(header);
 		var rootURL = window.location.origin;
 		base_url = rootURL + myContextPath;
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({
 			headers : {
-				'Content-Type' : 'application/json'
+				'Content-Type' : 'application/json',
+				'X-CSRF-TOKEN':token
 			},
 			type : "GET",
 			url : base_url + url,
@@ -40,9 +47,14 @@ $.fn.serializeObject = function()
 	ajaxPostCall = function(url, callbackfunction, jsonObj) {
 		var rootURL = window.location.origin;
 		base_url = rootURL + myContextPath;
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+	console.log(token);
+	console.log(header);
 		$.ajax({
 			headers : {
-				'Content-Type' : 'application/json'
+				'Content-Type' : 'application/json',
+				'X-CSRF-TOKEN':token
 			},
 			type : "POST",
 			data : jsonObj,

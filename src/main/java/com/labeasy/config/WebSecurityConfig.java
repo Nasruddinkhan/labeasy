@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.labeasy.security.CustomLoginFailureHandler;
 import com.labeasy.security.CustomLoginSuccessHandler;
-import com.labeasy.services.impl.UserService;
+import com.labeasy.services.UserService;
 
 @Configuration
 @EnableWebSecurity
