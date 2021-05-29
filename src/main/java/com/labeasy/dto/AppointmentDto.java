@@ -1,6 +1,12 @@
 package com.labeasy.dto;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+import javax.persistence.Column;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedBy;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +41,7 @@ public final  class AppointmentDto {
 	private String assignTo;
 	private String roomNoBldNo;
 	private String areLocStreetName;
+    private String createdBy;
+    private LocalDateTime createdDate;
  
 }

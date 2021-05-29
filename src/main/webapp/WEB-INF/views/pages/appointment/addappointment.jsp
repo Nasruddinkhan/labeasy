@@ -220,8 +220,8 @@
 									<form:hidden class="form-control" path="appointmentId" />
 									<form:hidden class="form-control"
 										path="andInvoiceDto.billingId" />
-									<%-- <form:hidden class="form-control" path="createdDate" />
-								<form:hidden class="form-control" path="createdBy" /> --%>
+									<form:hidden class="form-control" path="createdDate" />
+									<form:hidden class="form-control" path="createdBy" />
 					Update 
 					</c:when>
 								<c:otherwise>

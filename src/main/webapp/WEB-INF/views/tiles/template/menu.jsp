@@ -2,7 +2,7 @@
 <section class="sidebar">
 	<ul class="sidebar-menu" data-widget="tree">
 
-		<li class="treeview"><a href="${pageContext.request.contextPath}/"> <i class="fa fa-home"></i>
+		<li class="treeview"><a href="${pageContext.request.contextPath}/dasboard"> <i class="fa fa-home"></i>
 				<span>Dashboard</span>
 
 		</a></li>

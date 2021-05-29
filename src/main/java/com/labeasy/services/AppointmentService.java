@@ -16,6 +16,7 @@ public interface AppointmentService {
 	AppointmentDto addAppointment(AppointmentDto appointmentDto);
 	List<AppointmentDto> findAllAppointments();
 	AppointmentDto findByAppointmentId(Long appId);
+	
 	public static AppointmentDto from(Appointment appointment) {
 		String noOfTest = appointment.getTestNames().parallelStream().map(TestNames::getTestId).collect(Collectors.toList()).toString();
 		AppointmentDto appointmentDto = ObjectUtilMapper.map(appointment, AppointmentDto.class);
@@ -23,4 +24,5 @@ public interface AppointmentService {
 		appointmentDto.setAndInvoiceDto(ObjectUtilMapper.map(appointment.getBillingAndInvoices().parallelStream().sorted(Comparator.comparing(BillingAndInvoice::getBillingId)).collect(Collectors.toList()).get(0),BillingAndInvoiceDto.class));
 		return appointmentDto;
 	}
+	
 }
