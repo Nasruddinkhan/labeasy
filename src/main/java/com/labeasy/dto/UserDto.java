@@ -1,6 +1,11 @@
 package com.labeasy.dto;
 
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import com.labeasy.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +21,7 @@ import lombok.Setter;
 public class UserDto  {
 	
 
-	
+	private Long id;
 	private String userId;
     private String firstName;
     private String lastName;
@@ -35,6 +40,9 @@ public class UserDto  {
     private Long roleId;
 	private AddressDto address;
     private String reportingUserId;
+    private Date lastLoginDateTime;
+    private String createdBy;
+    private LocalDateTime createdDate;
 	
 	
 	

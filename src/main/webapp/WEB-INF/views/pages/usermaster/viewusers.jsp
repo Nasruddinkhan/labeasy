@@ -22,25 +22,30 @@
 							class="table table-sm table-bordered table-striped">
 							<thead>
 								<tr>
-									<th width="12%">Id</th>
-									<th width="33%">Name</th>
+									<th>Id</th>
+									<th>Name</th>
 									<th>Mobile</th>
+									<th>Email</th>
+									<th>Joining Date</th>
 									<th>Role</th>
+									<th>Reporting to</th>
 									<th>Last login</th>
-									<th width="10%">Action</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${testGroupList}" var="testGroup">
+								<c:forEach items="${usersList}" var="user">
 									<tr>
-										<td>${testGroup.groupId}</td>
-										<td>${testGroup.name}</td>
-										<td>${testGroup.description}</td>
-										<td></td>
-										<td></td>
+										<td>${user.id}</td>
+										<td>${user.firstName} ${user.lastName}</td>
+										<td>${user.mobileNo}</td>
+										<td>${user.emailId}</td>
+										<td>${user.doj}</td>
+										<td>${user.roleId}</td>
+										<td>${user.reportingUserId}</td>
+										<td>${user.lastLoginDateTime}</td>
 										<td><div class="box-tools pull-center">
-												<a
-													href="#"><button
+												<a href="${pageContext.request.contextPath}/user-master/edit-user/${user.id}"><button
 														type="button" class="btn btn-sm btn-info btn-box-tool">
 														<i class="fa fa-edit" style="color: white"></i>
 													</button> </a> <a

@@ -20,5 +20,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Modifying
     public void updateFailedAttempts(int failAttempts, String email);
 
+	Optional<User> findById(Long userId);
+
 
 }
