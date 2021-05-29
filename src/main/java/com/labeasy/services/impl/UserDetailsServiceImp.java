@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import com.labeasy.utils.CommonUtils;
 public class UserDetailsServiceImp implements UserService {
 	
 	private final UserRepository userRepo;
+	
 
 	@Autowired
 	public UserDetailsServiceImp(final UserRepository userRepo) {
@@ -36,7 +38,7 @@ public class UserDetailsServiceImp implements UserService {
 		Address userAddress = map(userDto.getAddress(), Address.class);
 		//user.setStatus(ApplicationStatus.ACTIVE.getValue());
 		user.setNoOfFailPwdAttempt(0);
-		user.setPassword("$2a$10$MW32GAFhFjaHZZLnBKreje.o87qUjOJ8rGwveRQuJlMRl5mAvoj2C");
+		user.setPassword(new BCryptPasswordEncoder().encode(userDto.getMobileNo())); 
 		userAddress.setUser(user);
 		user.setAddress(userAddress);
 		
