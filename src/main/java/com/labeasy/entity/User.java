@@ -1,7 +1,7 @@
 package com.labeasy.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -42,9 +42,9 @@ public class User extends BaseBean implements Serializable {
     @Column(name = "gender" , length = 2)
     private String gender;
     @Column(name = "date_of_birth")
-    private LocalDateTime dob;
+    private LocalDate dob;
     @Column(name = "date_of_joining")
-    private LocalDateTime doj;
+    private LocalDate doj;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "mobile_no", length = 15)
@@ -75,6 +75,8 @@ public class User extends BaseBean implements Serializable {
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "reporting_user_id")
 	private User reportingUser;
+	/*@OneToMany(mappedBy = "reportingUser")
+	private Set<User> subordinates;*/
     @Column(name = "failed_password_count")
     private Integer noOfFailPwdAttempt;
     @Column(name = "login_id_locked_date_time")

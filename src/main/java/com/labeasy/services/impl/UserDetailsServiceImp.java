@@ -1,7 +1,10 @@
 package com.labeasy.services.impl;
 
+import static com.labeasy.utils.CommonUtils.transformTheDateFormat;
 import static com.labeasy.utils.ObjectUtilMapper.map;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,16 @@ public class UserDetailsServiceImp implements UserService {
 		User user = map(userDto, User.class);
 		Address userAddress = map(userDto.getAddress(), Address.class);
 		//user.setStatus(ApplicationStatus.ACTIVE.getValue());
+		user.setDob(transformTheDateFormat(userDto.getDob(), DateTimeFormatter.ISO_DATE,
+				(date, format) -> LocalDate.parse(date, format)));
+		
+		user.setDoj(transformTheDateFormat(userDto.getDoj(), DateTimeFormatter.ISO_DATE,
+				(date, format) -> LocalDate.parse(date, format)));
+		user.setEnabled(false);
+		user.setAccountNonLocked(false);
+		user.setLockTime(new Date());
+		user.setActive(true);
+		
 		user.setNoOfFailPwdAttempt(0);
 		user.setPassword(new BCryptPasswordEncoder().encode(userDto.getMobileNo())); 
 		userAddress.setUser(user);
