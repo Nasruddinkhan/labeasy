@@ -17,7 +17,7 @@ public class AuditAwareImpl implements AuditorAware<String> {
 		if (SecurityContextHolder.getContext().getAuthentication() != null) {
 			MyUserDetails principal = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
-			return Optional.of(principal.getUser().getUserId());
+			return Optional.of(principal.getUser().getEmailId());
 		}
 		return Optional.empty();
 	}

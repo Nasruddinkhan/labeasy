@@ -2,7 +2,6 @@ package com.labeasy.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -72,7 +71,8 @@ public class Appointment extends BaseBean implements Serializable {
 	private String reffredBy;
 	@Column(name = "assign_to", length = 100)
 	private String assignTo;
-
+	@Column(name = "is_active", columnDefinition = "boolean default true")
+	private boolean isActive;
 	@ManyToMany
 	@JoinTable(name = "appointment_test_mapping", joinColumns = {
 			@JoinColumn(name = "appointment_id") }, inverseJoinColumns = { @JoinColumn(name = "test_id") })

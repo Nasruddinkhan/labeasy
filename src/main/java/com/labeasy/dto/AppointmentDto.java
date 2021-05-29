@@ -1,6 +1,5 @@
 package com.labeasy.dto;
 
-
 import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
@@ -11,12 +10,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter 
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
-public class AppointmentDto {
+public final  class AppointmentDto {
 	private Long appointmentId;
 	private String name;
 	private String mobileNo;
@@ -36,6 +35,5 @@ public class AppointmentDto {
 	private String assignTo;
 	private String roomNoBldNo;
 	private String areLocStreetName;
-
-	
+ 
 }
