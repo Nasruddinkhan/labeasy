@@ -27,7 +27,6 @@
 									<th>Visit date time</th>
 									<th>Status</th>
 									<th>Assigned to</th>
-									<th>NoOfTest</th>
 									<th>Due Amount</th>
 									<th>Balance</th>
 									<th >Action</th>
@@ -43,7 +42,6 @@
 										<td>${app.appointmentDate} - ${app.appointmentTime}</td>
 										<td><i class="fa fa-circle "></i> New</td>
 										<td>${app.assignTo}</td>
-										<td>${app.testList}</td>
 										<td>${app.andInvoiceDto.paymentAmmount}</td>
 										<td>${app.andInvoiceDto.advancePayment}</td>
 										<td><div class="box-tools pull-center"> 
