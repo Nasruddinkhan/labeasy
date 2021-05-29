@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.labeasy.dto.AddressDto;
 import com.labeasy.dto.UserDto;
+import com.labeasy.services.UserRoleService;
 import com.labeasy.services.UserService;
 
 @Controller
@@ -17,16 +18,20 @@ import com.labeasy.services.UserService;
 public class UserMasterController {
 	
 	private final UserService userService;
+	public final UserRoleService userRoleService;
 	
 	@Autowired
-	public UserMasterController(final UserService userService) {
+	public UserMasterController(final UserService userService, final UserRoleService userRoleService) {
+		super();
 		this.userService = userService;
+		this.userRoleService = userRoleService;
 	}
 	
 	private void onLoads(ModelMap model) {
 		UserDto userDto = new UserDto();
 		userDto.setAddress(new AddressDto());
 		model.addAttribute("user", userDto);
+		model.addAttribute("userRoleList", userRoleService.findAllRoles());
 	}
 
 	@GetMapping("/show-add-user-page")

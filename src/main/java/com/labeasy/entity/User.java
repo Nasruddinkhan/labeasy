@@ -69,21 +69,17 @@ public class User extends BaseBean implements Serializable {
     private String remarks;
     @Column(name = "role_id")
     private Long roleId;
-    @Column(name = "enabled", nullable = false)
+    @Column(name = "enabled", columnDefinition = "bit default 0", nullable = false)
 	private boolean enabled;
     @Column(name = "is_active", columnDefinition = "boolean default true", nullable = false)
 	private boolean isActive;
-    @Column(name = "account_non_locked", nullable = false)
+    @Column(name = "account_non_locked", columnDefinition = "bit default 0", nullable = false)
 	private boolean accountNonLocked;
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "reporting_user_id")
 	private User reportingUser;
-	/*@OneToMany(mappedBy = "manager")
+	/*@OneToMany(mappedBy = "reportingUser")
 	private Set<User> subordinates;*/
-    @Column(name = "failed_password_count")
-    private Integer noOfFailPwdAttempt;
-    @Column(name = "login_id_locked_date_time")
-    private Date lastLoginDateTime;
 	@Column(name = "failed_attempt")
 	private int failedAttempt;
 	@Column(name = "lock_time")

@@ -349,6 +349,8 @@
 			      showInputs: false,
 			      format: 'HH:mm'
 			    })
+		$('#userDob').datepicker({ format: 'yyyy-mm-dd' });
+		$('#userDoj').datepicker({ format: 'yyyy-mm-dd' });
 		
 	</script>
 </body>
