@@ -3,6 +3,7 @@ package com.labeasy.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,15 +27,11 @@ import lombok.Setter;
 @Table(name = "users")
 public class User extends BaseBean implements Serializable {
 	private static final long serialVersionUID = -1758784590151693711L;
-	
 	@Id
     @Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator =  "usersseq")
 	@SequenceGenerator(name = "usersseq", sequenceName = "users_seq" , allocationSize = 1,initialValue =  1)
 	private Long id;
-	/*@Id
-	@Column(name = "user_id")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")*/
 	private String userId;
     @Column(name = "first_name", length = 50)
     private String firstName;
@@ -78,8 +75,6 @@ public class User extends BaseBean implements Serializable {
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "reporting_user_id")
 	private User reportingUser;
-	/*@OneToMany(mappedBy = "manager")
-	private Set<User> subordinates;*/
     @Column(name = "failed_password_count")
     private Integer noOfFailPwdAttempt;
     @Column(name = "login_id_locked_date_time")

@@ -41,7 +41,8 @@
 	href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.css" />
 <link href="${pageContext.request.contextPath}/resources/css/toastr.css"
 	rel="stylesheet" />
-
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!-- daterange picker -->
 <style type="text/css">
 .error {
@@ -64,7 +65,7 @@
 </style>
 
 </head>
-<body class='hold-transition skin-blue sidebar-mini fixed'>
+<body class='hold-transition skin-blue sidebar-mini fixed' >
 	<div id="wrapper">
 		<header class="main-header">
 			<tiles:insertAttribute name="header" />
@@ -332,8 +333,9 @@
 			$("#treeview-menu-plus-ul").css("display", "block");
 		});
 		$(function() {
+
+			$('#example1').DataTable();
 			
-			$('#example1').DataTable()
 			$('#appointment').DataTable({
 				'paging' : true,
 				'lengthChange' : false,
@@ -343,13 +345,14 @@
 				'autoWidth' : false
 			})
 		});
-	//$('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
-		$('#appointmentDate').datepicker({ format: 'yyyy-mm-dd' });
-		   $('.timepicker').timepicker({
-			      showInputs: false,
-			      format: 'HH:mm'
-			    })
-		
+		//$('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+		$('#appointmentDate').datepicker({
+			format : 'yyyy-mm-dd'
+		});
+		$('.timepicker').timepicker({
+			showInputs : false,
+			format : 'HH:mm'
+		})
 	</script>
 </body>
 </html>
