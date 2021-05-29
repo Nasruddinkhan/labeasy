@@ -55,7 +55,7 @@
 				
 				<div class="form-group col-sm-3">
 					<label for="Country Code">DOB :</label>
-						<div class='input-group date' id='datetimepicker1'>
+						<div class='input-group date' id='userDob'>
 							<form:input type='text' class="form-control"
 							 path="dob" id="dob" />
 							<span class="input-group-addon"> <span
@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Date of joining :</label>
-						<div class='input-group date' id='datetimepicker1'>
+						<div class='input-group date' id='userDoj'>
 							<form:input type='text' class="form-control"
 							 path="doj" id="doj" />
 							<span class="input-group-addon"> <span
@@ -158,11 +158,11 @@
 					<label for="Country Code">Role :</label> 
 					<form:select  path="roleId" id="roleId"
 						class="form-control">
+						
 						<form:option value="">--select--</form:option>
-						<form:option value="1">Supervisor</form:option>
-						<form:option value="2">Executive</form:option>
-						<form:option value="3">Sales</form:option>
-						<form:option value="4">Flabo</form:option>
+						<c:forEach items="${userRoleList}" var="userRoles">
+							<form:option value="${userRoles.roleId}">${userRoles.roleName}</form:option>
+						</c:forEach>
 					</form:select>
 				</div>
 			</div>
