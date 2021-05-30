@@ -12,7 +12,7 @@ import com.labeasy.entity.User;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 	Optional<User> findByEmailId(String username);
 
@@ -20,7 +20,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Modifying
     public void updateFailedAttempts(int failAttempts, String email);
 
-	Optional<User> findById(Long userId);
 
 
 }

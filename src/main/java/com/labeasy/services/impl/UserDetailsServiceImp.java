@@ -107,6 +107,7 @@ public class UserDetailsServiceImp implements UserService {
 	}
 	
     private User findUserById(final Long userId) {
+    	
     	return userRepo.findById(userId).orElseThrow(() ->
         new NotFoundException("user id not found"));	
     }
