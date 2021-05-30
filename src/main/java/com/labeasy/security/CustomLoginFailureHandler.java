@@ -1,6 +1,7 @@
 package com.labeasy.security;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javax.servlet.ServletException;
@@ -24,11 +25,11 @@ public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHan
 
 	private final UserRepository userRepo;
 	private final UserService userService;
-	
+
 	Predicate<User> isEnable = (u) -> u.isEnabled();
 	Predicate<User> isAccountNonLocked = (u) -> u.isAccountNonLocked();
 	Predicate<User> isFailedAttempt = (u) -> u.getFailedAttempt() < CommonUtils.MAX_FAILED_ATTEMPTS - 1;
-	
+
 	@Autowired
 	public CustomLoginFailureHandler(final UserRepository userRepo, UserService userService) {
 		super();
@@ -40,28 +41,26 @@ public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHan
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		String username = request.getParameter("username");
-		User user = userRepo.findByEmailId(username)
-				.orElseThrow(() -> new NotFoundException(username + " :: is not found"));
-		if (isEnable.and(isAccountNonLocked).test(user)) {
-			if (isFailedAttempt.test(user)) {
-				int remaining =CommonUtils.MAX_FAILED_ATTEMPTS -  userService.increaseFailedAttempts(user) ;
-				exception = new LockedException(exception.getMessage() +" "+ remaining +" more attempts are remaining");
-			} else {
-				userService.lock(user);
-				exception = new LockedException("Your account has been locked due to 3 failed attempts."
-						+ " It will be unlocked after 24 hours.");
-			}
-		} else if (!isAccountNonLocked.test(user)) {
-			if (userService.unlockWhenTimeExpired(user)) {
-				exception = new LockedException("Your account has been unlocked. Please try to login again.");
+		Optional<User> userDetails = userRepo.findByEmailId(username);
+		if (userDetails.isPresent()) {
+			User user = userDetails.get();
+			if (isEnable.and(isAccountNonLocked).test(user)) {
+				if (isFailedAttempt.test(user)) {
+					int remaining = CommonUtils.MAX_FAILED_ATTEMPTS - userService.increaseFailedAttempts(user);
+					exception = new LockedException(
+							exception.getMessage() + " " + remaining + " more attempts are remaining");
+				} else {
+					userService.lock(user);
+					exception = new LockedException("Your account has been locked due to 3 failed attempts."
+							+ " It will be unlocked after 24 hours.");
+				}
+			} else if (!isAccountNonLocked.test(user) && userService.unlockWhenTimeExpired(user) ) {
+					exception = new LockedException("Your account has been unlocked. Please try to login again.");
 			}
 		}
-
 		super.setDefaultFailureUrl("/login?error");
 		super.onAuthenticationFailure(request, response, exception);
 
 	}
-
-
 
 }

@@ -44,21 +44,17 @@ public class UserDetailsServiceImp implements UserService {
 		//user.setStatus(ApplicationStatus.ACTIVE.getValue());
 		user.setDob(transformTheDateFormat(userDto.getDob(), DateTimeFormatter.ISO_DATE,
 				(date, format) -> LocalDate.parse(date, format)));
-		
 		user.setDoj(transformTheDateFormat(userDto.getDoj(), DateTimeFormatter.ISO_DATE,
 				(date, format) -> LocalDate.parse(date, format)));
 		user.setEnabled(false);
 		user.setAccountNonLocked(false);
 		user.setLockTime(new Date());
 		user.setActive(true);
-		
 		user.setNoOfFailPwdAttempt(0);
 		user.setPassword(new BCryptPasswordEncoder().encode(userDto.getMobileNo())); 
 		userAddress.setUser(user);
 		user.setAddress(userAddress);
-		
-		
-		 map(userRepo.save(user), UserDto.class);
+		map(userRepo.save(user), UserDto.class);
 	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
