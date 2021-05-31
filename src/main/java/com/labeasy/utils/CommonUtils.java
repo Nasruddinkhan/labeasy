@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 public interface CommonUtils {
 	public static final int MAX_FAILED_ATTEMPTS = 3;
 	public static final long LOCK_TIME_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+	public static final String SQL_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+	
+	
 	static Function<String, List<String>> removeFirstLastElementOnstring = str -> Arrays
 			.asList(str.substring(1, str.length() - 1).split(",")).stream().map(String::trim).collect(Collectors.toList());
 
@@ -21,4 +24,5 @@ public interface CommonUtils {
 	public static LocalDate transformTheDateFormat( String date, DateTimeFormatter format,BiFunction<String, DateTimeFormatter, LocalDate> biFunction) {
 		return biFunction.apply(date, format);
 	}
+	
 }

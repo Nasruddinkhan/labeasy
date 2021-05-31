@@ -1,9 +1,9 @@
 
 <section class="sidebar">
 	<ul class="sidebar-menu" data-widget="tree">
-
-		<li class="treeview"><a href="${pageContext.request.contextPath}/dasboard"> <i class="fa fa-home"></i>
-				<span>Dashboard</span>
+		<li><a
+			href="${pageContext.request.contextPath}/dasboard">
+				<i class="fa fa-question-circle"></i> <span>Dashboard</span>
 
 		</a></li>
 		<li><a

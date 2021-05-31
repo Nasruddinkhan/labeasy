@@ -2,11 +2,7 @@ package com.labeasy.dto;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import javax.persistence.Column;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedBy;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +29,7 @@ public final  class AppointmentDto {
 	private String address;
 	private String cityId;
 	private BillingAndInvoiceDto andInvoiceDto;
+	private Set<BillingAndInvoiceDto> andInvoices ;
 	private String testList;
 	private String prefredLab;
 	private String appointmentDate;

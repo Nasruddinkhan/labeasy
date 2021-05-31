@@ -1,5 +1,9 @@
 package com.labeasy.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,11 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labeasy.dto.AppointmentDto;
 import com.labeasy.dto.BillingAndInvoiceDto;
 import com.labeasy.services.AppointmentService;
 import com.labeasy.services.TestNamesService;
+import static com.labeasy.utils.CommonUtils.*;
 
 @Controller
 @RequestMapping("/appointment")
@@ -59,12 +66,37 @@ public class AppointmentController {
 
 	@GetMapping("/editAppointment/{appId}")
 	public String editAppointment(@PathVariable Long appId, ModelMap model) {
-		AppointmentDto appointmentDto = appointmentService.findByAppointmentId(appId);
-		System.out.println("advance payment "+appointmentDto.getAndInvoiceDto().getPaymentAmmount());
-		System.out.println("advance payment "+appointmentDto.getAndInvoiceDto().getTotalAmmount());
-
 		addAppointmentOnLoadData(model, appointmentService.findByAppointmentId(appId));
 		return "addappointment";
+	}
+
+	@GetMapping("/cleardue-popup")
+	public String clearDluePopup(@RequestParam("appId") Long appId, @RequestParam("advPay") Double advPay,
+			@RequestParam("dueAmt") Double dueAmt, @RequestParam("paymentDate") String paymentDate,
+			@RequestParam("discountAmmount") Double discountAmmount,
+			@RequestParam("discountReason") String discountReason, ModelMap model) {
+		model.put("appId", appId);
+		model.put("advPay", advPay);
+		model.put("dueAmt", dueAmt);
+		model.put("discountAmmount", discountAmmount);
+		model.put("discountReason", discountReason);
+		model.put("paymentDate",
+				transformTheDateFormat(paymentDate, DateTimeFormatter.ofPattern(SQL_DATE_FORMAT, Locale.ENGLISH),
+						(date, format) -> LocalDate.parse(date, format)));
+		return "cleardue";
+	}
+
+	@GetMapping("/cleardue")
+	@ResponseBody
+	public BillingAndInvoiceDto clearDlueAmount(@RequestParam("appId") Long appId,
+			@RequestParam("paymentmode") String paymentmode) {
+		return appointmentService.clearDlueAmount(appId, Boolean.TRUE, paymentmode);
+	}
+	
+	@GetMapping("appointment-view-popup")
+	public String appointmentViewPopUp(@RequestParam("appId") Long appId, ModelMap model) {
+		model.addAttribute("appointment", appointmentService.findByAppointmentId(appId));
+		return "viewappointment";
 	}
 
 }
