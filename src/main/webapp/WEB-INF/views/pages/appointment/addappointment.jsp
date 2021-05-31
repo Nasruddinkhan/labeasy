@@ -131,7 +131,7 @@
 				<div class="row">
 					<div class="box-body">
 						<div class="form-group col-sm-9">
-							<table id="testDatatable"
+							<table id="example1"
 								class="table table-sm table-bordered table-striped">
 								<thead>
 									<tr>

@@ -13,10 +13,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.labeasy.dto.AppointmentDto;
+import com.labeasy.dto.BillingAndInvoiceDto;
 import com.labeasy.eception.NotFoundException;
 import com.labeasy.entity.Appointment;
 import com.labeasy.entity.BillingAndInvoice;
@@ -32,8 +34,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 	private final AppointmentRepository appointmentRepository;
 	private final TestNamesRepository testNamesRepository;
 
-	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository,
-			final TestNamesRepository testNamesRepository) {
+	@Autowired
+	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository, final TestNamesRepository testNamesRepository) {
 		super();
 		this.appointmentRepository = appointmentRepository;
 		this.testNamesRepository = testNamesRepository;
@@ -41,8 +43,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public AppointmentDto addAppointment(AppointmentDto appointmentDto) {
-		Appointment appointment =
-				map(appointmentDto, Appointment.class);
+		Appointment appointment = map(appointmentDto, Appointment.class);
 		setBillingAndInvoice(appointment, appointmentDto);
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
 		appointment.setStatus(ApplicationStatus.ACTIVE.getValue());
@@ -50,6 +51,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		setTestNames(appointment, appointmentDto.getTestList());
 		return map(appointmentRepository.save(appointment), AppointmentDto.class);
 	}
+
 	/**
 	 * 
 	 * @param appointmentDate
@@ -59,6 +61,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return transformTheDateFormat(appointmentDate, DateTimeFormatter.ISO_DATE,
 				(date, format) -> LocalDate.parse(date, format));
 	}
+
 	/**
 	 * 
 	 * @param appointment
@@ -68,6 +71,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		BillingAndInvoice andInvoice = map(appointmentDto.getAndInvoiceDto(), BillingAndInvoice.class);
 		andInvoice.setAppointment(appointment);
 		andInvoice.setPaymentDate(LocalDateTime.now());
+		andInvoice.setActive(true);
 		Set<BillingAndInvoice> billingAndInvoices = new HashSet<>();
 		billingAndInvoices.add(andInvoice);
 		appointment.setBillingAndInvoices(billingAndInvoices);
@@ -79,25 +83,56 @@ public class AppointmentServiceImpl implements AppointmentService {
 	 * @param testList
 	 */
 	private void setTestNames(Appointment appointment, String testList) {
-		System.out.println("AppointmentServiceImpl.setTestNames() ["+testList+"]");
 		appointment.setTestNames(testNamesRepository
 				.findAllById(transformGenricList(removeFirstLastElementOnstring.apply(testList), Long::parseLong))
 				.stream().collect(Collectors.toSet()));
 	}
+
 	/**
 	 * 
 	 */
 	@Override
 	public List<AppointmentDto> findAllAppointments() {
-		return appointmentRepository.findByIsActiveTrue().parallelStream().map(AppointmentService::from)
+		return appointmentRepository.findByIsActiveTrue().parallelStream().map(this::from)
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	public AppointmentDto findByAppointmentId(Long appId) {
-		return appointmentRepository
-				.findById(appId).map(AppointmentService::from)
-				.orElseThrow(()-> new NotFoundException("appointment id not found"));
+		return appointmentRepository.findById(appId).map(this::from)
+				.orElseThrow(() -> new NotFoundException("appointment id not found"));
 	}
 
+	private Appointment findByAppointmentById(Long appId) {
+		return appointmentRepository.findById(appId)
+				.orElseThrow(() -> new NotFoundException("appointment id not found"));
+	}
+
+	@Override
+	public BillingAndInvoiceDto clearDlueAmount(Long appId, Boolean isActive, String paymentMode) {
+		Appointment appointment = findByAppointmentById(appId);
+		Set<BillingAndInvoice> andInvoices = appointment.getBillingAndInvoices();
+		BillingAndInvoice firstInvoice = andInvoices.stream().filter(BillingAndInvoice::isActive).findFirst()
+				.orElseThrow(()->new NotFoundException("notFound"));
+		BillingAndInvoice secInvoices = new BillingAndInvoice();
+		setClearDueObject(secInvoices, firstInvoice);
+		secInvoices.setAppointment(appointment);
+		secInvoices.setPaymentMode(paymentMode);
+		andInvoices.add(firstInvoice);
+		andInvoices.add(secInvoices);
+		appointmentRepository.save(appointment);
+		return map(secInvoices, BillingAndInvoiceDto.class);
+	}
+
+	private void setClearDueObject(BillingAndInvoice secInvoices, BillingAndInvoice firstInvoice ) {
+		secInvoices.setPaymentAmmount(0.0);
+		secInvoices.setBillingId(0L);
+		secInvoices.setAdvancePayment(firstInvoice.getPaymentAmmount());
+		secInvoices.setTotalAmmount(firstInvoice.getTotalAmmount());
+		secInvoices.setActive(true);
+		secInvoices.setPaymentDate(LocalDateTime.now());
+		secInvoices.setDiscountReason(firstInvoice.getDiscountReason());
+		secInvoices.setDiscountAmmount(firstInvoice.getDiscountAmmount());
+		firstInvoice.setActive(false);
+	}
 }

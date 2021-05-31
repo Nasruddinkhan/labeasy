@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table(name = "billing")
+@EqualsAndHashCode(callSuper=false)
 public class BillingAndInvoice extends BaseBean implements Serializable {
 
 	/**
@@ -43,7 +45,7 @@ public class BillingAndInvoice extends BaseBean implements Serializable {
 	@Column(name = "payment_date")
 	private LocalDateTime paymentDate;
 	@JoinColumn(name = "appointment_id")
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Appointment appointment;
 	@Column(name = "total_ammount")
 	private Double totalAmmount;
@@ -51,4 +53,6 @@ public class BillingAndInvoice extends BaseBean implements Serializable {
 	private Double discountAmmount;
 	@Column(name = "discount_reason", length = 100)
 	private String discountReason;
+	@Column(name = "is_active", columnDefinition = "boolean default true")
+	private boolean isActive;
 }

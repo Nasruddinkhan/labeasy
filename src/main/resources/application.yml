@@ -16,7 +16,11 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     password: root
     url: jdbc:mysql://localhost:3306/labeasy
-    username: root
+    username: root    tomcat:      default-auto-commit: true
+      initial-size: 20
+      max-active: 50
+      max-idle: 15
+      max-wait: 20000 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     properties:

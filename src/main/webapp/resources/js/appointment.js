@@ -59,4 +59,18 @@
        		 $(ApiConstant.BALANCE_ID).val(parseFloat(balanceAmount));
         }
     }
+    clearDue = function(appId){
+     
+		var url = "/appointment/cleardue?appId="+appId+"&paymentmode="+($('#paymentmode').val());
+		alert(url);
+		const callBackFunction = "crearDueRes";
+		ajaxGetCall(url, callBackFunction);
+    }
+    
+    crearDueRes = function(response) {
+     	parent.$.fancybox.close();
+		toastr.options.timeOut = 5000; // 1.5s
+   		 	toastr.success('clear due ammount successfully!');
+   		 	setTimeout(() =>{window.location.replace("http://localhost:8087/labeasy/appointment/view-appointment-page")}, 5000);
+    }
 })();

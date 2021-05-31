@@ -37,12 +37,14 @@
 	href="${pageContext.request.contextPath}/resources/dist/css/AdminLTE.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-<link
-	href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.css" />
+
 <link href="${pageContext.request.contextPath}/resources/css/toastr.css"
 	rel="stylesheet" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
+
 <!-- daterange picker -->
 <style type="text/css">
 .error {
@@ -62,10 +64,14 @@
 .box-primary {
 	box-shadow: 0 2px 10px rgba(0, 0, 0, .2) !important;
 }
+
+.txtCenter {
+	text-align: center;
+}
 </style>
 
 </head>
-<body class='hold-transition skin-blue sidebar-mini fixed' >
+<body class='hold-transition skin-blue sidebar-mini fixed'>
 	<div id="wrapper">
 		<header class="main-header">
 			<tiles:insertAttribute name="header" />
@@ -254,86 +260,29 @@
 	<!-- /.content -->
 
 	<!-- jQuery 3 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap 3.3.7 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- Select2 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/select2/dist/js/select2.full.min.js"></script>
-	<!-- InputMask -->
-	<script
-		src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-	<!-- date-range-picker -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/moment/min/moment.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- bootstrap datepicker -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-	<!-- bootstrap color picker -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-	<!-- bootstrap time picker -->
-	<script
-		src="${pageContext.request.contextPath}/resources/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-	<!-- SlimScroll -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<!-- iCheck 1.0.1 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/plugins/iCheck/icheck.min.js"></script>
-	<!-- FastClick -->
-	<script
-		src="${pageContext.request.contextPath}/resources/bower_components/fastclick/lib/fastclick.js"></script>
-	<!-- AdminLTE App -->
-	<script
-		src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script
-		src="${pageContext.request.contextPath}/resources/dist/js/demo.js"></script>
-
-
-	<%--   <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-   --%>
-	<script>
-		var myContextPath = "${pageContext.request.contextPath}"
-	</script>
-
-	<script
-		src="${pageContext.request.contextPath}/resources/js/appconstant.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/toastr.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/inquiry.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/testgroup.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/testnames.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/appointment.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/addrole.js"></script>
-
-
-	<script>
+	<jsp:include page="/WEB-INF/views/pages/headerscript.jsp" />
+</body>
+<script>
 		$(function() {
 			$('.select2').select2()
 			$("#treeview-menu-plus").addClass('${menuopen}');
 			$("#treeview-menu-plus-ul").css("display", "block");
 		});
 		$(function() {
-
+			 $(".billingiframe").fancybox({
+			      type: 'iframe',
+			      autoSize : false,
+			      height   : "60%",
+			      afterClose  : function() { 
+			            window.location.reload();
+			       }
+			  });
+			 $(".viewappointment").fancybox({
+			      type: 'iframe',
+			      autoSize : false,
+			      height   : "100%"
+			  });
+			
 			$('#example1').DataTable();
 			
 			$('#appointment').DataTable({
@@ -345,14 +294,15 @@
 				'autoWidth' : false
 			})
 		});
-		//$('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
 		$('#appointmentDate, #userDob, #userDoj').datepicker({
-			format : 'yyyy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			changeMonth:true,
+			changeYear:true,
+			minDate: 0
 		});
 		$('.timepicker').timepicker({
 			showInputs : false,
 			format : 'HH:mm'
-		})
+		});
 	</script>
-</body>
 </html>
