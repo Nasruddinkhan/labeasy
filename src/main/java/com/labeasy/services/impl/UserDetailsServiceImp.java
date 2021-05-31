@@ -2,10 +2,12 @@ package com.labeasy.services.impl;
 
 import static com.labeasy.utils.CommonUtils.transformTheDateFormat;
 import static com.labeasy.utils.ObjectUtilMapper.map;
+import static com.labeasy.utils.ObjectUtilMapper.mapAll;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -92,4 +94,23 @@ public class UserDetailsServiceImp implements UserService {
 		}
 		return false;
 	}
+	@Override
+	public List<UserDto> getAllUserList() {
+		final List<User> usersList = userRepo.findAll();
+        return mapAll(usersList, UserDto.class);
+	}
+	
+	@Override
+	public UserDto findByUserId(Long userId) {
+		 final User user = findUserById(userId);
+	        return map(user, UserDto.class);
+	}
+	
+    private User findUserById(final Long userId) {
+    	
+    	return userRepo.findById(userId).orElseThrow(() ->
+        new NotFoundException("user id not found"));	
+    }
+
+	
 }

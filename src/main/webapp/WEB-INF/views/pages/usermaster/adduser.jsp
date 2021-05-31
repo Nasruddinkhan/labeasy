@@ -182,7 +182,20 @@
 		
 		<div class="box-footer">
 				<div class="col-sm-12 col-sm-offset-5">
-					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="submit" class="btn btn-primary">
+						<c:choose>
+							<c:when test="${not empty user.id}">
+								<form:hidden class="form-control" path="id" />
+								<form:hidden class="form-control" path="address.addressId" />
+								<form:hidden class="form-control" path="createdDate" />
+								<form:hidden class="form-control" path="createdBy" />
+									Update 
+							</c:when>
+							<c:otherwise>
+								Save
+							</c:otherwise>
+						</c:choose>
+					</button>
 				</div>
 			</div> 
 		<!-- /.box-body -->

@@ -12,13 +12,14 @@ import com.labeasy.entity.User;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 	Optional<User> findByEmailId(String username);
 
 	@Query("UPDATE User u SET u.failedAttempt = ?1 WHERE u.emailId = ?2")
     @Modifying
     public void updateFailedAttempts(int failAttempts, String email);
+
 
 
 }
