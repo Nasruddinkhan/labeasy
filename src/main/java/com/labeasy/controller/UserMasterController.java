@@ -1,5 +1,7 @@
 package com.labeasy.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,9 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labeasy.dto.AddressDto;
-import com.labeasy.dto.AppointmentDto;
+import com.labeasy.dto.DropDownDto;
 import com.labeasy.dto.UserDto;
 import com.labeasy.services.UserRoleService;
 import com.labeasy.services.UserService;
@@ -20,7 +23,7 @@ import com.labeasy.services.UserService;
 public class UserMasterController {
 	
 	private final UserService userService;
-	public final UserRoleService userRoleService;
+	private final UserRoleService userRoleService;
 	
 	@Autowired
 	public UserMasterController(final UserService userService, final UserRoleService userRoleService) {
@@ -44,7 +47,7 @@ public class UserMasterController {
 	
 	@GetMapping("/add-new-user")
 	public String addNewUser(ModelMap model) {
-		//onLoads(model);
+		onLoads(model, new UserDto());
 		return "adduser";
 	}
 	
@@ -68,7 +71,11 @@ public class UserMasterController {
 		onLoads(model, userService.findByUserId(userId));
 		return "adduser";
 	}
-
+	@ResponseBody
+	@GetMapping("/get-phlebotomist")
+	public List<DropDownDto> getAllPhlebotomistList() {
+		return userService.getAllPhlebotomistList();
+	}
 
 }
 

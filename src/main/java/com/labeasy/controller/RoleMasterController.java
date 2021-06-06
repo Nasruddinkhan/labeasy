@@ -1,5 +1,7 @@
 package com.labeasy.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labeasy.dto.UserRoleDto;
 import com.labeasy.services.UserRoleService;
+import com.labeasy.services.impl.AuditAwareImpl;
 
 @Controller
 @RequestMapping("/role-master")
@@ -39,7 +42,7 @@ public class RoleMasterController {
 	
 	@PostMapping("/add-user-role")
 	@ResponseBody
-	public ResponseEntity<UserRoleDto> addTestGroup(@RequestBody UserRoleDto userRoleDto, ModelMap model) {
+	public ResponseEntity<UserRoleDto> addTestGroup(@RequestBody UserRoleDto userRoleDto, ModelMap model, Principal principal) {
 		System.out.println("RoleMasterController.addTestGroup() [" + userRoleDto + "]");
 		return new ResponseEntity<>(userRoleService.addUserRole(userRoleDto), HttpStatus.CREATED);
 	}

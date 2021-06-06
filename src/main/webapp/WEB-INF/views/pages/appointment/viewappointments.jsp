@@ -30,6 +30,34 @@
 		</div>
 		<c:if test="${not empty appointment}">
 			<div class="box-body">
+				<form method="POST" id="update-appointment-status">
+					<div class="row">
+						<div class="form-group col-sm-4">
+							<label for="Country Code">Change Status :</label> <select
+								name="status" onchange="changeStatus(this)"
+								class="form-control ">
+								<option value="">--select--</option>
+								<option value="AP">Assigned to Phlebo</option>
+								<option value="SC">Sample Collected</option>
+								<option value="SD">Sample Dropped</option>
+								<option value="SP">Sample under process</option>
+								<option value="SE">Sample processed/tested</option>
+								<option value="RD">Report dispatched</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-4" style="display: none"
+							id="assign_to">
+							<label for="Country Code">Assign to :</label> <select
+								name="assignTo" id="assignUser" class="form-control ">
+							</select>
+						</div>
+						<div class="form-group col-sm-4">
+							<button style="margin-top: 2em;" type="button"
+								onclick="updateAppointmentStatus();"
+								class="btn btn-sm btn-success">Update Status</button>
+						</div>
+					</div>
+				</form>
 				<table id="example1"
 					class="table table-sm table-bordered table-striped">
 					<thead>
@@ -48,16 +76,46 @@
 					<tbody>
 						<c:forEach items="${appointment}" var="app">
 							<tr>
-								<td><em > <a class="viewappointment" href="${pageContext.request.contextPath}/appointment/appointment-view-popup?appId=${app.appointmentId}">AP
-											${app.appointmentId}</a></em></td>
+								<td><input type="checkbox" id="appChk${app.appointmentId}"
+									onclick="isCheckAppointment(${app.appointmentId})" /> <em>
+										<a
+										href="${pageContext.request.contextPath}/appointment/appointment-view-popup?appId=${app.appointmentId}">
+											AP ${app.appointmentId}</a>
+								</em></td>
 								<td>${app.name}</td>
 								<td>${app.mobileNo}</td>
 								<td>${app.appointmentDate}-${app.appointmentTime}</td>
-								<td><em class="fa fa-circle "></em> New</td>
+								<td><c:choose>
+										<c:when test="${app.appStatus == 'AP'}">
+											<em class="fa fa-user-md"></em> Assigned
+										</c:when>
+										<c:when test="${app.appStatus == 'CT'}">
+											<em class="fa fa-motorcycle"></em> Visiting
+										</c:when>
+										<c:when test="${app.appStatus == 'SC'}">
+											<em class="fa fa-medkit"></em> Collected
+										</c:when>
+										<c:when test="${app.appStatus == 'SD'}">
+											<em class="fa fa-hospital-o"></em> Dropped
+										</c:when>
+										<c:when test="${app.appStatus == 'SP'}">
+											<em class="fa fa-cog fa-spin"></em> Processing
+										</c:when>
+										<c:when test="${app.appStatus == 'SE'}">
+											<em class="fa fa-check-circle"></em> Tested
+										</c:when>
+										<c:when test="${app.appStatus == 'RD'}">
+											<em class="fa fa-truck"></em> Dispatched
+										</c:when>
+										
+										<c:otherwise>
+											<em class="fa fa-circle "></em> New
+										</c:otherwise>
+									</c:choose></td>
 								<td>${app.assignTo}</td>
-								<td><c:choose> 
+								<td><c:choose>
 										<c:when test="${app.andInvoiceDto.paymentAmmount > 0}">
-											<em> <a class="billingiframe"
+											<em> <a
 												href="${pageContext.request.contextPath}/appointment/cleardue-popup?appId=${app.appointmentId}
 										&advPay=${app.andInvoiceDto.advancePayment}
 										&dueAmt=${app.andInvoiceDto.paymentAmmount}
@@ -116,6 +174,6 @@
 				</table>
 			</div>
 		</c:if>
-	
+
 	</div>
 </section>

@@ -11,24 +11,39 @@ spring:
   profiles:
     active: local
 ---
-spring:
-  datasource:
+spring: 
+  datasource: 
     driver-class-name: com.mysql.jdbc.Driver
     password: root
-    url: jdbc:mysql://localhost:3306/labeasy
-    username: root    tomcat:      default-auto-commit: true
+    tomcat: 
+      default-auto-commit: true
       initial-size: 20
       max-active: 50
       max-idle: 15
-      max-wait: 20000 
-  jpa:
+      max-wait: 20000
+    url: "jdbc:mysql://localhost:3306/labeasy"
+    username: root
+  jpa: 
     database-platform: org.hibernate.dialect.MySQL5Dialect
-    properties:
-      hibernate:
-        format_sql: true
-        enable_lazy_load_no_trans: true
-    show-sql: true
-    hibernate:
+    hibernate: 
       ddl-auto: update
+    properties: 
+      hibernate: 
+        enable_lazy_load_no_trans: true
+        format_sql: true
+    show-sql: true
+  mail: 
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    password: 
+    port: 587
+    properties: 
+      mail: 
+        smtp: 
+          auth: true
+          starttls: 
+            enable: true
+    protocol: smtp
+    test-connection: false
+    username: Nasruddin.nk44@gmail.com
   profiles: local
-  

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<p>Hi,</p>
+	<p>
+		Welcome to LabEasy!<br /> .<br />
+	</p>
+	<p>
+		email: <span> ${email}<br /><span/> password: <span>${password}</span>
+	</p>
+	<p>
+		Thanks & Regards,<br /> <b>LabEays </b>
+	</p>
+</body>
+</html>

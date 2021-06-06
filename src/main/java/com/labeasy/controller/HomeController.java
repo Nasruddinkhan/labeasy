@@ -6,11 +6,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.labeasy.services.impl.AuditAwareImpl;
+
 @Controller
 class HomeController {
     @GetMapping(value ={"/","/dasboard"})
     public String index(Model model) {
-    	 model.addAttribute("message", "You are logged in as XYZ");
+    	 model.addAttribute("message", "welcome "+AuditAwareImpl.getLoggedUser().getEmailId());
          return "welcome";
     }
     

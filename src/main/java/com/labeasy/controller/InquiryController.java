@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labeasy.dto.InquiryDto;
 import com.labeasy.services.InquiryService;
-
 @Controller
 @RequestMapping("/inquiry")
 public class InquiryController {
