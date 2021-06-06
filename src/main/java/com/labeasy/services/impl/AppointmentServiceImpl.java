@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.labeasy.dto.AppointmentDto;
+import com.labeasy.dto.AppointmentUpdateDto;
 import com.labeasy.dto.BillingAndInvoiceDto;
 import com.labeasy.eception.NotFoundException;
 import com.labeasy.entity.Appointment;
 import com.labeasy.entity.BillingAndInvoice;
-import com.labeasy.enums.ApplicationStatus;
+import com.labeasy.enums.AppointmentStatus;
 import com.labeasy.repsoitory.AppointmentRepository;
 import com.labeasy.repsoitory.TestNamesRepository;
 import com.labeasy.services.AppointmentService;
@@ -35,7 +39,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 	private final TestNamesRepository testNamesRepository;
 
 	@Autowired
-	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository, final TestNamesRepository testNamesRepository) {
+	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository,
+			final TestNamesRepository testNamesRepository) {
 		super();
 		this.appointmentRepository = appointmentRepository;
 		this.testNamesRepository = testNamesRepository;
@@ -46,7 +51,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Appointment appointment = map(appointmentDto, Appointment.class);
 		setBillingAndInvoice(appointment, appointmentDto);
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
-		appointment.setStatus(ApplicationStatus.ACTIVE.getValue());
+		appointment.setAppStatus(getStatus.apply(appointment.getAssignTo()));
 		appointment.setActive(true);
 		setTestNames(appointment, appointmentDto.getTestList());
 		return map(appointmentRepository.save(appointment), AppointmentDto.class);
@@ -93,8 +98,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	 */
 	@Override
 	public List<AppointmentDto> findAllAppointments() {
-		return appointmentRepository.findByIsActiveTrue().parallelStream().map(this::from)
-				.collect(Collectors.toList());
+		return appointmentRepository.findByIsActiveTrue().parallelStream().map(this::from).collect(Collectors.toList());
 	}
 
 	@Override
@@ -113,7 +117,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Appointment appointment = findByAppointmentById(appId);
 		Set<BillingAndInvoice> andInvoices = appointment.getBillingAndInvoices();
 		BillingAndInvoice firstInvoice = andInvoices.stream().filter(BillingAndInvoice::isActive).findFirst()
-				.orElseThrow(()->new NotFoundException("notFound"));
+				.orElseThrow(() -> new NotFoundException("notFound"));
 		BillingAndInvoice secInvoices = new BillingAndInvoice();
 		setClearDueObject(secInvoices, firstInvoice);
 		secInvoices.setAppointment(appointment);
@@ -124,7 +128,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return map(secInvoices, BillingAndInvoiceDto.class);
 	}
 
-	private void setClearDueObject(BillingAndInvoice secInvoices, BillingAndInvoice firstInvoice ) {
+	private void setClearDueObject(BillingAndInvoice secInvoices, BillingAndInvoice firstInvoice) {
 		secInvoices.setPaymentAmmount(0.0);
 		secInvoices.setBillingId(0L);
 		secInvoices.setAdvancePayment(firstInvoice.getPaymentAmmount());
@@ -135,4 +139,23 @@ public class AppointmentServiceImpl implements AppointmentService {
 		secInvoices.setDiscountAmmount(firstInvoice.getDiscountAmmount());
 		firstInvoice.setActive(false);
 	}
+
+	@Override
+	public int updateAppointmentStatus(AppointmentUpdateDto appointmentUpdateDto) {
+		return  appointmentRepository.findAllById(appointmentUpdateDto.getAppointment())
+				.stream().map(appointment->myLambda.apply(appointmentUpdateDto, appointment)).collect(Collectors.toList()).size();
+	}
+	
+	private BiFunction<AppointmentUpdateDto, Appointment, Appointment> myLambda = (appointmentUpdateDto, appointment) -> {
+		appointment.setAppStatus(appointmentUpdateDto.getStatus());
+		if (Objects.nonNull(appointmentUpdateDto.getAssignTo())) {
+			appointment.setAssignTo(appointmentUpdateDto.getAssignTo());
+		}
+		return appointment;
+	};
+	
+	UnaryOperator<String> getStatus = assignTo -> (Objects.isNull(assignTo) || assignTo.isEmpty() )
+			? AppointmentStatus.NEWLY_CREATED_APPOINTMENT.getValue()
+			: AppointmentStatus.ASSIGNED_TO_PHLEBO.getValue();
+	
 }

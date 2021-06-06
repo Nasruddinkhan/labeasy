@@ -2,6 +2,7 @@
  * 
  */
 (function() {
+var isChkAppointmentList = [];
     selectTest = function(price, testId) {
         $(ApiConstant.BALANCE_ID).val(0);
         const totalAmout = parseFloat($(ApiConstant.TOTAL_AMT_ID).val());
@@ -62,7 +63,6 @@
     clearDue = function(appId){
      
 		var url = "/appointment/cleardue?appId="+appId+"&paymentmode="+($('#paymentmode').val());
-		alert(url);
 		const callBackFunction = "crearDueRes";
 		ajaxGetCall(url, callBackFunction);
     }
@@ -73,4 +73,41 @@
    		 	toastr.success('clear due ammount successfully!');
    		 	setTimeout(() =>{window.location.replace("http://localhost:8087/labeasy/appointment/view-appointment-page")}, 5000);
     }
+    changeStatus = function(obj){
+     $("#assignUser").val('');
+    	$("#assign_to").css("display", obj.value==='AP'?"block": "none");
+    	if($('#assign_to').is(':visible')){
+    	var url = "/user-master/get-phlebotomist";
+		const callBackFunction = "getAllPhlebotomistList";
+		ajaxGetCall(url, callBackFunction);
+    	}
+    } 
+    getAllPhlebotomistList = function(response){
+    	var assignTo = $("#assignUser");
+		assignTo.empty()
+		$.each(response, function() {
+			assignTo.append($("<option></option>").val(this['key']).html(
+					this['value']));
+		});
+    }
+   isCheckAppointment = function(appointmentId){
+   isChkAppointmentList = isChecked("appChk" + appointmentId) ?  
+					addObjectInArray(isChkAppointmentList, appointmentId) :
+					removeObjectFromArray(isChkAppointmentList, appointmentId);
+   }
+  updateAppointmentStatus = function(){
+  const appointments = $('#update-appointment-status').serializeObject();	
+  appointments["appointment"] =isChkAppointmentList; 
+  
+  		var url = "/appointment/update-appointment-status";
+		const callBackFunction = "updateAppointmentStatusRes";
+		ajaxPostCall(url, callBackFunction, JSON.stringify(appointments));
+  }  
+  updateAppointmentStatusRes = function(response){
+  		    toastr.options.timeOut = 5000; // 1.5s
+   		 	toastr.success('update appointment successfully!');
+   		 	$('#update-appointment-status')[0].reset();
+   		 	setTimeout(() =>{window.location.href="/labeasy/appointment/view-appointment-page"}, 5000);
+      
+  }
 })();

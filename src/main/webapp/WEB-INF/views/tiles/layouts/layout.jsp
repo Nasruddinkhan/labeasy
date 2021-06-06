@@ -277,7 +277,7 @@
 			            window.location.reload();
 			       }
 			  });
-			 $(".viewappointment").fancybox({
+			 $(".printinvoice").fancybox({
 			      type: 'iframe',
 			      autoSize : false,
 			      height   : "100%"
@@ -294,11 +294,16 @@
 				'autoWidth' : false
 			})
 		});
-		$('#appointmentDate, #userDob, #userDoj').datepicker({
+		$('#appointmentDate').datepicker({
 			dateFormat : 'yy-mm-dd',
 			changeMonth:true,
 			changeYear:true,
 			minDate: 0
+		});
+		$(' #userDob, #userDoj').datepicker({
+			dateFormat : 'yy-mm-dd',
+			changeMonth:true,
+			changeYear:true
 		});
 		$('.timepicker').timepicker({
 			showInputs : false,

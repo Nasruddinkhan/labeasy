@@ -64,8 +64,8 @@ public class User extends BaseBean implements Serializable {
     private String otherIdCardNo;
     @Column(name = "remarks")
     private String remarks;
-    @Column(name = "role_id")
-    private Long roleId;
+    @Column(name = "role")
+    private String roleId;
     @Column(name = "enabled", nullable = false)
 	private boolean enabled;
     @Column(name = "is_active", columnDefinition = "boolean default true", nullable = false)

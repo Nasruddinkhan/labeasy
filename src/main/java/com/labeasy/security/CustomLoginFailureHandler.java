@@ -26,9 +26,9 @@ public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHan
 	private final UserRepository userRepo;
 	private final UserService userService;
 
-	Predicate<User> isEnable = (u) -> u.isEnabled();
-	Predicate<User> isAccountNonLocked = (u) -> u.isAccountNonLocked();
-	Predicate<User> isFailedAttempt = (u) -> u.getFailedAttempt() < CommonUtils.MAX_FAILED_ATTEMPTS - 1;
+	Predicate<User> isEnable = u -> u.isEnabled();
+	Predicate<User> isAccountNonLocked = u -> u.isAccountNonLocked();
+	Predicate<User> isFailedAttempt = u -> u.getFailedAttempt() < CommonUtils.MAX_FAILED_ATTEMPTS - 1;
 
 	@Autowired
 	public CustomLoginFailureHandler(final UserRepository userRepo, UserService userService) {

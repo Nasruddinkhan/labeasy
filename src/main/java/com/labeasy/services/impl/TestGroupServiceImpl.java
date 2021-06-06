@@ -31,48 +31,6 @@ public class TestGroupServiceImpl implements TestGroupService {
     }
     
 
-/*
-    
-
-    @Override
-    public InquiryDto addInquiry(final InquiryDto inquiryDto) {
-        Inquiry inquiry = map(inquiryDto, Inquiry.class);
-        inquiry.setStatus(ApplicationStatus.ACTIVE.getValue());
-        inquiry = inquiryRepository.save(inquiry);
-        return map(inquiry, InquiryDto.class);
-    }
-
-    private Inquiry findInquiryById(final Long inqId) {
-        return inquiryRepository.findById(inqId).orElseThrow(() ->
-                new NotFoundException(ApplicationErrors.INQ_ID_NOT_FOUND.getValue()));
-    }
-
-    @Override
-    public InquiryDto findByInquiryId(final Long inqId) {
-        final Inquiry inquiry = findInquiryById(inqId);
-        return map(inquiry, InquiryDto.class);
-    }
-
-    @Override
-    public InquiryDto updateInquiry(final InquiryDto inquiryDto, final Long inqId) {
-        findByInquiryId(inqId);
-        inquiryDto.setInqId(inqId);
-        return addInquiry(inquiryDto);
-    }
-
-    @Override
-    public void deleteInquiry(final Long inqId) {
-        final Inquiry inquiry = findInquiryById(inqId);
-        inquiry.setStatus(ApplicationStatus.INACTIVE.getValue());
-        inquiryRepository.save(inquiry);
-    }
-
-    @Override
-    public List<InquiryDto> findAllInquires() {
-        final List<Inquiry> inquiries = inquiryRepository.findByStatus(ApplicationStatus.ACTIVE.getValue());
-        return mapAll(inquiries, InquiryDto.class);
-    }*/
-
 	@Override
 	public TestGroupDto addTestGroup(TestGroupDto testGroupDto) {
 		System.out.println("TestMasterServiceImpl.addTestGroup()");
