@@ -7,7 +7,7 @@
 <section class="content">
 	<div class="box box-danger">
 		<div class="box-header with-border">
-			<h3 class="box-title"><b>Add New User</b></h3>
+			<h3 class="box-title"><b>View profile</b></h3>
 			<div class="box-tools pull-right">
 			<!-- click to open inquiry form  -->
 				<button type="button" class="btn btn-box-tool" data-toggle="tooltip"
@@ -163,7 +163,7 @@
 			<div class="box-body">
 				<div class="form-group col-sm-3">
 					<label for="Country Code">Reporting person :</label>
-					<form:input type="text" path="reportingUserId" id="reportingUserId"
+					<form:input type="text" path="" id="reportingUserId"
 						class="form-control"/>
 				</div>
 				
@@ -175,18 +175,9 @@
 		<div class="box-footer">
 				<div class="col-sm-12 col-sm-offset-5">
 					<button type="submit" class="btn btn-primary">
-						<c:choose>
-							<c:when test="${not empty user.id}">
-								<form:hidden class="form-control" path="id" />
-								<form:hidden class="form-control" path="address.addressId" />
-								<form:hidden class="form-control" path="createdDate" />
-								<form:hidden class="form-control" path="createdBy" />
-									Update 
-							</c:when>
-							<c:otherwise>
+						
 								Save
-							</c:otherwise>
-						</c:choose>
+							
 					</button>
 				</div>
 			</div> 

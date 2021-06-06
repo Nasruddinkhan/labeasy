@@ -180,7 +180,7 @@
 	<div class="row">
 		<div class="col-sm-12 col-sm-offset-5">
 			<a type="button" href="${pageContext.request.contextPath}/appointment/view-appointment-page" class="btn btn-sm btn-info">Back</a>
-			<button type="button" class="btn btn-sm  btn-danger">Print Invoice</button>
+			<button type="button" class="btn btn-sm  btn-danger printinvoice">Print Invoice</button>
 		</div>
 	</div>
 </section>

@@ -50,69 +50,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
-				
-		<div class="row">
-			<div class="box-body">
-				<div class="form-group col-sm-3 has-feedback">
-					<label for="Country Code">Date of joining :</label>
-							<form:input type='text' class="form-control date-picker"
-							 path="dob" id="userDob" /><i class="fa fa-calendar form-control-feedback"></i>
-							
-				</div>
-				
-				<div class="form-group col-sm-3 has-feedback">
-					<label for="Country Code">Date of joining :</label>
-							<form:input type='text' class="form-control date-picker"
-							 path="doj" id="userDoj" /><i class="fa fa-calendar form-control-feedback"></i>
-							
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Contact :</label>
-					<form:input type="text" path="mobileNo" id="mobileNo"
-						class="form-control"/>
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Alternate Contact :</label>
-					<form:input type="text" path="alternateMobileNo" id="alternateMobileNo"
-						class="form-control"/>
-				</div>
-				
-			</div>		
-		</div>
-		<div class="row">
-			<div class="box-body">	
-			
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Email :</label>
-					<form:input type="text" path="emailId" id="emailId"
-						class="form-control"/>
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Adhar Card No :</label>
-					<form:input type="text" path="adharCardNo" id="adharCardNo"
-						class="form-control"/>
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">PAN Card No :</label>
-					<form:input type="text" path="panCardNo" id="panCardNo"
-						class="form-control"/>
-				</div>
-				<div class="form-group col-sm-3">
-					<label for="Country Code">Other ID Card No :</label>
-					<form:input type="text" path="otherIdCardNo" id="otherIdCardNo"
-						class="form-control"/>
 
 			<div class="row">
 				<div class="box-body">
-
 					<div class="form-group col-sm-3 has-feedback">
-						<label for="Country Code">Date of birth :</label>
+						<label for="Country Code">Date of joining :</label>
 						<form:input type='text' class="form-control date-picker"
 							path="dob" id="userDob" />
 						<i class="fa fa-calendar form-control-feedback"></i>
 
 					</div>
+
 					<div class="form-group col-sm-3 has-feedback">
 						<label for="Country Code">Date of joining :</label>
 						<form:input type='text' class="form-control date-picker"
@@ -155,6 +103,7 @@
 						<label for="Country Code">Other ID Card No :</label>
 						<form:input type="text" path="otherIdCardNo" id="otherIdCardNo"
 							class="form-control" />
+
 					</div>
 				</div>
 			</div>

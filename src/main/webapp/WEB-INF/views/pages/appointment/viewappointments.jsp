@@ -115,7 +115,7 @@
 								<td>${app.assignTo}</td>
 								<td><c:choose>
 										<c:when test="${app.andInvoiceDto.paymentAmmount > 0}">
-											<em> <a
+											<em> <a class="billingiframe"
 												href="${pageContext.request.contextPath}/appointment/cleardue-popup?appId=${app.appointmentId}
 										&advPay=${app.andInvoiceDto.advancePayment}
 										&dueAmt=${app.andInvoiceDto.paymentAmmount}

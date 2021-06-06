@@ -45,5 +45,5 @@ spring:
             enable: true
     protocol: smtp
     test-connection: false
-    username: Nasruddin.nk44@gmail.com
+    username: hamidkhansoftit@gmail.com
   profiles: local

@@ -23,12 +23,12 @@
 						View Appointments </a></li>
 
 			</ul></li>
-		<li class="treeview "  id="treeview-menu-plus"><a href="#"> <i class="fa fa-tasks"></i>
+		<li class="treeview treeview-menu-plus"  id="treeview-menu-plus"><a href="#"> <i class="fa fa-tasks"></i>
 				<span>Test Master</span> <span class="pull-right-container">
 					<span class="fa fa-angle-left pull-right"></span>
 			</span>
 		</a>
-			<ul class="treeview-menu " id="treeview-menu-plus-ul">
+			<ul class="treeview-menu treeview-menu-plus-ul" id="treeview-menu-plus-ul">
 				<li><a
 					href="${pageContext.request.contextPath}/master-test/show-test-group "><i
 						class="fa fa-plus text-yellow"></i> Test Group</a></li>
