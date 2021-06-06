@@ -6,10 +6,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.labeasy.dto.AppointmentDto;
+import com.labeasy.dto.AppointmentUpdateDto;
 import com.labeasy.dto.BillingAndInvoiceDto;
+import com.labeasy.dto.TestNamesDto;
 import com.labeasy.entity.Appointment;
 import com.labeasy.entity.BillingAndInvoice;
-import com.labeasy.entity.TestNames;
 import com.labeasy.utils.ObjectUtilMapper;
 
 public interface AppointmentService {
@@ -21,9 +22,11 @@ public interface AppointmentService {
 	AppointmentDto findByAppointmentId(Long appId);
 
 	public default AppointmentDto from(Appointment appointment) {
-		String noOfTest = appointment.getTestNames().parallelStream().map(TestNames::getTestId)
-				.collect(Collectors.toList()).toString();
 		AppointmentDto appointmentDto = ObjectUtilMapper.map(appointment, AppointmentDto.class);
+	    Set<TestNamesDto> testNamesDtos =	ObjectUtilMapper.mapAll(appointment.getTestNames(), TestNamesDto.class);
+	    String noOfTest = testNamesDtos.parallelStream().map(TestNamesDto::getTestId)
+				.collect(Collectors.toList()).toString();
+	    appointmentDto.setTestNames(testNamesDtos);
 		appointmentDto.setTestList(noOfTest);
 		Set<BillingAndInvoice> andInvoices = appointment.getBillingAndInvoices();
 		appointmentDto.setAndInvoices(ObjectUtilMapper.mapAll(andInvoices, BillingAndInvoiceDto.class));
@@ -34,5 +37,7 @@ public interface AppointmentService {
 	}
 
 	BillingAndInvoiceDto clearDlueAmount(Long appId, Boolean isActive, String paymentmode);
+
+	int updateAppointmentStatus(AppointmentUpdateDto appointmentUpdateDto);
 
 }

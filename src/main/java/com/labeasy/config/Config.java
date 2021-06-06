@@ -1,5 +1,9 @@
 package com.labeasy.config;
 
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.VelocityException;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,10 +66,19 @@ public class Config implements WebMvcConfigurer {
 		return source;
 	}
 
-	@Bean
+	@Override
 	public LocalValidatorFactoryBean getValidator() {
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 		bean.setValidationMessageSource(messageSource());
 		return bean;
+	}
+
+	@Bean
+	public VelocityEngine getVelocityEngine() throws VelocityException {
+		VelocityEngine velocityEngine = new VelocityEngine();
+		velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+		velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+		velocityEngine.init();
+		return velocityEngine;
 	}
 }

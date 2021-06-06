@@ -4,9 +4,9 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <form:form method="POST" modelAttribute="appointment"
-	action="${pageContext.request.contextPath}/appointment/add-appointment"
-	autocomplete="off">
+	action="${pageContext.request.contextPath}/appointment/add-appointment">
 	<body
 		onload="setOnLoadData('${appointment.appointmentId}', '${appointment.testList}')">
 		<section class="content">
@@ -18,8 +18,8 @@
 						<button type="button" class="btn btn-box-tool"
 							data-toggle="tooltip" title="View Appointments">
 							<a
-								href="${pageContext.request.contextPath}/appointment/view-appointment-page"><i
-								class="fa fa-plus"></i> View Appointments</a>
+								href="${pageContext.request.contextPath}/appointment/view-appointment-page"><em
+								class="fa fa-plus"></em> View Appointments</a>
 						</button>
 					</div>
 				</div>

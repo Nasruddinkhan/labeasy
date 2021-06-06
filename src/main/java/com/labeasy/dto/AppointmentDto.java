@@ -22,7 +22,7 @@ public final  class AppointmentDto {
 	private String name;
 	private String mobileNo;
 	private String emailId;
-	private String status;
+	private String appStatus;
 	private String remarks;
 	private Integer age;
 	private String gender;
@@ -40,5 +40,6 @@ public final  class AppointmentDto {
 	private String areLocStreetName;
     private String createdBy;
     private LocalDateTime createdDate;
- 
+    private Set<TestNamesDto> testNames;
+
 }

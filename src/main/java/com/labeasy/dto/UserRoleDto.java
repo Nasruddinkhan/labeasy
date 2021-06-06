@@ -1,13 +1,13 @@
 package com.labeasy.dto;
 
 
-import lombok.*;
-
-import java.time.LocalDate;
-
-import javax.persistence.Column;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter

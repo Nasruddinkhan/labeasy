@@ -49,8 +49,8 @@ public class Appointment extends BaseBean implements Serializable {
 	private String mobileNo;
 	@Column(name = "email_id", length = 60)
 	private String emailId;
-	@Column(name = "status", columnDefinition = "char(1) ")
-	private String status;
+	@Column(name = "status", columnDefinition = "char(2) ")
+	private String appStatus;
 	@Column(name = "remarks")
 	private String remarks;
 	@Column(name = "gender", columnDefinition = "char(1)")
