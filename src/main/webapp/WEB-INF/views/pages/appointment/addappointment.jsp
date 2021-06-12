@@ -8,7 +8,7 @@
 <form:form method="POST" modelAttribute="appointment"
 	action="${pageContext.request.contextPath}/appointment/add-appointment">
 	<body
-		onload="setOnLoadData('${appointment.appointmentId}', '${appointment.testList}')">
+		onload="setOnLoadData('${appointment.appointmentId}', '${appointment.testList}', '${selectedTestName}')">
 		<section class="content">
 			<div class="box box-danger">
 				<div class="box-header with-border">
@@ -80,14 +80,21 @@
 							<form:input type="text" path="areLocStreetName"
 								class="form-control" />
 						</div>
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-3">
+							<label for="Country Code">Visit Type:</label>
+							<form:select path="customerVisited" class="form-control ">
+								<form:option value="N">Online Appointment</form:option>
+								<form:option value="Y">Customer Visited</form:option>
+							</form:select>
+						</div>
+
+
+						<div class="form-group col-sm-3">
 							<label for="Country Code">Remarks (reason for test) :</label>
 							<form:textarea type="text" path="remarks" class="form-control" />
 						</div>
 					</div>
 				</div>
-
-
 				<div class="row">
 					<div class="box-body">
 						<div class="form-group col-sm-2">
@@ -112,7 +119,12 @@
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Appointment assign to :</label>
-							<form:input type="text" path="assignTo" class="form-control" />
+							<form:select type="text" path="assignTo" class="form-control">
+								<form:option value="">----SELECT ASSIGN----</form:option>
+								<form:options items="${phlebotomistList}" itemValue="key"
+									itemLabel="value" />
+							</form:select>
+
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Payment mode :</label>
@@ -130,7 +142,7 @@
 
 				<div class="row">
 					<div class="box-body">
-						<div class="form-group col-sm-9">
+						<div class="form-group col-sm-8">
 							<table id="example1"
 								class="table table-sm table-bordered table-striped">
 								<thead>
@@ -145,7 +157,7 @@
 										<tr>
 
 											<td><input type="checkbox" id="test${testName.testId}"
-												onclick="selectTest(${testName.price},${testName.testId});" />
+												onclick="selectTest(${testName.price},${testName.testId},'${testName.name}' );" />
 												${testName.name}</td>
 											<td>${testName.testcode}</td>
 											<td>${testName.price}</td>
@@ -156,13 +168,17 @@
 
 						</div>
 
-						<div class="form-group col-sm-3">
+						<div class="form-group col-sm-4">
 							<div class="row">
 								<div class="box-body">
 									<div class="col-sm-12">
 										<div class="form-group col-sm-6">
 											<label for="Country Code" style="font-size: 11px;">Selected
-												Test:</label>
+												Test <a class="viewtest"><i style="cursor: pointer;"
+													onclick="testItems();" class="fa fa-eye" aria-hidden="true"></i></a>:
+											</label>
+
+
 											<form:input type="text" path="" id="selected_test"
 												class="form-group form-control" readonly="true" value="0" />
 										</div>
@@ -236,6 +252,38 @@
 
 
 
+			</div>
+			<div class="modal fade" id="select-test-modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">Selected Test</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="box-body">
+									<table class="table table-sm table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Test Name</th>
+											</tr>
+										</thead>
+										<tbody id="tbl">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
 			</div>
 		</section>
 	</body>

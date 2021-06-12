@@ -6,6 +6,7 @@ import static com.labeasy.utils.CommonUtils.transformTheDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.labeasy.dto.AppointmentDto;
 import com.labeasy.dto.AppointmentUpdateDto;
 import com.labeasy.dto.BillingAndInvoiceDto;
+import com.labeasy.dto.TestNamesDto;
 import com.labeasy.services.AppointmentService;
 import com.labeasy.services.TestNamesService;
+import com.labeasy.services.UserService;
 
 @Controller
 @RequestMapping("/appointment")
@@ -33,11 +36,13 @@ public class AppointmentController {
 
 	private final TestNamesService testNamesService;
 	private final AppointmentService appointmentService;
-
+	private final UserService userService;
 	@Autowired
-	public AppointmentController(final TestNamesService testNamesService, final AppointmentService appointmentService) {
+	public AppointmentController(final TestNamesService testNamesService, final AppointmentService appointmentService,
+			final UserService userService) {
 		this.testNamesService = testNamesService;
 		this.appointmentService = appointmentService;
+		this.userService = userService;
 	}
 
 	/**
@@ -47,6 +52,8 @@ public class AppointmentController {
 	private void addAppointmentOnLoadData(ModelMap model, AppointmentDto appointmentDto) {
 		model.addAttribute("appointment", appointmentDto);
 		model.addAttribute("testNameList", testNamesService.findAllTestName());
+		model.addAttribute("phlebotomistList", userService.getAllPhlebotomistList());
+
 	}
 
 	@GetMapping("/view-appointment-page")
@@ -71,7 +78,10 @@ public class AppointmentController {
 
 	@GetMapping("/editAppointment/{appId}")
 	public String editAppointment(@PathVariable Long appId, ModelMap model) {
-		addAppointmentOnLoadData(model, appointmentService.findByAppointmentId(appId));
+		AppointmentDto appointmentDto =	appointmentService.findByAppointmentId(appId);
+		addAppointmentOnLoadData(model, appointmentDto);
+		model.addAttribute("selectedTestName", appointmentDto.getTestNames().parallelStream().map(TestNamesDto::getName)
+				.collect(Collectors.toList()));
 		return "addappointment";
 	}
 

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ import com.labeasy.dto.BillingAndInvoiceDto;
 import com.labeasy.eception.NotFoundException;
 import com.labeasy.entity.Appointment;
 import com.labeasy.entity.BillingAndInvoice;
+import com.labeasy.enums.ApplicationStatus;
 import com.labeasy.enums.AppointmentStatus;
 import com.labeasy.repsoitory.AppointmentRepository;
 import com.labeasy.repsoitory.TestNamesRepository;
@@ -37,6 +39,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	private final AppointmentRepository appointmentRepository;
 	private final TestNamesRepository testNamesRepository;
+	
+	Predicate<String> isVisited = (visited) ->  ApplicationStatus.ACTIVE.getValue().equals(visited)	;
+	BiFunction<String, String, String> isCustomerVisit = (visited, assignTo) -> isVisited.test(visited) ? AppointmentStatus.SAMPLE_COLLECTED.getValue() : getStatus.apply(assignTo);
 
 	@Autowired
 	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository,
@@ -51,7 +56,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Appointment appointment = map(appointmentDto, Appointment.class);
 		setBillingAndInvoice(appointment, appointmentDto);
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
-		appointment.setAppStatus(getStatus.apply(appointment.getAssignTo()));
+		appointment.setAppStatus(isCustomerVisit.apply(appointmentDto.getCustomerVisited(), appointment.getAssignTo()));
 		appointment.setActive(true);
 		setTestNames(appointment, appointmentDto.getTestList());
 		return map(appointmentRepository.save(appointment), AppointmentDto.class);
@@ -154,7 +159,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return appointment;
 	};
 	
-	UnaryOperator<String> getStatus = assignTo -> (Objects.isNull(assignTo) || assignTo.isEmpty() )
+	static UnaryOperator<String> getStatus = assignTo -> (Objects.isNull(assignTo) || assignTo.isEmpty() )
 			? AppointmentStatus.NEWLY_CREATED_APPOINTMENT.getValue()
 			: AppointmentStatus.ASSIGNED_TO_PHLEBO.getValue();
 	
