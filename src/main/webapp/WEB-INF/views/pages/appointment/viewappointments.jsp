@@ -138,13 +138,16 @@
 										</c:otherwise>
 									</c:choose></td>
 								<td><div class="box-tools pull-center">
+										<c:if test="${app.appStatus == 'NW' || app.appStatus == 'AP'  || app.appStatus == 'SC'}">
 										<a
 											href="${pageContext.request.contextPath}/appointment/editAppointment/${app.appointmentId}">
 											<button type="button"
 												class="btn btn-sm btn-info btn-box-tool">
 												<i class="fa fa-edit" style="color: white"></i>
 											</button>
-										</a> <a href="#"><button type="button"
+										</a>
+										</c:if>
+										 <a href="#"><button type="button"
 												class="btn btn-sm btn-danger btn-box-tool">
 
 												<i class="fa fa-trash" style="color: white"></i>
