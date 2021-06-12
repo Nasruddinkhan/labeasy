@@ -146,7 +146,6 @@
 												<i class="fa fa-edit" style="color: white"></i>
 											</button>
 										</a>
-										
 										</c:if>
 										 <a href="#"><button type="button"
 												class="btn btn-sm btn-danger btn-box-tool">
