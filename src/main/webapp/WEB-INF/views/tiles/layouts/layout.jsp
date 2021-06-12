@@ -282,7 +282,7 @@
 			      autoSize : false,
 			      height   : "100%"
 			  });
-			
+			  
 			$('#example1').DataTable();
 			
 			$('#appointment').DataTable({

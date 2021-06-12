@@ -41,5 +41,5 @@ public final  class AppointmentDto {
     private String createdBy;
     private LocalDateTime createdDate;
     private Set<TestNamesDto> testNames;
-
+    private String customerVisited;
 }

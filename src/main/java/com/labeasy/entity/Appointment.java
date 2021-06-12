@@ -73,6 +73,8 @@ public class Appointment extends BaseBean implements Serializable {
 	private String assignTo;
 	@Column(name = "is_active", columnDefinition = "boolean default true")
 	private boolean isActive;
+	@Column(name = "customer_visited", columnDefinition = "char(1) default 'N'")
+	private String customerVisited;
 	@ManyToMany
 	@JoinTable(name = "appointment_test_mapping", joinColumns = {
 			@JoinColumn(name = "appointment_id") }, inverseJoinColumns = { @JoinColumn(name = "test_id") })
