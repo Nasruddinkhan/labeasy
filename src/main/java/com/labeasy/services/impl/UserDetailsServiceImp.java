@@ -31,17 +31,18 @@ import com.labeasy.utils.CommonUtils;
 @Service("userDetailsService")
 @Transactional
 public class UserDetailsServiceImp implements UserService {
-
 	private final UserRepository userRepo;
+	
 
 	@Autowired
 	public UserDetailsServiceImp(final UserRepository userRepo) {
 		super();
 		this.userRepo = userRepo;
+	
 	}
 
 	@Override
-	public void addUser(UserDto userDto) {
+	public UserDto addUser(UserDto userDto) {
 		User user = map(userDto, User.class);
 		Address userAddress = map(userDto.getAddress(), Address.class);
 		user.setDob(transformTheDateFormat(userDto.getDob(), DateTimeFormatter.ISO_DATE,
@@ -56,7 +57,8 @@ public class UserDetailsServiceImp implements UserService {
 		user.setPassword(new BCryptPasswordEncoder().encode(userDto.getMobileNo()));
 		userAddress.setUser(user);
 		user.setAddress(userAddress);
-		map(userRepo.save(user), UserDto.class);
+		return map(userRepo.save(user), UserDto.class);
+		
 	}
 
 	@Override

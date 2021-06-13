@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public interface CommonUtils {
+	
 	public static final int MAX_FAILED_ATTEMPTS = 3;
 	public static final long LOCK_TIME_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 	public static final String SQL_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";

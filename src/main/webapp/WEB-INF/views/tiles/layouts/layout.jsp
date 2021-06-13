@@ -283,7 +283,9 @@
 			      height   : "100%"
 			  });
 			  
-			$('#example1').DataTable();
+			$('#example1').DataTable({
+		        "order": [[ 0, "desc" ]]
+		    });
 			
 			$('#appointment').DataTable({
 				'paging' : true,

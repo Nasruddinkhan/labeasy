@@ -99,7 +99,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	/**
-	 * 
+	 *  appointmentDtos.stream().sorted(Comparator.comparing(AppointmentDto::getAppointmentId).reversed()).collect(Collectors.toList());
 	 */
 	@Override
 	public List<AppointmentDto> findAllAppointments() {

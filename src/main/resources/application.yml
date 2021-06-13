@@ -35,7 +35,7 @@ spring:
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com
-    password: 
+    password: Nk@05071992$
     port: 587
     properties: 
       mail: 
@@ -46,4 +46,11 @@ spring:
     protocol: smtp
     test-connection: false
     username: Nasruddin.nk44@gmail.com
+  quartz:
+    jdbc:      schema: classpath:org/quartz/impl/jdbcjobstore/quartz_tables.sql    job-store-type: jdbc
+    properties:
+     org:
+      quartz:
+        threadPool:
+          threadCount: 5
   profiles: local
