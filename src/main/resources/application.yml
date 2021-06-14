@@ -31,7 +31,7 @@ spring:
       hibernate: 
         enable_lazy_load_no_trans: true
         format_sql: true
-    show-sql: true
+    show-sql: false
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com

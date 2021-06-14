@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.labeasy.dto.MyUserDetails;
 import com.labeasy.dto.UserDto;
 
-@Component
+@Component("auditorProvider")
 public class AuditAwareImpl implements AuditorAware<String> {
 
 	@Override

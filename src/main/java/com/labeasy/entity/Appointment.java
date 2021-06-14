@@ -28,7 +28,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @Table(name = "appointment")
-public class Appointment extends BaseBean implements Serializable {
+public class Appointment extends BaseBean<String> implements Serializable {
 
 	/**
 	* 
