@@ -66,6 +66,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/toastr.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/inquiry.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/country.js"></script>
+
 <script
 	src="${pageContext.request.contextPath}/resources/js/testgroup.js"></script>
 <script

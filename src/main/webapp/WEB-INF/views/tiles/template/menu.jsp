@@ -67,6 +67,22 @@
 						class="fa fa-eye text-green"></i> View Users</a></li>
 
 			</ul></li>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
+				<span>Master</span> <span class="pull-right-container">
+					<span class="fa fa-angle-left pull-right"></span>
+			</span>
+		</a>
+			<ul class="treeview-menu ">
+				<li><a
+					href="${pageContext.request.contextPath}/master/show-country-page"><i
+						class="fa fa-user-plus text-white"></i> Country</a></li>
+						
+				<li><a
+					href="#"><i
+						class="fa fa-eye text-green"></i> State</a></li>
+
+			</ul></li>
 	</ul>
 </section>
 <!-- /.sidebar -->
