@@ -12,6 +12,7 @@ spring:
     active: local
 ---
 spring: 
+  liquibase:    change-log:  classpath:/db/changelog/change-db-log.xml
   datasource: 
     driver-class-name: com.mysql.jdbc.Driver
     password: root
@@ -26,12 +27,12 @@ spring:
   jpa: 
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate: 
-      ddl-auto: update
+      ddl-auto: none
     properties: 
       hibernate: 
         enable_lazy_load_no_trans: true
         format_sql: true
-    show-sql: false
+    show-sql: true
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com
@@ -56,3 +57,4 @@ spring:
         threadPool:
           threadCount: 5
   profiles: local
+  
