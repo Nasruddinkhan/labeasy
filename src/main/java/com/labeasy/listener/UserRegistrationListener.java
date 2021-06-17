@@ -1,7 +1,11 @@
 package com.labeasy.listener;
 
+import static com.labeasy.constant.Constant.CONFIRMATION_SUBJECT;
+import static com.labeasy.constant.Constant.NAME;
+import static com.labeasy.constant.Constant.PASSWORD;
+import static com.labeasy.constant.Constant.USER_NAME;
+
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-
-import static com.labeasy.constant.Constant.*;
 
 import com.labeasy.constant.Constant;
 import com.labeasy.dto.ScheduleEmailDto;

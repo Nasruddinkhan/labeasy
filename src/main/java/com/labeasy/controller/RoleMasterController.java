@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labeasy.dto.UserRoleDto;
 import com.labeasy.services.UserRoleService;
-import com.labeasy.services.impl.AuditAwareImpl;
 
 @Controller
 @RequestMapping("/role-master")

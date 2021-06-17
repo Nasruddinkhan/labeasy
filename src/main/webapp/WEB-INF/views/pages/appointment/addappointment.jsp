@@ -194,9 +194,11 @@
 											<label for="Country Code" style="font-size: 11px;">Discount
 												(if any):</label>
 											<form:input type="text" path="andInvoiceDto.discountAmmount"
+											
 												id="discount" onkeyup="discountAndPaidAmmount(this);"
 												class="form-group form-control" />
 										</div>
+
 										<div class="form-group col-sm-6">
 											<label for="Country Code" style="font-size: 11px;">Paid
 												Amount:</label>
@@ -206,7 +208,14 @@
 												class="form-group form-control" />
 
 										</div>
-
+										
+			
+										<div class="form-group col-sm-12">
+											<div id="percentageslider"></div>
+											<p>
+												% <span id="percentag-value"></span>
+											</p>
+										</div>
 										<div class="form-group col-sm-12">
 											<label for="Country Code" style="font-size: 11px;">Discount
 												Reason amount :</label>

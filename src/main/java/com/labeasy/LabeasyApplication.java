@@ -11,6 +11,5 @@ public class LabeasyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LabeasyApplication.class, args);
 	}
-
 	
 }
