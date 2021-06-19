@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,28 +27,33 @@ import com.labeasy.dto.BillingAndInvoiceDto;
 import com.labeasy.eception.NotFoundException;
 import com.labeasy.entity.Appointment;
 import com.labeasy.entity.BillingAndInvoice;
+import com.labeasy.entity.User;
 import com.labeasy.enums.ApplicationStatus;
 import com.labeasy.enums.AppointmentStatus;
 import com.labeasy.repsoitory.AppointmentRepository;
 import com.labeasy.repsoitory.TestNamesRepository;
+import com.labeasy.repsoitory.UserRepository;
 import com.labeasy.services.AppointmentService;
 
 @Service("appointmentService")
 @Transactional
 public class AppointmentServiceImpl implements AppointmentService {
 
+
+
+	Predicate<String> isVisited = (visited) ->  ApplicationStatus.ACTIVE.getValue().equals(visited)	;
+	BiFunction<String, Long, String> isCustomerVisit = (visited, assignTo) -> isVisited.test(visited) ? AppointmentStatus.SAMPLE_COLLECTED.getValue() : getStatus.apply(assignTo);
 	private final AppointmentRepository appointmentRepository;
 	private final TestNamesRepository testNamesRepository;
-	
-	Predicate<String> isVisited = (visited) ->  ApplicationStatus.ACTIVE.getValue().equals(visited)	;
-	BiFunction<String, String, String> isCustomerVisit = (visited, assignTo) -> isVisited.test(visited) ? AppointmentStatus.SAMPLE_COLLECTED.getValue() : getStatus.apply(assignTo);
-
+	private final UserRepository userRepository;
 	@Autowired
 	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository,
+			final UserRepository userRepository,
 			final TestNamesRepository testNamesRepository) {
 		super();
 		this.appointmentRepository = appointmentRepository;
 		this.testNamesRepository = testNamesRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -56,8 +61,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Appointment appointment = map(appointmentDto, Appointment.class);
 		setBillingAndInvoice(appointment, appointmentDto);
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
-		appointment.setAppStatus(isCustomerVisit.apply(appointmentDto.getCustomerVisited(), appointment.getAssignTo()));
+		appointment.setAppStatus(isCustomerVisit.apply(appointmentDto.getCustomerVisited(), appointmentDto.getAssignTo()));
 		appointment.setActive(true);
+		if (Objects.nonNull(appointmentDto.getAssignTo())) {
+			appointment.setAssign(findAssignUser(appointmentDto.getAssignTo()));
+		}
 		setTestNames(appointment, appointmentDto.getTestList());
 		return map(appointmentRepository.save(appointment), AppointmentDto.class);
 	}
@@ -154,12 +162,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 	private BiFunction<AppointmentUpdateDto, Appointment, Appointment> myLambda = (appointmentUpdateDto, appointment) -> {
 		appointment.setAppStatus(appointmentUpdateDto.getStatus());
 		if (Objects.nonNull(appointmentUpdateDto.getAssignTo())) {
-			appointment.setAssignTo(appointmentUpdateDto.getAssignTo());
+			appointment.setAssign(findAssignUser(Long.parseLong( appointmentUpdateDto.getAssignTo())));
 		}
 		return appointment;
 	};
-	
-	static UnaryOperator<String> getStatus = assignTo -> (Objects.isNull(assignTo) || assignTo.isEmpty() )
+	private User findAssignUser(Long assignTO) {
+		return  userRepository.findById(assignTO).orElseThrow(()->new NotFoundException("employyee naot present"));
+		
+	}
+	static Function<Long,String> getStatus = assignTo -> (Objects.isNull(assignTo) )
 			? AppointmentStatus.NEWLY_CREATED_APPOINTMENT.getValue()
 			: AppointmentStatus.ASSIGNED_TO_PHLEBO.getValue();
 	

@@ -1,6 +1,7 @@
 package com.labeasy.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -40,6 +41,11 @@ public class UserMasterController {
 	private void onLoads(ModelMap model, UserDto userDto) {
 		model.addAttribute("user", userDto);
 		model.addAttribute("userRoleList", userRoleService.findAllRoles());
+		model.addAttribute("supervisorList",
+				userService.getAllUserList().stream()
+						.map(u -> new DropDownDto(u.getId().toString(), u.getFirstName() + " " + u.getLastName()))
+						.collect(Collectors.toList()));
+
 	}
 
 	@GetMapping("/show-add-user-page")

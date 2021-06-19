@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>CRUD</title>
+<title>Login</title>
 <!-- Basic -->
 <meta charset="UTF-8">
 

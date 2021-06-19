@@ -1,5 +1,7 @@
 package com.labeasy.job;
 
+import static com.labeasy.utils.CommonUtils.contextFunction;
+
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -9,7 +11,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -37,9 +38,10 @@ public class EmailJob extends QuartzJobBean {
 
 	@Autowired
 	private MailProperties mailProperties;
-	
+
 	@Autowired
 	private Messages messages;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
@@ -52,7 +54,7 @@ public class EmailJob extends QuartzJobBean {
 		sendMail(mailProperties.getUsername(), recipientEmail, subject, body, template);
 	}
 
-	private void sendMail(String fromEmail, String toEmail, String subject, Map<String, Object> body,String template) {
+	private void sendMail(String fromEmail, String toEmail, String subject, Map<String, Object> body, String template) {
 		try {
 			logger.info("Sending Email to {}", toEmail);
 			MimeMessage message = mailSender.createMimeMessage();
@@ -72,25 +74,18 @@ public class EmailJob extends QuartzJobBean {
 		System.out.println("EmailJob.geContentFromTemplate()");
 		String content = null;
 		try {
-			String getTemplateName =messages.get( Constant.TAMPLATE_LOCATION)  + template + messages.get(Constant.VM);
+			String getTemplateName = messages.get(Constant.TAMPLATE_LOCATION) + template + messages.get(Constant.VM);
 			Optional.ofNullable(getTemplateName).orElseThrow(
 					() -> new Exception("Unsupported value :getTemplateName coming null " + getTemplateName));
 			Template t = velocityEngine.getTemplate(getTemplateName);
 			StringWriter writer = new StringWriter();
-			t.merge(setContext(model), writer);
+			t.merge(contextFunction.apply(model), writer);
 			content = writer.toString();
-			System.out.println("EmailJob.geContentFromTemplate() content "+content);
+			System.out.println("EmailJob.geContentFromTemplate() content " + content);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return content;
 	}
 
-	private VelocityContext setContext(Map<String, Object> model) {
-		VelocityContext context = new VelocityContext();
-		model.forEach((k, v) -> {
-			context.put(k, v);
-		});
-		return context;
-	}
 }

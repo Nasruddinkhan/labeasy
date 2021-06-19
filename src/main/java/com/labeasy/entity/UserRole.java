@@ -1,12 +1,16 @@
 package com.labeasy.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,4 +38,7 @@ public class UserRole extends BaseBean implements Serializable  {
     private String description;
     @Column(name = "status" )
     private String status;
+    @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<User> users;
 }

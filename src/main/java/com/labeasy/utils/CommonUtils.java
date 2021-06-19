@@ -6,11 +6,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.velocity.VelocityContext;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
@@ -59,4 +61,10 @@ public interface CommonUtils {
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule().withMisfireHandlingInstructionFireNow())
                 .build();
     };
+    
+    static Function<Map<String, Object>, VelocityContext>  contextFunction =(Map<String, Object> model) -> {
+		VelocityContext context = new VelocityContext();
+		model.forEach((k, v) ->context.put(k, v));
+		return context;
+	};
 }

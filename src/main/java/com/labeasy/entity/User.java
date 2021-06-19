@@ -3,15 +3,19 @@ package com.labeasy.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,7 +49,7 @@ public class User extends BaseBean implements Serializable {
     private LocalDate dob;
     @Column(name = "date_of_joining")
     private LocalDate doj;
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, updatable = false)
     private String password;
     @Column(name = "mobile_no", length = 15)
     private String mobileNo;
@@ -64,20 +68,21 @@ public class User extends BaseBean implements Serializable {
     private String otherIdCardNo;
     @Column(name = "remarks")
     private String remarks;
-    @Column(name = "role")
-    private String roleId;
     @Column(name = "enabled", nullable = false)
 	private boolean enabled;
     @Column(name = "is_active", columnDefinition = "boolean default true", nullable = false)
 	private boolean isActive;
     @Column(name = "account_non_locked", nullable = false)
 	private boolean accountNonLocked;
-	@ManyToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "reporting_user_id")
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name="reporting_user_id")
 	private User reportingUser;
-	/*@OneToMany(mappedBy = "reportingUser")
-	private Set<User> subordinates;*/
-    @Column(name = "failed_password_count")
+	/*
+	 * @OneToMany(mappedBy="reportingUser") private Set<User> subordinates =null;
+	 */
+	
+	@Column(name = "failed_password_count")
     private Integer noOfFailPwdAttempt;
     @Column(name = "login_id_locked_date_time")
     private Date lastLoginDateTime;
@@ -87,5 +92,11 @@ public class User extends BaseBean implements Serializable {
 	private Date lockTime;
     @Column(name = "status")
     private String status;
-
+    @OneToMany(mappedBy = "assign", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Appointment> appointment;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id" )
+	private UserRole userRole = null;
 }

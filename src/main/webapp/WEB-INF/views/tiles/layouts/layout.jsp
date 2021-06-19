@@ -311,7 +311,7 @@
 			showInputs : false,
 			format : 'HH:mm'
 		});
-		$("#percentageslider").slider({
+		/* $("#percentageslider").slider({
 			   step: 1,
 			    min: 0,
 			    max: 100,
@@ -328,7 +328,7 @@
 		  		console.log(obj);
 			  	discountAndPaidAmmount(obj);
 			  }
-			})
+			}) */
 			
 			
 	</script>
