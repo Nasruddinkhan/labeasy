@@ -34,6 +34,8 @@
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link href="${pageContext.request.contextPath}/resources/css/toastr.css"
+	rel="stylesheet" />
 </head>
 <body class="hold-transition login-page">
 	<div class="login-box">
@@ -44,14 +46,14 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">Sign in to start your session</p>
 
-			<form action='<spring:url value="/login"/>' method="post">
+			<form action='<spring:url value="/login"/>' onsubmit="return validateLoginForm()" method="post">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" name="username"
+					<input type="text" class="form-control" name="username" id="username"
 						placeholder="username"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" name="password" class="form-control"
+					<input type="password" name="password" class="form-control" id="password"
 						placeholder="Password"> <span
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
@@ -65,8 +67,8 @@
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">
-						<button type="submit" class="btn btn-primary btn-block btn-flat"> Sign
-							In</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat">
+							Sign In</button>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -74,14 +76,14 @@
 					value="${_csrf.token}" />
 			</form>
 
-			
+
 			<!-- /.social-auth-links -->
 			<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
 				<div class="error">
 					<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 				</div>
 			</c:if>
-			
+
 
 		</div>
 		<!-- /.login-box-body -->
@@ -97,6 +99,13 @@
 	<!-- iCheck -->
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/iCheck/icheck.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/toastr.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+	
+
+	<script
+		src="${pageContext.request.contextPath}/resources/js/appvalidation.js"></script>
+
 	<script>
   $(function () {
     $('input').iCheck({
@@ -105,6 +114,11 @@
       increaseArea: '20%' // optional
     });
   });
+  function validateLoginForm(){
+	const isValidName =  isFieldValidation('#username', 'username cannot be empty');
+	const isValidPassword =   isFieldValidation('#password', 'password cannot be empty');
+	  return (isValidName && isValidPassword);
+  }
 </script>
 </body>
 </body>
