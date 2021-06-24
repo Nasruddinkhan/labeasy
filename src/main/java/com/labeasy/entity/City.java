@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,6 +46,6 @@ public class City extends BaseBean implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "state_id", nullable = false)
 	private State state;
-	@OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "city",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<PinCode> pinCode;
 }
