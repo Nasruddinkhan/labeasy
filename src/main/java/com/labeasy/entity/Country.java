@@ -1,12 +1,15 @@
 package com.labeasy.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,4 +36,6 @@ public class Country extends BaseBean implements Serializable {
 	private String countryName;
 	@Column(name = "country_code", length = 3)
 	private String countryCode;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+	private Set<State> state = null;
 }
