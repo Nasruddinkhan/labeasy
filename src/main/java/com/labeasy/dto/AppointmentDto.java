@@ -44,5 +44,7 @@ public final  class AppointmentDto {
     private Set<TestNamesDto> testNames;
     private String customerVisited;
 	private boolean isEmailWhatsapp;
+	private String isEmailStatus;
+
 
 }

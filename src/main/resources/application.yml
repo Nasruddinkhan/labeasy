@@ -27,16 +27,16 @@ spring:
   jpa: 
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate: 
-      ddl-auto: none
+      ddl-auto: update
     properties: 
       hibernate: 
         enable_lazy_load_no_trans: true
-        format_sql: true
-    show-sql: true
+        format_sql: false
+    show-sql: false
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com
-    password: 
+    password: Nk@05071992$
     port: 587
     properties: 
       mail: 

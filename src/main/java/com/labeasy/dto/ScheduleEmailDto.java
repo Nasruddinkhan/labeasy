@@ -38,4 +38,8 @@ public class ScheduleEmailDto {
     private ZoneId timeZone;
     
     private String templateName;
+    
+    private String jobName;
+    
+    private String triggerName;
 }

@@ -63,8 +63,8 @@ public class UserDetailsServiceImp implements UserService {
 				(date, format) -> LocalDate.parse(date, format)));
 		user.setDoj(transformTheDateFormat(userDto.getDoj(), DateTimeFormatter.ISO_DATE,
 				(date, format) -> LocalDate.parse(date, format)));
-		user.setEnabled(false);
-		user.setAccountNonLocked(false);
+		user.setEnabled(true);
+		user.setAccountNonLocked(true);
 		user.setLockTime(new Date());
 		user.setActive(true);
 		user.setNoOfFailPwdAttempt(0);

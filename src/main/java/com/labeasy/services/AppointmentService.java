@@ -24,10 +24,10 @@ public interface AppointmentService {
 
 	AppointmentDto findByAppointmentId(Long appId);
 
-	public default AppointmentDto from(Appointment appointment) {
+	public default  AppointmentDto from(Appointment appointment) {
 		AppointmentDto appointmentDto = ObjectUtilMapper.map(appointment, AppointmentDto.class);
 		Set<TestNamesDto> testNamesDtos = ObjectUtilMapper.mapAll(appointment.getTestNames(), TestNamesDto.class);
-		String noOfTest = testNamesDtos.parallelStream().map(TestNamesDto::getTestId).collect(Collectors.toList())
+		String noOfTest = testNamesDtos.stream().map(TestNamesDto::getTestId).collect(Collectors.toList())
 				.toString();
 		appointmentDto.setTestNames(testNamesDtos);
 		appointmentDto.setTestList(noOfTest);
@@ -47,5 +47,7 @@ public interface AppointmentService {
 	BillingAndInvoiceDto clearDlueAmount(Long appId, Boolean isActive, String paymentmode);
 
 	int updateAppointmentStatus(AppointmentUpdateDto appointmentUpdateDto);
+
+	List<AppointmentDto> findEmailList(String assignedToPhlebo, String string);
 
 }

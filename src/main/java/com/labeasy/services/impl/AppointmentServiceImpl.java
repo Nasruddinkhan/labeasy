@@ -17,6 +17,12 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,17 +45,19 @@ import com.labeasy.services.AppointmentService;
 @Transactional
 public class AppointmentServiceImpl implements AppointmentService {
 
-
-
-	Predicate<String> isVisited = (visited) ->  ApplicationStatus.ACTIVE.getValue().equals(visited)	;
-	BiFunction<String, Long, String> isCustomerVisit = (visited, assignTo) -> isVisited.test(visited) ? AppointmentStatus.SAMPLE_COLLECTED.getValue() : getStatus.apply(assignTo);
+	Predicate<String> isVisited = (visited) -> ApplicationStatus.ACTIVE.getValue().equals(visited);
+	BiFunction<String, Long, String> isCustomerVisit = (visited, assignTo) -> isVisited.test(visited)
+			? AppointmentStatus.SAMPLE_COLLECTED.getValue()
+			: getStatus.apply(assignTo);
 	private final AppointmentRepository appointmentRepository;
 	private final TestNamesRepository testNamesRepository;
 	private final UserRepository userRepository;
+	@PersistenceContext
+	EntityManager em;
+
 	@Autowired
 	public AppointmentServiceImpl(final AppointmentRepository appointmentRepository,
-			final UserRepository userRepository,
-			final TestNamesRepository testNamesRepository) {
+			final UserRepository userRepository, final TestNamesRepository testNamesRepository) {
 		super();
 		this.appointmentRepository = appointmentRepository;
 		this.testNamesRepository = testNamesRepository;
@@ -61,13 +69,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 		Appointment appointment = map(appointmentDto, Appointment.class);
 		setBillingAndInvoice(appointment, appointmentDto);
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
-		appointment.setAppStatus(isCustomerVisit.apply(appointmentDto.getCustomerVisited(), appointmentDto.getAssignTo()));
+		appointment
+				.setAppStatus(isCustomerVisit.apply(appointmentDto.getCustomerVisited(), appointmentDto.getAssignTo()));
 		appointment.setActive(true);
 		if (Objects.nonNull(appointmentDto.getAssignTo())) {
 			appointment.setAssign(findAssignUser(appointmentDto.getAssignTo()));
 		}
 		setTestNames(appointment, appointmentDto.getTestList());
-		return map(appointmentRepository.save(appointment), AppointmentDto.class);
+		return this.from(appointmentRepository.save(appointment));
 	}
 
 	/**
@@ -107,11 +116,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	/**
-	 *  appointmentDtos.stream().sorted(Comparator.comparing(AppointmentDto::getAppointmentId).reversed()).collect(Collectors.toList());
+	 * appointmentDtos.stream().sorted(Comparator.comparing(AppointmentDto::getAppointmentId).reversed()).collect(Collectors.toList());
 	 */
 	@Override
 	public List<AppointmentDto> findAllAppointments() {
-		return appointmentRepository.findByIsActiveTrue().parallelStream().map(this::from).collect(Collectors.toList());
+		return appointmentRepository.findByIsActiveTrue().stream().map(this::from).collect(Collectors.toList());
 	}
 
 	@Override
@@ -155,23 +164,38 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public int updateAppointmentStatus(AppointmentUpdateDto appointmentUpdateDto) {
-		return  appointmentRepository.findAllById(appointmentUpdateDto.getAppointment())
-				.stream().map(appointment->myLambda.apply(appointmentUpdateDto, appointment)).collect(Collectors.toList()).size();
+		return appointmentRepository.findAllById(appointmentUpdateDto.getAppointment()).stream()
+				.map(appointment -> myLambda.apply(appointmentUpdateDto, appointment)).collect(Collectors.toList())
+				.size();
 	}
-	
-	private BiFunction<AppointmentUpdateDto, Appointment, Appointment> myLambda = (appointmentUpdateDto, appointment) -> {
+
+	private BiFunction<AppointmentUpdateDto, Appointment, Appointment> myLambda = (appointmentUpdateDto,
+			appointment) -> {
 		appointment.setAppStatus(appointmentUpdateDto.getStatus());
 		if (Objects.nonNull(appointmentUpdateDto.getAssignTo())) {
-			appointment.setAssign(findAssignUser(Long.parseLong( appointmentUpdateDto.getAssignTo())));
+			appointment.setAssign(findAssignUser(Long.parseLong(appointmentUpdateDto.getAssignTo())));
 		}
 		return appointment;
 	};
+
 	private User findAssignUser(Long assignTO) {
-		return  userRepository.findById(assignTO).orElseThrow(()->new NotFoundException("employyee naot present"));
-		
+		return userRepository.findById(assignTO).orElseThrow(() -> new NotFoundException("employyee naot present"));
+
 	}
-	static Function<Long,String> getStatus = assignTo -> (Objects.isNull(assignTo) )
+
+	static Function<Long, String> getStatus = assignTo -> (Objects.isNull(assignTo))
 			? AppointmentStatus.NEWLY_CREATED_APPOINTMENT.getValue()
 			: AppointmentStatus.ASSIGNED_TO_PHLEBO.getValue();
-	
+
+	@Override
+	public List<AppointmentDto> findEmailList(String status, String isEmailFlag) {
+		// appointmentRepository.find
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Appointment> cq = cb.createQuery(Appointment.class);
+		Root<Appointment> appointment = cq.from(Appointment.class);
+		javax.persistence.criteria.Predicate emailFlag = cb.equal(appointment.get("isEmailStatus"), isEmailFlag);
+		cq.where(emailFlag);
+		return em.createQuery(cq).getResultList().stream().map(this::from).collect(Collectors.toList());
+	}
+
 }
