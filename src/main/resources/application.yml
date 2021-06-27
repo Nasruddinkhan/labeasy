@@ -12,7 +12,8 @@ spring:
     active: local
 ---
 spring: 
-  liquibase:    change-log:  classpath:/db/changelog/change-db-log.xml
+  liquibase:
+    change-log:  classpath:/db/changelog/change-db-log.xml
   datasource: 
     driver-class-name: com.mysql.jdbc.Driver
     password: root
@@ -36,7 +37,7 @@ spring:
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com
-    password: Nk@05071992$
+    password: 
     port: 587
     properties: 
       mail: 
