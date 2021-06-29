@@ -21,4 +21,5 @@
    		 	setTimeout(() =>{window.location.href="/labeasy/master/show-country-page"}, 3000);
    		 }
 	}
+	
 })();

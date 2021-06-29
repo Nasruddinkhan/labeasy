@@ -90,6 +90,20 @@
 					href="${pageContext.request.contextPath}/master/show-pincode-page"><i
 						class="fa fa-eye text-green"></i>PinCode</a></li>
 			</ul></li>
+
+		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
+				<span>Doctor Registration</span> <span class="pull-right-container">
+					<span class="fa fa-angle-left pull-right"></span>
+			</span>
+		</a>
+			<ul class="treeview-menu ">
+				<li><a href="${pageContext.request.contextPath}/doctor-master/add-doctor"><i class="fa fa-user-plus text-white"></i>
+						Add Doctor</a></li>
+
+				<li><a href="${pageContext.request.contextPath}/doctor-master/view-doctors"><i class="fa fa-eye text-green"></i> View
+						Doctors</a></li>
+
+			</ul></li>
 	</ul>
 </section>
 <!-- /.sidebar -->

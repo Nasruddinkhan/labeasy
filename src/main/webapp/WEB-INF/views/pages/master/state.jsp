@@ -21,6 +21,7 @@
 						<th width="12%">Id</th>
 						<th width="13%">Name</th>
 						<th width="27%">Code</th>
+						<th width="27%">Country</th>
 						<th width="10%">Action</th>
 					</tr>
 				</thead>
@@ -29,9 +30,10 @@
 						<tr>
 							<td>${state.stateId}</td>
 							<td>${state.stateName}</td>
+							<td>${state.stateCode}</td>
 							<td>${state.countryDto.countryName}</td> 
 							<td><div class="box-tools pull-center">
-									<a href="#" onclick="editState(${state.stateId},'${state.stateName}','${state.countryDto.countryId}')"><button type="button"
+									<a href="#" onclick="editState(${state.stateId},'${state.stateName}','${state.stateCode}','${state.countryDto.countryId}')"><button type="button"
 											class="btn btn-sm btn-info btn-box-tool">
 											<i class="fa fa-edit" style="color: white"></i>
 										</button> </a> <a href="#"><button type="button"
@@ -47,7 +49,7 @@
 			</table>
 		</div>
 		<!-- Model start  -->
-		<div class="modal fade" id="state-modal" onload="countryLoad()">
+		<div class="modal fade" id="state-modal">
 			<div class="modal-dialog">
 				<form method="POST" id="state-form">
 					<div class="modal-content">
@@ -67,11 +69,11 @@
 										name="state_name" class="form-control" />
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="state_code">State Code :</label> <input type="text"
-										name="state_code" class="form-control" />
+									<label >State Code :</label> <input type="text"
+										name="state_code" id="state_code" class="form-control" />
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="country">Country :</label>  countries <select name="countryId"
+									<label id="country">Country :</label><select name="countryId"
 										class="form-control" id="country_id">
 										<option value="">----SELECT Country----</option>
 										<c:forEach items="${countries}" var="ct">
