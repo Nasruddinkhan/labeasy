@@ -90,6 +90,18 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/appointment/viewappointment.jsp" />
 	</definition>
+	
+	<definition name="adddoctor" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/doctormaster/adddoctor.jsp" />
+	</definition>
+	
+	<definition name="viewdoctors" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/doctormaster/viewdoctors.jsp" />
+	</definition>
 
 
 </tiles-definitions>

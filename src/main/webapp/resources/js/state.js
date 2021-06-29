@@ -7,9 +7,10 @@
 	addState = function() {
 		const state = JSON.stringify($('#state-form').serializeObject());
 		console.log(state);
-		var url = "/master/add-state";
-		const callBackFunction = "addStateCreated";
-		ajaxPostCall(url, callBackFunction, state);
+		
+		 var url = "/master/add-state"; const callBackFunction =
+		 "addStateCreated"; ajaxPostCall(url, callBackFunction, state);
+		 
 	}
 
 	addStateCreated = function(response) {
@@ -21,12 +22,16 @@
 			setTimeout(() => { window.location.href = "/labeasy/master/show-state-page" }, 3000);
 		}
 	}
-	editState = function(stateId, stateName, countryId) {
-		console.log(stateId, stateName, countryId);
+	 editState = function(stateId, stateName,stateCode, countryId) {
+		console.log(stateId, stateName,stateCode, countryId);	
         $('#state_id').val(stateId);
 		$('#state_name').val(stateName);
+		$('#state_code').val(stateCode);
 		$('#country_id').val(countryId);
 		$('#state-modal').modal('show');
+		
+		
+		
 	}
 
 })();
