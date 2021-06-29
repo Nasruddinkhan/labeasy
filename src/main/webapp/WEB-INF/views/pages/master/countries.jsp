@@ -33,7 +33,7 @@
 										<td><div class="box-tools pull-center">
 												<a
 													href="#"><button
-														type="button" class="btn btn-sm btn-info btn-box-tool">
+														type="button" class="btn btn-sm btn-info btn-box-tool" onclick="countryEdit(${cont.countryId},'${cont.countryName}','${cont.countryCode}')">
 														<i class="fa fa-edit" style="color: white"></i>
 													</button> </a> <a
 													href="#"><button
@@ -61,15 +61,16 @@
 							</button>
 							<h4 class="modal-title">Add Country</h4>
 						</div>
+						<input type="hidden" id="country_id" name="country_id">
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
-									<label >Name :</label> <input type="text" id="name"
-										name="country_name" class="form-control" />
+									<label >Name :</label> <input type="text" 
+										name="country_name" id="country_name" class="form-control" />
 								</div>
 								<div class="form-group col-sm-6">
 									<label id="mobile_no">Country Code :</label> <input
-										type="text" name="country_code" class="form-control" />
+										type="text" name="country_code" id="country_code" class="form-control" />
 								</div>
 							</div>
 							

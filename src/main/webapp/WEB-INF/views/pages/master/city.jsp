@@ -27,12 +27,13 @@
 				<tbody>
 					<c:forEach items="${cities}" var="city">
 						<tr>
+					
 							<td>${city.cityId}</td>
 							<td>${city.cityName}</td>
 							<td>${city.stateDto.stateName}</td> 
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
-											class="btn btn-sm btn-info btn-box-tool">
+											class="btn btn-sm btn-info btn-box-tool" onclick="cityEdit(${city.cityId},${city.countryDto.countryId},'${city.cityName}','${city.stateDto.stateId}')">
 											<i class="fa fa-edit" style="color: white"></i>
 										</button> </a> <a href="#"><button type="button"
 											class="btn btn-sm btn-danger btn-box-tool">
@@ -59,11 +60,12 @@
 							</button>
 							<h4 class="modal-title">Add City</h4>
 						</div>
+						<input type="hidden" id="city_id" name="city_id">
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
-									<label>Name :</label> <input type="text" id="name"
-										name="city_name" class="form-control" />
+									<label>Name :</label> <input type="text"
+								name="city_name" id="city_name" class="form-control" />
 								</div>
 								
 								<div class="form-group col-sm-6">

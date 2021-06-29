@@ -19,7 +19,7 @@ public interface MasterService {
 	List<StateDto> findAllStates();
 
 	List<CityDto> findAllCities();
-	
+
 	List<PinCodeDto> findAllPinCode();
 
 	Country findByCountryName(String name);
