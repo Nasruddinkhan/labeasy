@@ -11,4 +11,6 @@ import com.labeasy.entity.UserRole;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
     List<UserRole> findByStatus(String status);
+
+	UserRole findByRoleName(String value);
 }

@@ -1,5 +1,6 @@
 package com.labeasy.repsoitory;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.labeasy.dto.UserDto;
 import com.labeasy.entity.User;
+import com.labeasy.entity.UserRole;
 
 @Repository
 @Transactional
@@ -21,7 +24,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     public void updateFailedAttempts(int failAttempts, String email);
 
-	List<User> findByRoleId(String role);
+
+	List<User> findByUserRole(UserRole userRole);
 
 	
 

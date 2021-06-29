@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="Nasruddin khan" id="101">
+        <createTable tableName="inquiry_test">
+            <column autoIncrement="true" name="inq_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_id" type="VARCHAR(50)"/>
+            <column name="status" type="CHAR(1)" defaultValue="Y"/>
+            <column name="company_Id" type="BIGINT"/>
+            <column name="mobile_no" type="CHAR(10)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="inquiry"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
+

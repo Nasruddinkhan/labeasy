@@ -12,6 +12,8 @@ spring:
     active: local
 ---
 spring: 
+  liquibase:
+    change-log:  classpath:/db/changelog/change-db-log.xml
   datasource: 
     driver-class-name: com.mysql.jdbc.Driver
     password: root
@@ -30,12 +32,12 @@ spring:
     properties: 
       hibernate: 
         enable_lazy_load_no_trans: true
-        format_sql: true
-    show-sql: true
+        format_sql: false
+    show-sql: false
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com
-    password: 
+    password: kkjhkh 
     port: 587
     properties: 
       mail: 
@@ -46,4 +48,14 @@ spring:
     protocol: smtp
     test-connection: false
     username: Nasruddin.nk44@gmail.com
+  quartz:
+    jdbc:
+      schema: classpath:org/quartz/impl/jdbcjobstore/quartz_tables.sql
+    job-store-type: jdbc
+    properties:
+     org:
+      quartz:
+        threadPool:
+          threadCount: 5
   profiles: local
+  

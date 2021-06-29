@@ -1,3 +1,4 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
     <!-- Logo -->
     <a href="#" class="logo">
@@ -53,8 +54,9 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                <form action="#" method="post">
+                <form action='<spring:url value="/logout"/>' method="post">
                 <!--   <a href="#" class="btn btn-default btn-flat">Sign out</a> -->
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                   <input value="Sign out" class="btn btn-default btn-flat" type="submit">
                   </form>
                 </div>

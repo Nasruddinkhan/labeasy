@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -69,8 +70,7 @@ public class Appointment extends BaseBean implements Serializable {
 	private LocalTime appointmentTime;
 	@Column(name = "reffred_by", length = 100)
 	private String reffredBy;
-	@Column(name = "assign_to", length = 100)
-	private String assignTo;
+	
 	@Column(name = "is_active", columnDefinition = "boolean default true")
 	private boolean isActive;
 	@Column(name = "customer_visited", columnDefinition = "char(1) default 'N'")
@@ -82,5 +82,15 @@ public class Appointment extends BaseBean implements Serializable {
 
 	@OneToMany(mappedBy = "appointment", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
 	private Set<BillingAndInvoice> billingAndInvoices;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "assign_to", referencedColumnName ="id" )
+	private User assign = null;
+	@Column(name = "email_status", columnDefinition = "char(1) default 'N'")
+	private String isEmailStatus;
+	@Column(name = "phelebo_email_status", columnDefinition = "char(1) default 'N'")
+	private String pheleboEmail;
+	@Column(name = "is_email_whatsapp")
+	private boolean isEmailWhatsapp;
 
 }

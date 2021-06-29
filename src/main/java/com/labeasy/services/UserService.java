@@ -14,7 +14,7 @@ public interface UserService extends UserDetailsService {
 	public void resetFailedAttempts(String email);
 	public void lock(User user);
 	public boolean unlockWhenTimeExpired(User user);
-	public void addUser(UserDto userDto);
+	public UserDto addUser(UserDto userDto);
 	public List<UserDto> getAllUserList() ;
 	public UserDto findByUserId(Long userId);
 	public List<DropDownDto> getAllPhlebotomistList() ;

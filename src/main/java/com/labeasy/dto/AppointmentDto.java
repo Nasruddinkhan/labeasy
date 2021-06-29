@@ -35,11 +35,16 @@ public final  class AppointmentDto {
 	private String appointmentDate;
 	private LocalTime appointmentTime;
 	private String reffredBy;
-	private String assignTo;
+	private Long assignTo;
+	private UserDto assignToUserDto;
 	private String roomNoBldNo;
 	private String areLocStreetName;
     private String createdBy;
     private LocalDateTime createdDate;
     private Set<TestNamesDto> testNames;
     private String customerVisited;
+	private boolean isEmailWhatsapp;
+	private String isEmailStatus;
+
+
 }
