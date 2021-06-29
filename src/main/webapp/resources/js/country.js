@@ -27,6 +27,5 @@
 		$('#country_name').val(countryName);
 		$('#country_code').val(countryCode);
 		$('#country-modal').modal('show');
-
 	}
 })();
