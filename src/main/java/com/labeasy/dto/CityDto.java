@@ -27,4 +27,6 @@ public class CityDto {
 	private Long stateId;
 	
 	private StateDto stateDto;
+	
+	private CountryDto countryDto;
 }
