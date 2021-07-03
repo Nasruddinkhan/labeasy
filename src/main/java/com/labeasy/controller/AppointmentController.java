@@ -28,7 +28,6 @@ import com.labeasy.dto.AppointmentUpdateDto;
 import com.labeasy.dto.BillingAndInvoiceDto;
 import com.labeasy.dto.TestNamesDto;
 import com.labeasy.event.AppointmentConfirmationEvent;
-import com.labeasy.event.OnUserRegistrationCompleteEvent;
 import com.labeasy.services.AppointmentService;
 import com.labeasy.services.TestNamesService;
 import com.labeasy.services.UserService;

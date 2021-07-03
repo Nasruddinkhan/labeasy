@@ -37,7 +37,7 @@ spring:
   mail: 
     default-encoding: UTF-8
     host: smtp.gmail.com
-    password: kkjhkh 
+    password:  
     port: 587
     properties: 
       mail: 
@@ -50,7 +50,7 @@ spring:
     username: Nasruddin.nk44@gmail.com
   quartz:
     jdbc:
-      schema: classpath:resources/templates/quartz_tables.sql
+      schema: classpath:quartz_tables.sql
     job-store-type: jdbc
     properties:
      org:
@@ -58,4 +58,9 @@ spring:
         threadPool:
           threadCount: 5
   profiles: local
-  
+aws:
+  access_key_id: 
+  s3:
+    bucket: labeasy-invoice
+    endpointUrl: http://labeasy-invoice.s3-website-us-east-1.amazonaws.com
+  secret_access_key: 
