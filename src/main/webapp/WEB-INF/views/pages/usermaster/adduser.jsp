@@ -21,17 +21,17 @@
 		</div>
 		<form:form method="POST" modelAttribute="user"
 			action="${pageContext.request.contextPath}/user-master/add-new-user"
-			autocomplete="off">
+			autocomplete="off" onsubmit="return validateAddUser()">
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-3">
 						<label for="Country Code">First Name :</label>
 						<form:input type="text" path="firstName" id="firstName"
-							class="form-control" />
+							class="form-control" onkeypress="return isCharOnly(event)"/>
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Last Name :</label>
-						<form:input type="text" path="lastName" id="lastName"
+						<form:input type="text" path="lastName" id="lastName" onkeypress="return isCharOnly(event)"
 							class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
@@ -71,7 +71,7 @@
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Contact :</label>
 						<form:input type="text" path="mobileNo" id="mobileNo"
-							class="form-control" />
+							class="form-control" onkeypress="return isNumberKey(event)"/>
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Alternate Contact :</label>
@@ -90,7 +90,7 @@
 							class="form-control" />
 					</div>
 					<div class="form-group col-sm-3">
-						<label for="Country Code">Adhar Card No :</label>
+						<label for="Country Code">Aadhar Card No :</label>
 						<form:input type="text" path="adharCardNo" id="adharCardNo"
 							class="form-control" />
 					</div>
@@ -176,7 +176,7 @@
 
 			<div class="box-footer">
 				<div class="col-sm-12 col-sm-offset-5">
-					<button type="submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-primary" >
 						<c:choose>
 							<c:when test="${not empty user.id}">
 								<form:hidden class="form-control" path="id" />

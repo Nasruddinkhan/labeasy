@@ -116,7 +116,7 @@
   });
   function validateLoginForm(){
 	const isValidName =  isFieldValidation('#username', 'username cannot be empty');
-	const isValidPassword =   isFieldValidation('#password', 'password cannot be empty');
+	const isValidPassword = isValidName ? isFieldValidation('#password', 'password cannot be empty'):false;
 	  return (isValidName && isValidPassword);
   }
 </script>

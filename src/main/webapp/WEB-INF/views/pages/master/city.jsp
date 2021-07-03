@@ -29,7 +29,7 @@
 						<tr>
 							<td>${city.cityId}</td>
 							<td>${city.cityName}</td>
-							<td>${city.stateDto.stateName}</td> 
+							<td>${city.stateDto.stateName}</td>
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
 											class="btn btn-sm btn-info btn-box-tool">
@@ -42,12 +42,12 @@
 
 								</div></td>
 						</tr>
-					</c:forEach> 
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<!-- Model start  -->
-		<div class="modal fade" id="city-modal" ">
+		<div class="modal fade" id="city-modal"">
 			<div class="modal-dialog">
 				<form method="POST" id="city-form">
 					<div class="modal-content">
@@ -63,21 +63,23 @@
 							<div class="row">
 								<div class="form-group col-sm-6">
 									<label>Name :</label> <input type="text" id="name"
-										name="city_name" class="form-control" />
+										name="city_name" class="form-control"
+										onkeypress="return isCharOnly(event)" />
 								</div>
-								
+
 								<div class="form-group col-sm-6">
-									<label id="country">Country :</label><select name="country_id" id="countryId"
-										class="form-control" onchange="viewState($('#countryId').val())">
+									<label>Country :</label><select name="country_id"
+										id="countryId" class="form-control"
+										onchange="viewState($('#countryId').val())">
 										<option value="">----SELECT Country----</option>
 										<c:forEach items="${countries}" var="ct">
 											<option value="${ct.countryId}">${ct.countryName}</option>
 										</c:forEach>
 									</select>
 								</div>
-								
+
 								<div class="form-group col-sm-6">
-									<label id="state">State :</label><select name="state_id"  id="stateId"
+									<label>State :</label><select name="state_id" id="stateId"
 										class="form-control">
 										<option value="">----SELECT State----</option>
 										<%-- <c:forEach items="${countries}" var="ct">
@@ -85,14 +87,13 @@
 										</c:forEach> --%>
 									</select>
 								</div>
-							
+
 							</div>
 
 							<!-- /.box-body -->
 						</div>
 						<div class="modal-footer">
-							<button type="button" onclick="addCity()"
-								class="btn btn-primary">Save</button>
+							<button type="button" onclick="addCity()" class="btn btn-primary">Save</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->

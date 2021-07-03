@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<form:form method="POST" modelAttribute="appointment"
+<form:form method="POST" modelAttribute="appointment" onsubmit="return validateAppointmentForm()"
 	action="${pageContext.request.contextPath}/appointment/add-appointment">
 	<body
 		onload="setOnLoadData('${appointment.appointmentId}', '${appointment.testList}', '${selectedTestName}')">
@@ -23,23 +23,21 @@
 						</button>
 					</div>
 				</div>
-
-
 				<form:hidden path="testList" id="testList" class="form-control" />
 
 				<div class="box-body">
 					<div class="row">
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Name :</label>
-							<form:input type="text" path="name" class="form-control" />
+							<form:input type="text" path="name" id="name" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Age :</label>
-							<form:input type="text" path="age" class="form-control" />
+							<form:input type="text" path="age" id="age" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Gender :</label>
-							<form:select path="gender" class="form-control">
+							<form:select path="gender" id="gender" class="form-control">
 								<form:option value="">--select--</form:option>
 								<form:option value="M">Male</form:option>
 								<form:option value="F">Female</form:option>
@@ -49,40 +47,40 @@
 
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Mobile :</label>
-							<form:input type="text" path="mobileNo" class="form-control" />
+							<form:input type="text" id="mobile" path="mobileNo" class="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Reffered by :</label>
-							<form:input type="text" path="reffredBy" class="form-control" />
+							<form:input type="text" path="reffredBy" id="reffered" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Email :</label>
-							<form:input type="text" path="emailId" class="form-control" />
+							<form:input type="text" path="emailId" id="email" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Address :</label>
-							<form:input type="text" path="address" class="form-control" />
+							<form:input type="text" path="address" id="address" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">City :</label>
-							<form:input type="text" path="cityId" class="form-control" />
+							<form:input type="text" path="cityId" id="city" class="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Room No :</label>
-							<form:input type="text" path="roomNoBldNo" class="form-control" />
+							<form:input type="text" path="roomNoBldNo" id="room_no" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Area Location Street :</label>
 							<form:input type="text" path="areLocStreetName"
-								class="form-control" />
+								id="area_location" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Visit Type:</label>
-							<form:select path="customerVisited" class="form-control ">
+							<form:select path="customerVisited" class="form-control " id="visit_type">
 								<form:option value="N">Online Appointment</form:option>
 								<form:option value="Y">Customer Visited</form:option>
 							</form:select>
@@ -91,7 +89,7 @@
 
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Remarks (reason for test) :</label>
-							<form:textarea type="text" path="remarks" class="form-control" />
+							<form:textarea type="text" path="remarks" class="form-control" id="remarks"/>
 						</div>
 					</div>
 				</div>
@@ -115,11 +113,11 @@
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Test preferred Lab :</label>
-							<form:input type="text" path="prefredLab" class="form-control" />
+							<form:input type="text" path="prefredLab" id="prefredLab" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Appointment assign to :</label>
-							<form:select type="text" path="assignTo" class="form-control">
+							<form:select type="text" path="assignTo" class="form-control" id="assign_to">
 								<form:option value="">----SELECT ASSIGN----</form:option>
 								<form:options items="${phlebotomistList}" itemValue="key"
 									itemLabel="value" />
@@ -129,7 +127,7 @@
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Payment mode :</label>
 							<form:select path="andInvoiceDto.paymentMode"
-								class="form-control ">
+								class="form-control " id="payment">
 								<form:option value="">--select--</form:option>
 								<form:option value="O">Online</form:option>
 								<form:option value="F">Offline</form:option>

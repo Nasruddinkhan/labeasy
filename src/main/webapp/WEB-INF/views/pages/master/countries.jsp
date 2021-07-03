@@ -14,46 +14,44 @@
 			</div>
 		</div>
 		<div class="box-body">
-						<table id="example1"
-							class="table table-sm table-bordered table-striped">
-							<thead>
-								<tr>
-									<th width="12%">Country Id</th>
-									<th width="13%">Name</th>
-									<th width="27%">Code</th>
-									<th width="10%">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								 <c:forEach items="${countries}" var="cont">
-									<tr>
-										<td>${cont.countryId}</td>
-										<td>${cont.countryName}</td>
-										<td>${cont.countryCode}</td>
-										<td><div class="box-tools pull-center">
-												<a
-													href="#"><button
-														type="button" class="btn btn-sm btn-info btn-box-tool">
-														<i class="fa fa-edit" style="color: white"></i>
-													</button> </a> <a
-													href="#"><button
-														type="button" class="btn btn-sm btn-danger btn-box-tool">
+			<table id="example1"
+				class="table table-sm table-bordered table-striped">
+				<thead>
+					<tr>
+						<th width="12%">Country Id</th>
+						<th width="13%">Name</th>
+						<th width="27%">Code</th>
+						<th width="10%">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${countries}" var="cont">
+						<tr>
+							<td>${cont.countryId}</td>
+							<td>${cont.countryName}</td>
+							<td>${cont.countryCode}</td>
+							<td><div class="box-tools pull-center">
+									<a href="#"><button type="button"
+											class="btn btn-sm btn-info btn-box-tool">
+											<i class="fa fa-edit" style="color: white"></i>
+										</button> </a> <a href="#"><button type="button"
+											class="btn btn-sm btn-danger btn-box-tool">
 
-														<i class="fa fa-trash" style="color: white"></i>
-													</button> </a>
+											<i class="fa fa-trash" style="color: white"></i>
+										</button> </a>
 
-											</div></td>
-									</tr>
-								</c:forEach> 
-							</tbody>
-						</table>
-					</div>
-		<!-- Model start  -->	
+								</div></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<!-- Model start  -->
 		<div class="modal fade" id="country-modal">
 			<div class="modal-dialog">
 				<form method="POST" id="country-form">
 					<div class="modal-content">
-						
+
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
@@ -64,19 +62,22 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
-									<label >Name :</label> <input type="text" id="name"
-										name="country_name" class="form-control" />
+									<label>Name :</label> <input type="text" id="country_name"
+										name="country_name" class="form-control"
+										onkeypress="return isCharOnly(event)" />
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="mobile_no">Country Code :</label> <input
-										type="text" name="country_code" class="form-control" />
+									<label>Country Code :</label> <input type="text"
+										id="country_code" name="country_code" class="form-control"
+										onkeypress="return isCharOnly(event)" />
 								</div>
 							</div>
-							
+
 							<!-- /.box-body -->
 						</div>
 						<div class="modal-footer">
-							<button type="button" onclick="addCountry()" class="btn btn-primary">Save</button>
+							<button type="button" onclick="addCountry()"
+								class="btn btn-primary">Save</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->

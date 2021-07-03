@@ -5,12 +5,14 @@
 (function() {
 
 	addCity = function() {
-		const city = JSON.stringify($('#city-form').serializeObject());
-		console.log(city);
-
-		var url = "/master/add-city";
-		const callBackFunction = "addCityCreated";
-		ajaxPostCall(url, callBackFunction, city);
+		if (validateCityForm()) {
+			const city = JSON.stringify($('#city-form').serializeObject());
+			console.log(city);
+			var url = "/master/add-city";
+			const callBackFunction = "addCityCreated";
+			ajaxPostCall(url, callBackFunction, city);
+		}
+		
 	}
 
 	addCityCreated = function(response) {
@@ -40,10 +42,12 @@
 
 			});
 		}
-
-
-
-
+	}
+	validateCityForm = function() {
+		const isValidCityName = isFieldValidation('#name', 'City name cannot be Empty');
+		const isValidCountry = isValidCityName ? isFieldValidation('#countryId', 'Please Select Country'):flase;
+		const isValidState = isValidCountry ? isFieldValidation('#stateId', 'Please Select State'):flase;
+		return (isValidCityName && isValidCountry && isValidState);
 	}
 
 })();

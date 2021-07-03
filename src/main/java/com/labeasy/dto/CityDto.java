@@ -25,6 +25,6 @@ public class CityDto {
 
 	@JsonProperty("state_id")
 	private Long stateId;
-	
+
 	private StateDto stateDto;
 }
