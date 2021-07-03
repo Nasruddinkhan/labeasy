@@ -45,20 +45,18 @@ public class MasterServiceImpl implements MasterService {
 
 	@Override
 	public CountryDto addCountry(CountryDto countryDto) {
-		// TODO Auto-generated method stub
 		Country country = map(countryDto, Country.class);
 		return map(coutryRepo.save(country), CountryDto.class);
 	}
 
 	@Override
 	public List<CountryDto> findAllCounties() {
-		// TODO Auto-generated method stub
 		return mapAll(coutryRepo.findAll(), CountryDto.class);
 	}
 
 	@Override
 	public StateDto addState(StateDto stateDto) {
-		// TODO Auto-generated method stub
+
 		State state = map(stateDto, State.class);
 		state.setCountry(coutryRepo.findById(stateDto.getCountryId()).get());
 		return map(stateRepo.save(state), StateDto.class);
@@ -66,7 +64,6 @@ public class MasterServiceImpl implements MasterService {
 
 	@Override
 	public List<StateDto> findAllStates() {
-		// TODO Auto-generated method stub
 		return stateRepo.findAll().stream().map(stateObj::apply).collect(Collectors.toList());
 	}
 
@@ -98,20 +95,20 @@ public class MasterServiceImpl implements MasterService {
 
 	@Override
 	public List<CityDto> findAllCities() {
-		// TODO Auto-generated method stub
-		return cityRepo.findAll().stream().map(cityObj::apply).collect(Collectors.toList());
+		return cityRepo.findAll().stream().map(cityObj::apply)
+				.collect(Collectors.toList());
 	}
 
 	Function<City, CityDto> cityObj = (city) -> {
 		StateDto stateDto = map(city.getState(), StateDto.class);
 		CityDto cityDto = map(city, CityDto.class);
 		cityDto.setStateDto(stateDto);
+		cityDto.setCountryDto( map(city.getState().getCountry(), CountryDto.class));
 		return cityDto;
 	};
 
 	@Override
 	public List<CityDto> showCityByState(Long id) {
-
 		return mapAll(cityRepo.findByState(stateRepo.findById(id).get()), CityDto.class);
 	}
 
@@ -122,12 +119,11 @@ public class MasterServiceImpl implements MasterService {
 		return map(pinCodeRepo.save(pinCode), PinCodeDto.class);
 
 	}
-	
+
 	@Override
 	public List<PinCodeDto> findAllPinCode() {
 		return pinCodeRepo.findAll().stream().map(pin::apply).collect(Collectors.toList());
 	}
-
 
 	Function<PinCode, PinCodeDto> pin = (pin) -> {
 		CityDto cityDto = map(pin.getCity(), CityDto.class);

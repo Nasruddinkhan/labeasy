@@ -24,13 +24,15 @@
 			setTimeout(() => { window.location.href = "/labeasy/master/show-city-page" }, 3000);
 		}
 	}
-	viewState = function(id) {
+	viewState = async function(id) {
+		console.log('1');
+
 		var url = "/master/show-state/" + id;
 		const callBackFunction = "showState";
-		ajaxGetCall(url, callBackFunction)
+		await ajaxGetCall(url, callBackFunction)
 
 	}
-	showState = function(response) {
+	showState = async function(response) {
 		$('.statevalue').remove();
 		if (response.length > 0) {
 			$.each(response, function(i, response) {
@@ -48,6 +50,21 @@
 		const isValidCountry = isValidCityName ? isFieldValidation('#countryId', 'Please Select Country'):flase;
 		const isValidState = isValidCountry ? isFieldValidation('#stateId', 'Please Select State'):flase;
 		return (isValidCityName && isValidCountry && isValidState);
+		console.log('2');
+	}
+
+	cityEdit =  function(cityId, countryId, cityName, stateId) {
+		 viewState(countryId).then(() => {
+			console.log('3');
+
+			$('#countryId').val(countryId);
+			$('#city_id').val(cityId);
+			$('#city_name').val(cityName);
+			$('#stateId').val(stateId);
+			$('#city-modal').modal('show');
+		}
+
+		);
 	}
 
 })();

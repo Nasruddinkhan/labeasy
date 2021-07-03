@@ -1,10 +1,12 @@
 package com.labeasy.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,12 +22,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract   class BaseBean {
 	
 	@CreatedBy
-    @Column(name = "created_by")
+    @Column(name = "created_by", updatable = false)
     private String createdBy;
 
-    @Column(name = "created_date")
+    @Column(name = "created_date", updatable = false)
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date  createdDate;
 
     @LastModifiedBy
     @Column(name = "update_by")
@@ -33,5 +36,6 @@ public abstract   class BaseBean {
 
     @Column(name = "update_date")
     @UpdateTimestamp
-    private LocalDateTime  updateDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date   updateDate;
 }

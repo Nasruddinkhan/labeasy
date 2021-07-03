@@ -14,12 +14,9 @@ import com.labeasy.enums.ApplicationStatus;
 import com.labeasy.repsoitory.TestNamesRepository;
 import com.labeasy.services.TestNamesService;
 
-import lombok.extern.slf4j.Slf4j;
-
 
 @Service
 @Transactional
-@Slf4j
 public class TestNamesServiceImpl implements TestNamesService {
 
     private final TestNamesRepository testNamesRepository;

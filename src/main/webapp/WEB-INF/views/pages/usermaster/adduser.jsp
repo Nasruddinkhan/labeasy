@@ -155,7 +155,7 @@
 
 							<form:option value="">--select--</form:option>
 							<c:forEach items="${userRoleList}" var="userRoles">
-								<form:option value="${userRoles.roleName}">${userRoles.roleName}</form:option>
+								<form:option value="${userRoles.roleId}">${userRoles.roleName}</form:option>
 							</c:forEach>
 						</form:select>
 					</div>
@@ -165,8 +165,12 @@
 				<div class="box-body">
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Reporting person :</label>
-						<form:input type="text" path="reportingUserId"
-							id="reportingUserId" class="form-control" />
+						<form:select type="text" path="reportingUserId" class="form-control">
+								<form:option value="">----Select Reporting User----</form:option>
+								<form:options items="${supervisorList}" itemValue="key"
+									itemLabel="value" />
+							</form:select>
+						
 					</div>
 
 				</div>

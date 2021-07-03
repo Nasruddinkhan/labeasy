@@ -289,7 +289,9 @@ label.required::before {
 			      height   : "100%"
 			  });
 			  
-			$('#example1').DataTable();
+			$('#example1').DataTable({
+		        "order": [[ 0, "desc" ]]
+		    });
 			
 			$('#appointment').DataTable({
 				'paging' : true,
@@ -315,5 +317,25 @@ label.required::before {
 			showInputs : false,
 			format : 'HH:mm'
 		});
+		/* $("#percentageslider").slider({
+			   step: 1,
+			    min: 0,
+			    max: 100,
+			  slide: function(event, ui) {
+			$("#percentag-value").text(ui.value);
+				 var disc = parseInt(ui.value);
+			   	 var dec = (disc/100).toFixed(2); //its convert 10 into 0.10
+			  	 var mult = (parseFloat($("#total_amt").val()) *dec);
+			    $("#discount").val(mult);
+			  	const obj = {
+			  		  id : "discount",
+			  		  value  : mult.toString()
+			  		};
+		  		console.log(obj);
+			  	discountAndPaidAmmount(obj);
+			  }
+			}) */
+			
+			
 	</script>
 </html>

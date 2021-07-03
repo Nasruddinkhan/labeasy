@@ -141,7 +141,7 @@
 				<div class="row">
 					<div class="box-body">
 						<div class="form-group col-sm-8">
-							<table id="example1"
+							<table 
 								class="table table-sm table-bordered table-striped">
 								<thead>
 									<tr>
@@ -192,9 +192,11 @@
 											<label for="Country Code" style="font-size: 11px;">Discount
 												(if any):</label>
 											<form:input type="text" path="andInvoiceDto.discountAmmount"
+											
 												id="discount" onkeyup="discountAndPaidAmmount(this);"
 												class="form-group form-control" />
 										</div>
+
 										<div class="form-group col-sm-6">
 											<label for="Country Code" style="font-size: 11px;">Paid
 												Amount:</label>
@@ -204,7 +206,14 @@
 												class="form-group form-control" />
 
 										</div>
-
+										
+			<!-- 
+										<div class="form-group col-sm-12">
+											<div id="percentageslider"></div>
+											<p>
+												% <span id="percentag-value"></span>
+											</p>
+										</div> -->
 										<div class="form-group col-sm-12">
 											<label for="Country Code" style="font-size: 11px;">Discount
 												Reason amount :</label>
@@ -218,6 +227,13 @@
 												id="balance_id" class="form-group form-control"
 												readonly="true" />
 										</div>
+											<div class="form-group col-sm-12">
+											<label for="Country Code" style="font-size: 11px;">isEmailWhatsapp:</label>
+											<%-- <form:checkbox path="andInvoiceDto.isEmailWhatsapp"
+												 class="form-group form-control"
+												/> --%>
+										</div>
+										
 									</div>
 								</div>
 							</div>

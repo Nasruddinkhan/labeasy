@@ -14,6 +14,7 @@
 			</div>
 		</div>
 		<div class="box-body">
+
 			<table id="example1"
 				class="table table-sm table-bordered table-striped">
 				<thead>
@@ -32,12 +33,13 @@
 							<td>${cont.countryCode}</td>
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
-											class="btn btn-sm btn-info btn-box-tool">
+											class="btn btn-sm btn-info btn-box-tool"
+											onclick="countryEdit(${cont.countryId},'${cont.countryName}','${cont.countryCode}')">
 											<i class="fa fa-edit" style="color: white"></i>
 										</button> </a> <a href="#"><button type="button"
 											class="btn btn-sm btn-danger btn-box-tool">
-
-											<i class="fa fa-trash" style="color: white"></i>
+											<i
+												class="fa fa-trash" style="color: white"></i>
 										</button> </a>
 
 								</div></td>
@@ -59,18 +61,20 @@
 							</button>
 							<h4 class="modal-title">Add Country</h4>
 						</div>
+						<input type="hidden" id="country_id" name="country_id">
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
-									<label>Name :</label> <input type="text" id="country_name"
-										name="country_name" class="form-control"
+								 <label>Name :</label> <input type="text"
+										id="country_name" name="country_name" class="form-control"
 										onkeypress="return isCharOnly(event)" />
 								</div>
 								<div class="form-group col-sm-6">
 									<label>Country Code :</label> <input type="text"
 										id="country_code" name="country_code" class="form-control"
-										onkeypress="return isCharOnly(event)" />
+										onkeypress="return isCharOnly(event)"  />
 								</div>
+								
 							</div>
 
 							<!-- /.box-body -->

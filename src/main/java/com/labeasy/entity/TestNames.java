@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,7 +48,7 @@ public class TestNames extends BaseBean implements Serializable  {
 	private Long b2bprice;
     @Column(name = "status" )
     private String status;
-    @ManyToMany(mappedBy = "testNames")
+    @ManyToMany(mappedBy = "testNames", fetch = FetchType.LAZY)
 	private Set<Appointment> appointments =null;
 
     

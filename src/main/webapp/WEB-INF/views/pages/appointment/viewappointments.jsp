@@ -59,7 +59,7 @@
 					</div>
 				</form>
 				<table id="example1"
-					class="table table-sm table-bordered table-striped">
+					class="table table-sm table-bordered table-striped table-responsive">
 					<thead>
 						<tr>
 							<th>Ap Id</th>
@@ -112,7 +112,7 @@
 											<em class="fa fa-circle "></em> New
 										</c:otherwise>
 									</c:choose></td>
-								<td>${app.assignTo}</td>
+								<td>${app.assignToUserDto.firstName} ${app.assignToUserDto.lastName}</td>
 								<td><c:choose>
 										<c:when test="${app.andInvoiceDto.paymentAmmount > 0}">
 											<em> <a class="billingiframe"

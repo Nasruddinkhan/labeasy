@@ -8,14 +8,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 public class UserDto {
 
 	private Long id;
@@ -33,11 +31,13 @@ public class UserDto {
 	private String panCardNo;
 	private String otherIdCardNo;
 	private String remarks;
-	private String roleId;
+	private Long roleId;
 	private AddressDto address;
-	private String reportingUserId;
+	private Long reportingUserId;
 	private Date lastLoginDateTime;
 	private String createdBy;
 	private LocalDateTime createdDate;
-
+	private UserRoleDto userRoleDto;
+	//private Set<UserDto> subordinates; 
+	private UserDto reportingUser;
 }

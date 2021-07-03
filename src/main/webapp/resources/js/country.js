@@ -13,6 +13,7 @@
 			ajaxPostCall(url, callBackFunction, country);
 		}
 	}
+		
 	addCountryCreated = function(response) {
 		toastr.options.timeOut = 5000; // 1.5s
 		if (response.country_id > 0) {
@@ -26,5 +27,12 @@
 		const isValidCountryName = isFieldValidation('#country_name', 'Country Name cannot be Empty');
 		const isValidCountryCode = isValidCountryName ? isFieldValidation('#country_code', 'Country Code cannot be Empty'):false;
 		return (isValidCountryName && isValidCountryCode);
+	}
+	countryEdit = function(countryId, countryName, countryCode) {
+		console.log(countryId, countryName, countryCode);
+		$('#country_id').val(countryId);
+		$('#country_name').val(countryName);
+		$('#country_code').val(countryCode);
+		$('#country-modal').modal('show');
 	}
 })();

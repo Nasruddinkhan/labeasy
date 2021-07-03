@@ -28,7 +28,6 @@ public class WebSocketEventListener {
 
         String username = (String) headerAccessor.getSessionAttributes().get("username");
         if(username != null) {
-           
             ChatMessageDto chatMessage = new ChatMessageDto();
             chatMessage.setType(ChatMessageDto.MessageType.LEAVE);
             chatMessage.setSender(username);

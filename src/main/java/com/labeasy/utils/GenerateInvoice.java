@@ -11,7 +11,6 @@ import static com.labeasy.utils.PdfUtil.initializeFonts;
 import static com.labeasy.utils.PdfUtil.printPageNumber;
 
 import java.io.FileOutputStream;
-import java.text.DecimalFormat;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -180,7 +179,7 @@ public class GenerateInvoice {
 	}
 	
 	private void generateReportDetailsBody(Document doc, PdfContentByte cb, int index, int y) {
-		DecimalFormat df = new DecimalFormat("0.00");
+		//DecimalFormat df = new DecimalFormat("0.00");
 		try {
 			createContent(cb, 40, y, index+"", PdfContentByte.ALIGN_LEFT);
 			createContent(cb, 70, y, "CBC (COMPLETE BLOOD COUNT)", PdfContentByte.ALIGN_LEFT);
