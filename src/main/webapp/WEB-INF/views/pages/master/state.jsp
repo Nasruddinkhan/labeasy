@@ -29,10 +29,11 @@
 						<tr>
 							<td>${state.stateId}</td>
 							<td>${state.stateName}</td>
-							<td>${state.countryDto.countryName}</td> 
+							<td>${state.countryDto.countryName}</td>
 							<td><div class="box-tools pull-center">
-									<a href="#" onclick="editState(${state.stateId},'${state.stateName}','${state.countryDto.countryId}')"><button type="button"
-											class="btn btn-sm btn-info btn-box-tool">
+									<a href="#"
+										onclick="editState(${state.stateId},'${state.stateName}','${state.countryDto.countryId}')"><button
+											type="button" class="btn btn-sm btn-info btn-box-tool">
 											<i class="fa fa-edit" style="color: white"></i>
 										</button> </a> <a href="#"><button type="button"
 											class="btn btn-sm btn-danger btn-box-tool">
@@ -64,15 +65,15 @@
 							<div class="row">
 								<div class="form-group col-sm-6">
 									<label>Name :</label> <input type="text" id="state_name"
-										name="state_name" class="form-control" />
+										name="state_name" class="form-control" onkeypress="return isCharOnly(event)" />
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="state_code">State Code :</label> <input type="text"
-										name="state_code" class="form-control" />
+									<label>State Code :</label> <input type="text" id="state_code"
+										name="state_code" class="form-control" onkeypress="return isCharOnly(event)"/>
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="country">Country :</label>  countries <select name="countryId"
-										class="form-control" id="country_id">
+									<label id="country">Country :</label> countries <select
+										name="countryId" class="form-control" id="country_id">
 										<option value="">----SELECT Country----</option>
 										<c:forEach items="${countries}" var="ct">
 											<option value="${ct.countryId}">${ct.countryName}</option>

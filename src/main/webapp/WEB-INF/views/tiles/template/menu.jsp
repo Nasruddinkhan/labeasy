@@ -90,6 +90,19 @@
 					href="${pageContext.request.contextPath}/master/show-pincode-page"><i
 						class="fa fa-eye text-green"></i>PinCode</a></li>
 			</ul></li>
-	</ul>
+			
+			<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
+				<span>Lab Master</span> <span class="pull-right-container"> <span
+					class="fa fa-angle-left pull-right"></span>
+			</span>
+		</a>
+			<ul class="treeview-menu ">
+				<li><a
+			href="${pageContext.request.contextPath}/lab-master/show-lab-page"><i
+				class="fa fa-eye text-green"></i> Lab</a></li>
+	
+		</ul>
 </section>
+
+
 <!-- /.sidebar -->

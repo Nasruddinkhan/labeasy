@@ -50,7 +50,7 @@ spring:
     username: Nasruddin.nk44@gmail.com
   quartz:
     jdbc:
-      schema: classpath:org/quartz/impl/jdbcjobstore/quartz_tables.sql
+      schema: classpath:resources/templates/quartz_tables.sql
     job-store-type: jdbc
     properties:
      org:

@@ -1,23 +1,37 @@
 /**
  * 
  */
- 
-(function () {
+(function() {
 
-	addInquiry = function () {
-		const inquiry = JSON.stringify($('#inqury-form').serializeObject());	
-		var url = "/inquiry/save-inquiry";
-		const callBackFunction = "addInquiryCreated";
-		ajaxPostCall(url, callBackFunction, inquiry);
+	addInquiry = function() {
+		if (validateInquiryForm()) {
+			const inquiry = JSON.stringify($('#inqury-form').serializeObject());
+			var url = "/inquiry/save-inquiry";
+			const callBackFunction = "addInquiryCreated";
+			ajaxPostCall(url, callBackFunction, inquiry);
+		}
 	}
-	
+
 	addInquiryCreated = function(response) {
-	toastr.options.timeOut = 5000; // 1.5s
-		if(response.inq_id >0){
+		console.log(response);
+		toastr.options.timeOut = 5000; // 1.5s
+		if (response.inq_id > 0) {
 			$('#inquiry-modal').modal('hide');
-   		 	toastr.success('Inquiry save successfully!');
-   		 	$('#inqury-form')[0].reset();
-   		 	setTimeout(() =>{window.location.href="/labeasy/inquiry/show-inquiry-page"}, 5000);
-   		 }
+			toastr.success('Inquiry save successfully!');
+			$('#inqury-form')[0].reset();
+			setTimeout(() => { window.location.href = "/labeasy/inquiry/show-inquiry-page" }, 5000);
+		}
+	}
+
+	validateInquiryForm = function() {
+		const isValidName = isFieldValidation('#name', 'Name cannot be Empty');
+		const isValidEmptyNumber = isValidName ? isFieldValidation('#mobile_no', 'Mobile no cannot be Empty'):false;
+		const isValidMobileMinLength = isValidEmptyNumber ? isMinValidation('#mobile_no',10,'Mobile Number Must Be Atleast 10 Digit') : false;
+		const isValidMobileNumber = isValidMobileMinLength ? isValidateMobile('#mobile_no', 'Number must start from 9 to 6') : false;
+		const isValidEmptyEmail = isValidMobileNumber ? isFieldValidation('#email_id', 'Email cannot be Empty'):flase;
+		const isValidEmail = isValidEmptyEmail ? isValidateEmail('#email_id', 'Enter Proper Email') : false;
+		const isValidRemark = isValidEmail ? isFieldValidation('#remarks', 'Remark Cannot be Empty'):false;
+		return (isValidMobileNumber && isValidMobileMinLength && isValidName && isValidEmptyNumber && isValidEmptyEmail && isValidEmail && isValidRemark);
 	}
 })();
+

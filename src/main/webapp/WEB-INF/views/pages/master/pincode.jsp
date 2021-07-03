@@ -65,15 +65,15 @@
 							<div class="row">
 								<div class="form-group col-sm-6">
 									<label>Pin Code :</label> <input type="text" id="pincode"
-										name="pin_code" class="form-control" />
+										name="pin_code" class="form-control" onkeypress="return isNumberKey(event)"/>
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="area_name">Area Name :</label> <input type="text"
-										name="area_name" class="form-control" />
+									<label>Area Name :</label> <input type="text"
+										name="area_name" class="form-control" id="area_name" onkeypress="return isCharOnly(event)"/>
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="country">Country :</label> <select name="countryId" id="countryId"
-										class="form-control"  onchange="viewState($('#countryId').val())">
+									<label>Country :</label> <select name="countryId" id="countryId"
+										class="form-control" onchange="viewState($('#countryId').val())">
 										<option value="">----SELECT Country----</option>
 										<c:forEach items="${countries}" var="ct">
 											<option value="${ct.countryId}">${ct.countryName}</option>
@@ -81,13 +81,13 @@
 									</select>
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="country">State :</label> <select name="stateId" id="stateId"
+									<label>State :</label> <select name="stateId" id="stateId"
 										class="form-control" onchange="viewCity($('#stateId').val())">
 										<option value="">----SELECT State----</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-6">
-									<label id="country">City :</label> <select name="city_id" id="cityId"
+									<label>City :</label> <select name="city_id" id="cityId"
 										class="form-control">
 										<option value="">----SELECT City----</option>
 									</select>
