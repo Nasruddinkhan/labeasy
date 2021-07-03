@@ -134,23 +134,12 @@
 		const isValidName = isFieldValidation('#name', 'Name cannot be Empty');
 		const isValidAge = isValidName ? isFieldValidation('#age', 'Age cannot be Empty') : false;
 		const isValidGender = isValidAge ? isFieldValidation('#gender', 'Gender cannot be Empty') : false;
-		/*const isValidEmptyMobile = isValidGender ? isFieldValidation('#mobile', 'Mobile No cannot be Empty') : false;
-		const isValidMobileMinLength = isValidEmptyMobile ? isMinValidation('#mobile_no', 10, 'Mobile Number Must Be Atleast 10 Digit') : false;
-		const isValidMobileNumber = isValidMobileMinLength ? isValidateMobile('#mobile_no', 'Number must start from 9 to 6') : false;
-		const isValidEmptyEmail = isValidMobileNumber ? isFieldValidation('#email', 'Email cannot be Empty') : flase;
-		const isValidEmail = isValidEmptyEmail ? isValidateEmail('#email', 'Enter Proper Email') : false;
-		const isValidAddress = isValidEmail ? isFieldValidation('#address', 'Address cannot be Empty') : false;
-		const isValidCity = isValidAddress ? isFieldValidation('#city', 'City cannot be Empty') : false;
-		const isValidRoom = isValidCity ? isFieldValidation('#room_no', 'Room No cannot be Empty') : false;
-		const isValidAreaLocation = isValidRoom ? isFieldValidation('#area_location', 'Area Location cannot be Empty') : false;
-		const isValidVisitType = isValidAreaLocation ? isFieldValidation('#visit_type', 'Visit Type cannot be Empty') : false;
-		const isValidReasonOfTest = isValidVisitType ? isFieldValidation('#remarks', 'Reason Of Test cannot be Empty') : false;
-		const isValidAppDate = isValidReasonOfTest ? isFieldValidation('#appointmentDate', 'Appointment Date cannot be Empty') : false;
-		const isValidAppTime = isValidAppDate ? isFieldValidation('#appointmentTime', 'Appointment Time cannot be Empty') : false;
-		const isValidPrefredLab = isValidAppTime ? isFieldValidation('#prefredLab', 'Test Preffred Lab cannot be Empty') : false;
-		const isValidAssignTo = isValidPrefredLab ? isFieldValidation('#assign_to', 'Please Assign it to someone') : false;
-		const isValidPaymentMode = isValidAssignTo ? isFieldValidation('#payment', 'Please Select Payment Mode') : false;*/
 		return (isValidName && isValidAge && isValidGender);
-			//return isSubmit;
 	}
+	
+	 openInvoiceInNewTab = function(url) {
+	 console.log(url);
+ 		 var win = window.open(url, '_blank');
+ 		 win.focus();
+		}
 })();

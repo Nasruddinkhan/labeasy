@@ -53,6 +53,8 @@ public class BillingAndInvoice extends BaseBean implements Serializable {
 	private Double discountAmmount;
 	@Column(name = "discount_reason", length = 100)
 	private String discountReason;
+	@Column(name = "invoice_url")
+	private String invoiceUrl;
 	@Column(name = "is_active", columnDefinition = "boolean default true")
 	private boolean isActive;
 }

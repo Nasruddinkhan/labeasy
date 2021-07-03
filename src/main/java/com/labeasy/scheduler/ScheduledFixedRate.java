@@ -13,25 +13,25 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
-import com.labeasy.services.EmailTaskService;
+import com.labeasy.services.TaskService;
 
 @Configuration
 @EnableAsync
 @EnableScheduling
 public class ScheduledFixedRate implements SchedulingConfigurer {
 
-	private final EmailTaskService emailTaskService; 
+	private final TaskService taskService; 
 	
 	@Autowired
-	public ScheduledFixedRate(EmailTaskService emailTaskService) {
+	public ScheduledFixedRate(TaskService taskService) {
 		super();
-		this.emailTaskService = emailTaskService;
+		this.taskService = taskService;
 	}
 
 	@Scheduled(cron = "30 * * * * *")
 	public void scheduleFixedRateTaskAsync() throws InterruptedException {
 		System.out.println("start");
-		emailTaskService.startSendEmail(); //change to facade design pattern
+		taskService.generateInvoice(); //change to facade design pattern
 		System.out.println("end "  + LocalDateTime.now());
 		
 	}

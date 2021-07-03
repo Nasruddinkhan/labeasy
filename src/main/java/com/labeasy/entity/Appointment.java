@@ -88,6 +88,8 @@ public class Appointment extends BaseBean implements Serializable {
 	private User assign = null;
 	@Column(name = "email_status", columnDefinition = "char(1) default 'N'")
 	private String isEmailStatus;
+	@Column(name = "isInvoice_status", columnDefinition = "char(1) default 'N'")
+	private String invoiceStatus;
 	@Column(name = "phelebo_email_status", columnDefinition = "char(1) default 'N'")
 	private String pheleboEmail;
 	@Column(name = "is_email_whatsapp")

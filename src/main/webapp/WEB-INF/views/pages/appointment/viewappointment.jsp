@@ -124,6 +124,7 @@
 						<th>Dis.Res</th>
 						<th>Paid.Amt</th>
 						<th>Due Amount</th>
+						<th>Invoice</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -136,6 +137,7 @@
 							<td>${andInvoices.discountReason}</td>
 							<td>${andInvoices.advancePayment}</td>
 							<td>${andInvoices.paymentAmmount}</td>
+							<td onclick="openInvoiceInNewTab('${andInvoices.invoiceUrl}')">Invoice</td>
 						</tr>
 					</c:forEach>
 

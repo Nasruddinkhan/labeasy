@@ -198,4 +198,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return em.createQuery(cq).getResultList().stream().map(this::from).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<AppointmentDto> findAllInvoiceObject(String status) {
+		// TODO Auto-generated method stub
+		return appointmentRepository.findByInvoiceStatus(status).stream().map(this::from).collect(Collectors.toList());
+	}
+
 }
