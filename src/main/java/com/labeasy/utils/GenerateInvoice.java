@@ -11,14 +11,24 @@ import static com.labeasy.utils.PdfUtil.initializeFonts;
 import static com.labeasy.utils.PdfUtil.printPageNumber;
 
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.labeasy.dto.AppointmentDto;
+import com.labeasy.dto.TestNamesDto;
 
 public class GenerateInvoice {
+	
+	private static String AP_INV_PDF_PATH="D:\\Invoice\\";
+	private static String AP_INV_PDF_NAME="AP101_invoice";
+	
+	private static String AP_INV_PDF_LOGO_PATH="D:\\Invoice\\";
+	private static String AP_INV_PDF_LOGO_NAME="logo.jpeg";
 
 	private int pageNumber = 0;
 
@@ -33,18 +43,19 @@ public class GenerateInvoice {
 		pdfFilename = args[0].trim();*/
 		
 		pdfFilename="invoice.pdf";
-		generateInvoice.createPDF(pdfFilename ,"","","");
+		//generateInvoice.createPDF();
+		
+		
 	}
 
-	private void createPDF(String pdfFilename, Object custDetail, Object invDetails, Object testListwithPrice) {
+	private void createPDF(AppointmentDto appointmentDto) {
 		Document doc = new Document();
 		PdfWriter docWriter = null;
 		PdfContentByte cb = null;
 		initializeFonts();
 		try {
-			String path = "D:\\Invoice\\" + pdfFilename;
 			
-			docWriter = PdfWriter.getInstance(doc, new FileOutputStream(path));
+			docWriter = PdfWriter.getInstance(doc, new FileOutputStream(AP_INV_PDF_PATH+AP_INV_PDF_NAME));
 			doc.addAuthor("NEWZON Infotech");
 			doc.addCreationDate();
 			doc.addProducer();
@@ -55,15 +66,23 @@ public class GenerateInvoice {
 			cb = docWriter.getDirectContent();
 			
 			int yAxis = 0;
-			int loopSize=10;
+			
+			int loopSize=appointmentDto.getTestNames().size();
+			
+			
 			boolean beginPage = true;
 			// Loop is writing the test details in report body
-			for (int i = 1; i < loopSize; i++) {
+			int i=0;
+			//for (int i = 1; i < loopSize; i++) {
+				
+			for(TestNamesDto testDto: appointmentDto.getTestNames()) {
+				
+				i++;
 				
 				//Only for first page patient header details will display
 				if(i==1)
 				{
-					firstPageHeaderPatientDetail(cb);
+					firstPageHeaderPatientDetail(appointmentDto, cb);
 				}
 				
 				if (beginPage) 
@@ -80,7 +99,7 @@ public class GenerateInvoice {
 						yAxis = 625;	
 					}
 				}
-				generateReportDetailsBody(doc, cb, i, yAxis);
+				generateReportDetailsBody(testDto, doc, cb, i, yAxis);
 				yAxis = yAxis - 15;
 				
 				// Handle to adjust footer details in new page
@@ -96,7 +115,7 @@ public class GenerateInvoice {
 				// Handle to write footer details
 				if(i==(loopSize-1) && yAxis > 251)
 				{
-					generateFooter(docWriter, cb, yAxis, beginPage);
+					generateFooter(appointmentDto, docWriter, cb, yAxis, beginPage);
 				}
 				// To create new page
 				if (yAxis < 50) 
@@ -137,7 +156,7 @@ public class GenerateInvoice {
 		try {
 			cb.setLineWidth(1f);
 			//Invoice image logoD:
-			addImage(doc, 40, 700, "D:\\Invoice\\logo.jpeg");
+			addImage(doc, 40, 700, AP_INV_PDF_LOGO_PATH+AP_INV_PDF_LOGO_NAME); 
 		    // Invoice Header  
 			createHeadings(cb, 572, 745, "LAB EASY INDIA PVT LTD", 11, PdfContentByte.ALIGN_RIGHT);
 			createContent(cb, 572, 730, "203, Paradigm Business Center, Sakinaka Safed Pool,", PdfContentByte.ALIGN_RIGHT);
@@ -152,23 +171,23 @@ public class GenerateInvoice {
 		}
 	}
 	
-	private void firstPageHeaderPatientDetail(PdfContentByte cb)
+	private void firstPageHeaderPatientDetail(AppointmentDto appointmentDto, PdfContentByte cb)
 	{
 		createContent(cb, 40, 625, "PATIENT NAME :", PdfContentByte.ALIGN_LEFT);
 		createContent(cb, 40, 610, "REF. BY              :", PdfContentByte.ALIGN_LEFT);
 		createContent(cb, 40, 595, "P. ADDRESS      :", PdfContentByte.ALIGN_LEFT);
 		
-		createHeadings(cb, 110, 625, "HAMIDUDDIN KHAN",8, PdfContentByte.ALIGN_LEFT);
-		createHeadings(cb, 110, 610, "SELF",8, PdfContentByte.ALIGN_LEFT);
-		createHeadings(cb, 110, 595, "JARIMARI",8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 110, 625, appointmentDto.getName(), 8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 110, 610, appointmentDto.getReffredBy(),8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 110, 595, appointmentDto.getAreLocStreetName(), 8, PdfContentByte.ALIGN_LEFT);
 		
 		createContent(cb, 400, 625, "AGE/SEX       :", PdfContentByte.ALIGN_LEFT);
 		createContent(cb, 400, 610, "BILL DATE     :", PdfContentByte.ALIGN_LEFT);
 		createContent(cb, 400, 595, "CID/BILL NO  :", PdfContentByte.ALIGN_LEFT);
 		
-		createHeadings(cb, 460, 625, "31/MALE",8, PdfContentByte.ALIGN_LEFT);
-		createHeadings(cb, 460, 610, "18/02/2021 18:40",8, PdfContentByte.ALIGN_LEFT);
-		createHeadings(cb, 460, 595, "101554",8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 460, 625, appointmentDto.getAge()+"/"+appointmentDto.getGender(),8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 460, 610, getCurrDateTime(),8, PdfContentByte.ALIGN_LEFT); 
+		createHeadings(cb, 460, 595, ""+appointmentDto.getAndInvoiceDto().getBillingId(),8, PdfContentByte.ALIGN_LEFT); // TODO Need to check how to show
 		
 		createLine(cb, 572, 580, 40);
 		createHeadings(cb, 40, 565, "SL", 8, PdfContentByte.ALIGN_LEFT);
@@ -178,19 +197,19 @@ public class GenerateInvoice {
 		
 	}
 	
-	private void generateReportDetailsBody(Document doc, PdfContentByte cb, int index, int y) {
+	private void generateReportDetailsBody(TestNamesDto testDto, Document doc, PdfContentByte cb, int index, int y) {
 		//DecimalFormat df = new DecimalFormat("0.00");
 		try {
 			createContent(cb, 40, y, index+"", PdfContentByte.ALIGN_LEFT);
-			createContent(cb, 70, y, "CBC (COMPLETE BLOOD COUNT)", PdfContentByte.ALIGN_LEFT);
-			createContent(cb, 572, y, "250", PdfContentByte.ALIGN_RIGHT);
+			createContent(cb, 70, y, testDto.getName(), PdfContentByte.ALIGN_LEFT);
+			createContent(cb, 572, y, testDto.getPrice()+"", PdfContentByte.ALIGN_RIGHT);
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	private void generateFooter(PdfWriter docWriter, PdfContentByte cb, int yAxis, boolean isPageBegin) {
+	private void generateFooter(AppointmentDto appointmentDto, PdfWriter docWriter, PdfContentByte cb, int yAxis, boolean isPageBegin) {
 		// Invoice Total amount section with footer details
 		if(!isPageBegin) {
 			yAxis=yAxis-15;
@@ -198,19 +217,19 @@ public class GenerateInvoice {
 		}
 		yAxis=yAxis-15;
 		createHeadings(cb, 510, yAxis, "Total :", 8, PdfContentByte.ALIGN_RIGHT);
-		createHeadings(cb, 572, yAxis, "7240", 8, PdfContentByte.ALIGN_RIGHT);
+		createHeadings(cb, 572, yAxis, appointmentDto.getAndInvoiceDto().getTotalAmmount()+"", 8, PdfContentByte.ALIGN_RIGHT);
 		yAxis=yAxis-15;
 		createContent(cb, 510, yAxis, "Discount :", PdfContentByte.ALIGN_RIGHT);
-		createContent(cb, 572, yAxis, "724", PdfContentByte.ALIGN_RIGHT);
+		createContent(cb, 572, yAxis, appointmentDto.getAndInvoiceDto().getDiscountAmmount()+"", PdfContentByte.ALIGN_RIGHT);
 		yAxis=yAxis-15;
 		createContent(cb, 510, yAxis, "Recieved :", PdfContentByte.ALIGN_RIGHT);
-		createContent(cb, 572, yAxis, "6516", PdfContentByte.ALIGN_RIGHT);
+		createContent(cb, 572, yAxis, appointmentDto.getAndInvoiceDto().getPaymentAmmount()+"", PdfContentByte.ALIGN_RIGHT);
 		yAxis=yAxis-15;
 		createLine(cb, 572, yAxis, 40);
 		yAxis=yAxis-15;
-		createContent(cb, 40, yAxis, "Recieved Amount : Six Thousand Five Hudred And Sixteen Only", PdfContentByte.ALIGN_LEFT);
+		createContent(cb, 40, yAxis, "Recieved Amount : "+convert(appointmentDto.getAndInvoiceDto().getPaymentAmmount().intValue()).toUpperCase(), PdfContentByte.ALIGN_LEFT);
 		yAxis=yAxis-15;
-		createContent(cb, 40, yAxis, "By : LAB EASY INDIA PVT LTD at 27/02/21 16:38", PdfContentByte.ALIGN_LEFT);
+		createContent(cb, 40, yAxis, "By : LAB EASY INDIA PVT LTD at "+getCurrDateTime(), PdfContentByte.ALIGN_LEFT); 
 		yAxis=yAxis-15;
 		createLine(cb, 572, yAxis, 40);
 		yAxis=yAxis-15;
@@ -225,9 +244,85 @@ public class GenerateInvoice {
 		createContent(cb, 40, yAxis, "Happy Health!", PdfContentByte.ALIGN_LEFT);
 		createContent(cb, 572, yAxis, "*This is an electronically generated slip and does not require signature.", PdfContentByte.ALIGN_RIGHT);
 		
-		generateBarCode(docWriter, 507, yAxis+20,  "68719771", 15f, 0.80f);
+		generateBarCode(docWriter, 507, yAxis+20,  "68719771", 15f, 0.80f);  // TODO generate bar code number
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	///////////////////KEEP BELOW CODES IN UTIL CLASS
 
+	private static final String[] specialNames = { "", " thousand", " million", " billion", " trillion", " quadrillion",
+			" quintillion" };
 
+	private static final String[] tensNames = { "", " ten", " twenty", " thirty", " forty", " fifty", " sixty",
+			" seventy", " eighty", " ninety" };
+
+	private static final String[] numNames = { "", " one", " two", " three", " four", " five", " six", " seven",
+			" eight", " nine", " ten", " eleven", " twelve", " thirteen", " fourteen", " fifteen", " sixteen",
+			" seventeen", " eighteen", " nineteen" };
+
+	private static String convertLessThanOneThousand(int number) {
+		String current;
+
+		if (number % 100 < 20) {
+			current = numNames[number % 100];
+			number /= 100;
+		} else {
+			current = numNames[number % 10];
+			number /= 10;
+
+			current = tensNames[number % 10] + current;
+			number /= 10;
+		}
+		if (number == 0)
+			return current;
+		return numNames[number] + " hundred" + current;
+	}
+
+	public static String convert(int number) {
+
+		if (number == 0) {
+			return "zero";
+		}
+
+		String prefix = "";
+
+		if (number < 0) {
+			number = -number;
+			prefix = "negative";
+		}
+
+		String current = "";
+		int place = 0;
+
+		do {
+			int n = number % 1000;
+			if (n != 0) {
+				String s = convertLessThanOneThousand(n);
+				current = s + specialNames[place] + current;
+			}
+			place++;
+			number /= 1000;
+		} while (number > 0);
+
+		return (prefix + current).trim() + " only";
+	}
+
+	
+	
+	public String getCurrDateTime()
+	{
+		LocalDateTime myDateObj = LocalDateTime.now();  
+	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");  
+	    return myDateObj.format(myFormatObj);  
+	}
+
+	
+	
 }
