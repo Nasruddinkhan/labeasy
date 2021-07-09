@@ -50,4 +50,6 @@ public interface AppointmentService {
 
 	List<AppointmentDto> findEmailList(String assignedToPhlebo, String string);
 
+	List<AppointmentDto> findAllInvoiceObject(String status);
+
 }

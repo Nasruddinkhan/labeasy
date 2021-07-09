@@ -1,5 +1,8 @@
 package com.labeasy.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +22,10 @@ import org.quartz.JobDetail;
 import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.labeasy.dto.ScheduleEmailDto;
 import com.labeasy.job.EmailJob;
 
@@ -67,4 +73,20 @@ public interface CommonUtils {
 		model.forEach((k, v) ->context.put(k, v));
 		return context;
 	};
+	
+	public static File convertMultiPartFileToFile(final MultipartFile multipartFile) {
+		final File file = new File(multipartFile.getOriginalFilename());
+		try (final FileOutputStream outputStream = new FileOutputStream(file)) {
+			outputStream.write(multipartFile.getBytes());
+		} catch (final IOException ex) {
+			throw new RuntimeException(ex);
+		}
+		return file;
+	}
+	
+	public static String uploadFileToS3Bucket(final String bucketName, final File file, AmazonS3 amazonS3, String endPointURL) {
+        final PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, file.getName(), file);
+        amazonS3.putObject(putObjectRequest);
+        return endPointURL+"/"+file.getName();
+    }
 }

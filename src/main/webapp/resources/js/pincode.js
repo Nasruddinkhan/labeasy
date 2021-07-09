@@ -5,13 +5,14 @@
 (function() {
 
 	addPinCode = function() {
-		const pinCode = JSON.stringify($('#pincode-form').serializeObject());
-		console.log(pinCode);
-		var url = "/master/add-pincode";
-		const callBackFunction = "addPinCodeCreated";
-		ajaxPostCall(url, callBackFunction, pinCode);
+		if (validatePinCodeForm()) {
+			const pinCode = JSON.stringify($('#pincode-form').serializeObject());
+			console.log(pinCode);
+			var url = "/master/add-pincode";
+			const callBackFunction = "addPinCodeCreated";
+			ajaxPostCall(url, callBackFunction, pinCode);
+		}
 	}
-
 	addPinCodeCreated = function(response) {
 		toastr.options.timeOut = 5000; // 1.5s
 		if (response.pin_id > 0) {
@@ -39,10 +40,16 @@
 
 			});
 		}
-
-
-
+	}
+	validatePinCodeForm = function() {
+		const isValidPinCode = isFieldValidation('#pincode', 'PinCode cannot be Empty');
+		const isValidPinCodeLength = isValidPinCode ? isMinValidation('#pincode', 5, 'Pincode Should be minimum 5 Digit'):false;
+		const isValidAreaName = isValidPinCodeLength ? isFieldValidation('#area_name', 'Area Name cannot be Empty'):false;
+		const isValidCountry = isValidAreaName ? isFieldValidation('#countryId', 'Please Select Country'):false;
+		const isValidState = isValidCountry ? isFieldValidation('#stateId', 'Please Select State'):false;
+		const isValidCity = isValidState ? isFieldValidation('#cityId', 'Please Select City'):false;
+		return (isValidPinCodeLength && isValidPinCode && isValidAreaName && isValidCountry && isValidState && isValidCity);
 	}
 
-
-})();
+})
+	();

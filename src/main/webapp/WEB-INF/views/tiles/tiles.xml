@@ -31,6 +31,12 @@
 			value="/WEB-INF/views/pages/master/state.jsp" />
 	</definition>
 
+	<definition name="addlab" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/labmaster/addlab.jsp" />
+	</definition>
+
 	<definition name="city" extends="base-definition">
 		<put-attribute name="title" value="Welcome" />
 		<put-attribute name="body"

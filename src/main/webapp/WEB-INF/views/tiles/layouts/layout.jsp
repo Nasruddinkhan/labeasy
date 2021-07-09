@@ -68,6 +68,12 @@
 .txtCenter {
 	text-align: center;
 }
+
+label.required::before {
+  content: "*";
+  color: red;
+  font-size: 1.5em;;
+}
 </style>
 
 </head>

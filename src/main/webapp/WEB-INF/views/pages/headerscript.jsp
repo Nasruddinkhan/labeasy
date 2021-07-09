@@ -72,7 +72,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/state.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/city.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/pincode.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/js/adduser.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/testgroup.js"></script>
 <script

@@ -23,4 +23,5 @@ public class BillingAndInvoiceDto {
 	private LocalDateTime paymentDate;
 	private Double discountAmmount;
 	private String discountReason;
+	private String invoiceUrl;
 }
