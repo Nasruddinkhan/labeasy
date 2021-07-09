@@ -14,6 +14,8 @@ import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.stereotype.Component;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -22,6 +24,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.labeasy.dto.AppointmentDto;
 import com.labeasy.dto.TestNamesDto;
 
+@Component
 public class GenerateInvoice {
 	
 	private static String AP_INV_PDF_PATH="D:\\Invoice\\";
@@ -32,30 +35,16 @@ public class GenerateInvoice {
 
 	private int pageNumber = 0;
 
-	public static void main(String[] args) {
-		String pdfFilename = "";
-		GenerateInvoice generateInvoice = new GenerateInvoice();
-		/*if (args.length < 1) {
-			System.err.println("Usage: java " + generateInvoice.getClass().getName() + " PDF_Filename");
-			System.exit(1);
-		}
 
-		pdfFilename = args[0].trim();*/
-		
-		pdfFilename="invoice.pdf";
-		//generateInvoice.createPDF();
-		
-		
-	}
-
-	private void createPDF(AppointmentDto appointmentDto) {
+	public String createPDF(AppointmentDto appointmentDto) {
 		Document doc = new Document();
 		PdfWriter docWriter = null;
 		PdfContentByte cb = null;
 		initializeFonts();
+		String filePath = null;
 		try {
-			
-			docWriter = PdfWriter.getInstance(doc, new FileOutputStream(AP_INV_PDF_PATH+AP_INV_PDF_NAME));
+			 filePath = AP_INV_PDF_PATH+ "AP" + appointmentDto.getAppointmentId()+ appointmentDto.getAndInvoiceDto().getBillingId() +"_invoice.pdf";
+			docWriter = PdfWriter.getInstance(doc, new FileOutputStream(filePath));
 			doc.addAuthor("NEWZON Infotech");
 			doc.addCreationDate();
 			doc.addProducer();
@@ -150,6 +139,7 @@ public class GenerateInvoice {
 				docWriter.close();
 			}
 		}
+		return filePath;
 	}
 	
 	private void generateHeader(Document doc, PdfContentByte cb) {
