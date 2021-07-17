@@ -22,8 +22,9 @@
 				<thead>
 					<tr>
 						<th width="12%">Role Id</th>
-						<th width="33%">Role Name</th>
+						<th width="">Role Name</th>
 						<th>Description</th>
+						<th width="">Role Type</th>
 						<th width="10%">Action</th>
 					</tr>
 				</thead>
@@ -33,16 +34,21 @@
 							<td>${userRole.roleId}</td>
 							<td>${userRole.roleName}</td>
 							<td>${userRole.description}</td>
+							<td></td>
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
 											class="btn btn-sm btn-info btn-box-tool"
 											onclick="roleEdit('${userRole.roleId}','${userRole.roleName}','${userRole.description}')">
 											<i class="fa fa-edit" style="color: white"></i>
-										</button></a>&nbsp;
-										
-										<button type="button" class="btn btn-xs btn-toggle active" data-toggle="button" aria-pressed="true">
-        									<div class="handle"></div>
-      									</button>
+										</button></a>
+										<button type="button"
+											class="btn btn-sm btn-danger btn-box-tool">
+										<i class="fa fa-clock-o" style="color: white"></i>
+										</button>
+										<button type="button" class="btn btn-xs btn-toggle active"
+											data-toggle="button" aria-pressed="true">
+											<div class="handle"></div>
+										</button>
 
 								</div></td>
 						</tr>
@@ -54,7 +60,7 @@
 		<div class="modal fade" id="add-role-modal">
 			<div class="modal-dialog">
 				<form method="POST" id="add-role-form" autocomplete="off">
-				<input type="hidden" id="role_id" name="role_id">
+					<input type="hidden" id="role_id" name="role_id">
 					<div class="modal-content">
 
 						<div class="modal-header">
@@ -69,6 +75,15 @@
 								<div class="form-group col-sm-6">
 									<label>Role Name :</label> <input type="text" id="rolename"
 										name="rolename" class="form-control" />
+								</div>
+								<div class="form-group col-sm-6">
+									<label>Role Type :</label> <select name="roletype"
+										id="roletype" class="form-control ">
+										<option value="">--select--</option>
+										<option value="AP">Lab Admin</option>
+										<option value="AP">Lab Supervisor</option>
+										<option value="AP">Lab User</option>
+									</select>
 								</div>
 								<div class="form-group col-sm-6">
 									<label>Description :</label> <input type="text"

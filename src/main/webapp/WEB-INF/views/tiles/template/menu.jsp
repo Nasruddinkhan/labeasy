@@ -52,7 +52,7 @@
 						class="fa fa-plus text-yellow"></i> Add Role</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/role-master/show-user-role"><i
-						class="fa fa-plus text-yellow"></i>Define Role Menus</a></li>
+						class="fa fa-plus text-yellow"></i>Role Permissions</a></li>
 			</ul></li>
 		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
 				<span>User Master</span> <span class="pull-right-container">

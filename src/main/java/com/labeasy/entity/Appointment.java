@@ -86,7 +86,7 @@ public class Appointment extends BaseBean implements Serializable {
 	private Set<BillingAndInvoice> billingAndInvoices;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "assign_to", referencedColumnName ="id" )
+    @JoinColumn(name = "assign_to", referencedColumnName ="id", nullable = true)
 	private User assign = null;
 	@Column(name = "email_status", columnDefinition = "char(1) default 'N'")
 	private String isEmailStatus;

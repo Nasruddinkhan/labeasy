@@ -112,7 +112,7 @@
 											<em class="fa fa-circle "></em> New
 										</c:otherwise>
 									</c:choose></td>
-								<td>${app.assignToUserDto.firstName} ${app.assignToUserDto.lastName}</td>
+								<td>${empty app.assignToUserDto.firstName ? '-' : app.assignToUserDto.firstName} ${app.assignToUserDto.lastName}</td>
 								<td><c:choose>
 										<c:when test="${app.addInvoiceDto.dueAmount > 0}">
 											<em> <a class="billingiframe"

@@ -71,6 +71,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
 		appointment
 				.setAppStatus(isCustomerVisit.apply(appointmentDto.getVisitType(), appointmentDto.getAssignTo()));
+		appointment.setInvoiceStatus(ApplicationStatus.INACTIVE.getValue());
 		appointment.setActive(true);
 		if (Objects.nonNull(appointmentDto.getAssignTo())) {
 			appointment.setAssign(findAssignUser(appointmentDto.getAssignTo()));

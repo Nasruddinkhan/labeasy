@@ -37,26 +37,26 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-sm-3">
-					<strong>Contact :</strong>
-				</div>
-				<div class="col-sm-3">${appointment.contactNo}</div>
-				<div class="col-sm-3">
 					<strong>Referred By :</strong>
 				</div>
 				<div class="col-sm-3">${appointment.referredBy}</div>
+				<div class="col-sm-3">
+					<strong>Appointment Date :</strong>
+				</div>
+				<div class="col-sm-3">${appointment.appointmentDate}</div>
 			</div>
 
 		</div>
 		<div class="box-body">
 			<div class="row">
 				<div class="col-sm-3">
+					<strong>Contact :</strong>
+				</div>
+				<div class="col-sm-3">${appointment.contactNo}</div>
+				<div class="col-sm-3">
 					<strong>Email :</strong>
 				</div>
 				<div class="col-sm-3">${empty appointment.emailId ? 'None' : appointment.emailId}</div>
-				<div class="col-sm-3">
-					<strong>Appointment Date :</strong>
-				</div>
-				<div class="col-sm-3">${appointment.appointmentDate}</div>
 			</div>
 
 		</div>
@@ -78,7 +78,7 @@
 				<div class="col-sm-3">
 					<strong>Assignee :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.assignToUserDto.firstName} ${appointment.assignToUserDto.lastName}</div>
+				<div class="col-sm-3">${empty appointment.assignToUserDto.firstName  ? 'None' : appointment.assignToUserDto.firstName} ${appointment.assignToUserDto.lastName}</div>
 				<div class="col-sm-3">
 					<strong>Visit type :</strong>
 				</div>
@@ -145,7 +145,17 @@
 							<td>${empty addInvoices.advancePayment ? 0.0 : addInvoices.advancePayment}</td>
 							<td>${empty addInvoices.dueAmount ? 0.0 : addInvoices.dueAmount}</td>
 							<td>${addInvoices.totalAmount}</td>
-							<td onclick="openInvoiceInNewTab('${addInvoices.invoiceUrl}')">Invoice</td>
+							<td>
+								<button type="button" onclick="openInvoiceInNewTab('${addInvoices.invoiceUrl}')"
+									class="btn btn-sm btn-primary btn-box-tool" title="Print">
+									<i class="fa fa-print" style="color: white"></i>
+								</button>
+								
+								<button type="button" onclick=""
+									class="btn btn-sm btn-warning btn-box-tool" title="Download">
+									<i class="fa fa-download" style="color: white"></i>
+								</button>
+							</td>	
 						</tr>
 					</c:forEach>
 
@@ -190,7 +200,7 @@
 	<div class="row">
 		<div class="col-sm-12 col-sm-offset-5">
 			<a type="button" href="${pageContext.request.contextPath}/appointment/view-appointment-page" class="btn btn-sm btn-info">Back</a>
-			<button type="button" class="btn btn-sm  btn-danger">Print Invoice</button>
+			<!-- <button type="button" class="btn btn-sm  btn-danger">Print Invoice</button> -->
 		</div>
 	</div>
 </section>
