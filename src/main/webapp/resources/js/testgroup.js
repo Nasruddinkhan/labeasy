@@ -26,4 +26,12 @@
 		const isValidDescription = isValidName ? isFieldValidation('#description', 'Description cannot be Empty'):flase;
 		return (isValidName && isValidDescription);
 	}
+	
+	testGroupEdit = function(grpId, grpName, grpDesc) {
+		$('#group_id').val(grpId);
+		$('#name').val(grpName);
+		$('#description').val(grpDesc);
+		$("#test_grp_btn_add").html('Update');
+		$('#test-group').modal('show');
+	}
 })();

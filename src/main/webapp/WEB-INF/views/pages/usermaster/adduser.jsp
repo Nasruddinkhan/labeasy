@@ -109,14 +109,14 @@
 			<div class="row">
 				<div class="box-body">
 					<div class="form-group col-sm-3">
-						<label for="Country Code">Address Line1 :</label>
+						<label for="Country Code">Address Line1 : </label>
 						<form:input type="text" path="address.addressLine1"
-							id="addressLine1" class="form-control" />
+							id="addressLine1" class="form-control" placeholder="Room/Building/Society/Chawl name"/>
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">Address Line2 :</label>
 						<form:input type="text" path="address.addressLine2"
-							id="addressLine2" class="form-control" />
+							id="addressLine2" class="form-control" placeholder="Street/Landmark/Area Location"/>
 					</div>
 					<div class="form-group col-sm-3">
 						<label for="Country Code">City :</label>

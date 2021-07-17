@@ -32,10 +32,10 @@ public interface AppointmentService {
 		appointmentDto.setTestNames(testNamesDtos);
 		appointmentDto.setTestList(noOfTest);
 		Set<BillingAndInvoice> andInvoices = appointment.getBillingAndInvoices();
-		appointmentDto.setAndInvoices(ObjectUtilMapper.mapAll(andInvoices, BillingAndInvoiceDto.class));
+		appointmentDto.setAddInvoices(ObjectUtilMapper.mapAll(andInvoices, BillingAndInvoiceDto.class));
 		Optional<BillingAndInvoice> presenTinvoice = andInvoices.stream().filter(BillingAndInvoice::isActive).findAny();
 		if (presenTinvoice.isPresent())
-			appointmentDto.setAndInvoiceDto(ObjectUtilMapper.map(presenTinvoice.get(), BillingAndInvoiceDto.class));
+			appointmentDto.setAddInvoiceDto(ObjectUtilMapper.map(presenTinvoice.get(), BillingAndInvoiceDto.class));
 		if (Objects.nonNull(appointment.getAssign()) &&  appointment.getAssign().getId()>0) {
 			User user = appointment.getAssign();
 			appointmentDto.setAssignTo(user.getId());

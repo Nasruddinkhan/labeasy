@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -35,13 +34,14 @@
 							<td>${testGroup.description}</td>
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
-											class="btn btn-sm btn-info btn-box-tool">
+											class="btn btn-sm btn-info btn-box-tool"
+											onclick="testGroupEdit(${testGroup.groupId},'${testGroup.name}','${testGroup.description}')">
 											<i class="fa fa-edit" style="color: white"></i>
-										</button> </a> <a href="#"><button type="button"
-											class="btn btn-sm btn-danger btn-box-tool">
-
-											<i class="fa fa-trash" style="color: white"></i>
-										</button> </a>
+										</button> </a> 
+										
+										<button type="button" class="btn btn-xs btn-toggle active" data-toggle="button" aria-pressed="true">
+        									<div class="handle"></div>
+      									</button>
 
 								</div></td>
 						</tr>
@@ -53,6 +53,7 @@
 		<div class="modal fade" id="test-group">
 			<div class="modal-dialog">
 				<form method="POST" id="add-group-form" autocomplete="off">
+				<input type="hidden" id="group_id" name="group_id">
 					<div class="modal-content">
 
 						<div class="modal-header">
@@ -77,7 +78,7 @@
 							<!-- /.box-body -->
 						</div>
 						<div class="modal-footer">
-							<button type="button" onclick="addGroup()"
+							<button type="button" id="test_grp_btn_add" onclick="addGroup()"
 								class="btn btn-primary">Save</button>
 						</div>
 					</div>

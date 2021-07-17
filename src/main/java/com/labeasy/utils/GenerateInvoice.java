@@ -33,17 +33,15 @@ public class GenerateInvoice {
 	private static String AP_INV_PDF_LOGO_PATH="D:\\Invoice\\";
 	private static String AP_INV_PDF_LOGO_NAME="logo.jpeg";
 
-	private int pageNumber = 0;
-
-
 	public String createPDF(AppointmentDto appointmentDto) {
+		int pageNumber = 0;
 		Document doc = new Document();
 		PdfWriter docWriter = null;
 		PdfContentByte cb = null;
 		initializeFonts();
 		String filePath = null;
 		try {
-			 filePath = AP_INV_PDF_PATH+ "AP" + appointmentDto.getAppointmentId()+ appointmentDto.getAndInvoiceDto().getBillingId() +"_invoice.pdf";
+			 filePath = AP_INV_PDF_PATH+ "AP" + appointmentDto.getAppointmentId()+ appointmentDto.getAddInvoiceDto().getBillingId() +"_invoice.pdf";
 			docWriter = PdfWriter.getInstance(doc, new FileOutputStream(filePath));
 			doc.addAuthor("NEWZON Infotech");
 			doc.addCreationDate();
@@ -53,27 +51,18 @@ public class GenerateInvoice {
 			doc.setPageSize(PageSize.LETTER);
 			doc.open();
 			cb = docWriter.getDirectContent();
-			
 			int yAxis = 0;
-			
 			int loopSize=appointmentDto.getTestNames().size();
-			
-			
 			boolean beginPage = true;
 			// Loop is writing the test details in report body
 			int i=0;
-			//for (int i = 1; i < loopSize; i++) {
-				
 			for(TestNamesDto testDto: appointmentDto.getTestNames()) {
-				
 				i++;
-				
 				//Only for first page patient header details will display
 				if(i==1)
 				{
 					firstPageHeaderPatientDetail(appointmentDto, cb);
 				}
-				
 				if (beginPage) 
 				{
 					beginPage = false;
@@ -85,9 +74,11 @@ public class GenerateInvoice {
 					}
 					else
 					{
-						yAxis = 625;	
+						yAxis = 625; 
+						//yAxis = 535;
 					}
 				}
+				System.out.println("GenerateInvoice.createPDF ========yAxis"+yAxis+"=====pageNumber:"+pageNumber);
 				generateReportDetailsBody(testDto, doc, cb, i, yAxis);
 				yAxis = yAxis - 15;
 				
@@ -168,8 +159,8 @@ public class GenerateInvoice {
 		createContent(cb, 40, 595, "P. ADDRESS      :", PdfContentByte.ALIGN_LEFT);
 		
 		createHeadings(cb, 110, 625, appointmentDto.getName(), 8, PdfContentByte.ALIGN_LEFT);
-		createHeadings(cb, 110, 610, appointmentDto.getReffredBy(),8, PdfContentByte.ALIGN_LEFT);
-		createHeadings(cb, 110, 595, appointmentDto.getAreLocStreetName(), 8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 110, 610, appointmentDto.getReferredBy(),8, PdfContentByte.ALIGN_LEFT);
+		createHeadings(cb, 110, 595, appointmentDto.getAddressLine2(), 8, PdfContentByte.ALIGN_LEFT);
 		
 		createContent(cb, 400, 625, "AGE/SEX       :", PdfContentByte.ALIGN_LEFT);
 		createContent(cb, 400, 610, "BILL DATE     :", PdfContentByte.ALIGN_LEFT);
@@ -177,7 +168,7 @@ public class GenerateInvoice {
 		
 		createHeadings(cb, 460, 625, appointmentDto.getAge()+"/"+appointmentDto.getGender(),8, PdfContentByte.ALIGN_LEFT);
 		createHeadings(cb, 460, 610, getCurrDateTime(),8, PdfContentByte.ALIGN_LEFT); 
-		createHeadings(cb, 460, 595, ""+appointmentDto.getAndInvoiceDto().getBillingId(),8, PdfContentByte.ALIGN_LEFT); // TODO Need to check how to show
+		createHeadings(cb, 460, 595, ""+appointmentDto.getAddInvoiceDto().getBillingId(),8, PdfContentByte.ALIGN_LEFT); // TODO Need to check how to show
 		
 		createLine(cb, 572, 580, 40);
 		createHeadings(cb, 40, 565, "SL", 8, PdfContentByte.ALIGN_LEFT);
@@ -207,17 +198,17 @@ public class GenerateInvoice {
 		}
 		yAxis=yAxis-15;
 		createHeadings(cb, 510, yAxis, "Total :", 8, PdfContentByte.ALIGN_RIGHT);
-		createHeadings(cb, 572, yAxis, appointmentDto.getAndInvoiceDto().getTotalAmmount()+"", 8, PdfContentByte.ALIGN_RIGHT);
+		createHeadings(cb, 572, yAxis, appointmentDto.getAddInvoiceDto().getTotalAmount()+"", 8, PdfContentByte.ALIGN_RIGHT);
 		yAxis=yAxis-15;
 		createContent(cb, 510, yAxis, "Discount :", PdfContentByte.ALIGN_RIGHT);
-		createContent(cb, 572, yAxis, appointmentDto.getAndInvoiceDto().getDiscountAmmount()+"", PdfContentByte.ALIGN_RIGHT);
+		createContent(cb, 572, yAxis, appointmentDto.getAddInvoiceDto().getDiscountAmount()+"", PdfContentByte.ALIGN_RIGHT);
 		yAxis=yAxis-15;
 		createContent(cb, 510, yAxis, "Recieved :", PdfContentByte.ALIGN_RIGHT);
-		createContent(cb, 572, yAxis, appointmentDto.getAndInvoiceDto().getPaymentAmmount()+"", PdfContentByte.ALIGN_RIGHT);
+		createContent(cb, 572, yAxis, appointmentDto.getAddInvoiceDto().getDueAmount()+"", PdfContentByte.ALIGN_RIGHT);
 		yAxis=yAxis-15;
 		createLine(cb, 572, yAxis, 40);
 		yAxis=yAxis-15;
-		createContent(cb, 40, yAxis, "Recieved Amount : "+convert(appointmentDto.getAndInvoiceDto().getPaymentAmmount().intValue()).toUpperCase(), PdfContentByte.ALIGN_LEFT);
+		createContent(cb, 40, yAxis, "Recieved Amount : "+convert(appointmentDto.getAddInvoiceDto().getDueAmount().intValue()).toUpperCase(), PdfContentByte.ALIGN_LEFT);
 		yAxis=yAxis-15;
 		createContent(cb, 40, yAxis, "By : LAB EASY INDIA PVT LTD at "+getCurrDateTime(), PdfContentByte.ALIGN_LEFT); 
 		yAxis=yAxis-15;

@@ -37,7 +37,7 @@ public class BillingAndInvoice extends BaseBean implements Serializable {
 	@SequenceGenerator(name = "billing_seq", sequenceName = "billing_seq", allocationSize = 1, initialValue = 1)
 	private Long billingId;
 	@Column(name = "due_amount")
-	private Double paymentAmmount;
+	private Double dueAmount;
 	@Column(name = "payment_mode", length = 15)
 	private String paymentMode;
 	@Column(name = "advance_payment")
@@ -47,10 +47,10 @@ public class BillingAndInvoice extends BaseBean implements Serializable {
 	@JoinColumn(name = "appointment_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Appointment appointment;
-	@Column(name = "total_ammount")
-	private Double totalAmmount;
-	@Column(name = "discount_ammount")
-	private Double discountAmmount;
+	@Column(name = "total_amount")
+	private Double totalAmount;
+	@Column(name = "discount_amount")
+	private Double discountAmount;
 	@Column(name = "discount_reason", length = 100)
 	private String discountReason;
 	@Column(name = "invoice_url")

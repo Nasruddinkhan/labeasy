@@ -55,7 +55,7 @@ public class AppointmentController {
 	 * @param model
 	 */
 	private void addAppointmentOnLoadData(ModelMap model, AppointmentDto appointmentDto) {
-		model.addAttribute("appointment", appointmentDto);
+		model.addAttribute("appointmentdetails", appointmentDto);
 		model.addAttribute("testNameList", testNamesService.findAllTestName());
 		model.addAttribute("phlebotomistList", userService.getAllPhlebotomistList());
 
@@ -70,7 +70,7 @@ public class AppointmentController {
 	@GetMapping("/show-appointment-page")
 	public String showAppointment(ModelMap model) {
 		AppointmentDto appointmentDto = new AppointmentDto();
-		appointmentDto.setAndInvoiceDto(new BillingAndInvoiceDto());
+		appointmentDto.setAddInvoiceDto(new BillingAndInvoiceDto());
 		addAppointmentOnLoadData(model, appointmentDto);
 		return "addappointment";
 	}
@@ -95,12 +95,12 @@ public class AppointmentController {
 	@GetMapping("/cleardue-popup")
 	public String clearDluePopup(@RequestParam("appId") Long appId, @RequestParam("advPay") Double advPay,
 			@RequestParam("dueAmt") Double dueAmt, @RequestParam("paymentDate") String paymentDate,
-			@RequestParam("discountAmmount") Double discountAmmount,
+			@RequestParam("discountAmount") Double discountAmount,
 			@RequestParam("discountReason") String discountReason, ModelMap model) {
 		model.put("appId", appId);
 		model.put("advPay", advPay);
 		model.put("dueAmt", dueAmt);
-		model.put("discountAmmount", discountAmmount);
+		model.put("discountAmmount", discountAmount);
 		model.put("discountReason", discountReason);
 		model.put("paymentDate",
 				transformTheDateFormat(paymentDate, DateTimeFormatter.ofPattern(SQL_DATE_FORMAT, Locale.ENGLISH),

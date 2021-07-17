@@ -70,7 +70,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		setBillingAndInvoice(appointment, appointmentDto);
 		appointment.setAppointmentDate(getAppointmentDate(appointmentDto.getAppointmentDate()));
 		appointment
-				.setAppStatus(isCustomerVisit.apply(appointmentDto.getCustomerVisited(), appointmentDto.getAssignTo()));
+				.setAppStatus(isCustomerVisit.apply(appointmentDto.getVisitType(), appointmentDto.getAssignTo()));
 		appointment.setActive(true);
 		if (Objects.nonNull(appointmentDto.getAssignTo())) {
 			appointment.setAssign(findAssignUser(appointmentDto.getAssignTo()));
@@ -95,7 +95,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	 * @param appointmentDto
 	 */
 	private void setBillingAndInvoice(Appointment appointment, AppointmentDto appointmentDto) {
-		BillingAndInvoice andInvoice = map(appointmentDto.getAndInvoiceDto(), BillingAndInvoice.class);
+		BillingAndInvoice andInvoice = map(appointmentDto.getAddInvoiceDto(), BillingAndInvoice.class);
 		andInvoice.setAppointment(appointment);
 		andInvoice.setPaymentDate(LocalDateTime.now());
 		andInvoice.setActive(true);
@@ -110,6 +110,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	 * @param testList
 	 */
 	private void setTestNames(Appointment appointment, String testList) {
+		System.out.println("testListtestListtestListtestList::"+testList);
 		appointment.setTestNames(testNamesRepository
 				.findAllById(transformGenricList(removeFirstLastElementOnstring.apply(testList), Long::parseLong))
 				.stream().collect(Collectors.toSet()));
@@ -151,14 +152,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	private void setClearDueObject(BillingAndInvoice secInvoices, BillingAndInvoice firstInvoice) {
-		secInvoices.setPaymentAmmount(0.0);
+		secInvoices.setDueAmount(0.0);
 		secInvoices.setBillingId(0L);
-		secInvoices.setAdvancePayment(firstInvoice.getPaymentAmmount());
-		secInvoices.setTotalAmmount(firstInvoice.getTotalAmmount());
+		secInvoices.setAdvancePayment(firstInvoice.getDueAmount());
+		secInvoices.setTotalAmount(firstInvoice.getTotalAmount());
 		secInvoices.setActive(true);
 		secInvoices.setPaymentDate(LocalDateTime.now());
 		secInvoices.setDiscountReason(firstInvoice.getDiscountReason());
-		secInvoices.setDiscountAmmount(firstInvoice.getDiscountAmmount());
+		secInvoices.setDiscountAmount(firstInvoice.getDiscountAmount());
 		firstInvoice.setActive(false);
 	}
 

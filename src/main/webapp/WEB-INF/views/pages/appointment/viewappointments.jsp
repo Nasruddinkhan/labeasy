@@ -32,26 +32,26 @@
 			<div class="box-body">
 				<form method="POST" id="update-appointment-status">
 					<div class="row">
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-3">
 							<label for="Country Code">Change Status :</label> <select
 								name="status" onchange="changeStatus(this)"
 								class="form-control ">
 								<option value="">--select--</option>
-								<option value="AP">Assigned to Phlebo</option>
+								<option value="AP">Assigned to Phlebotomist</option>
 								<option value="SC">Sample Collected</option>
 								<option value="SD">Sample Dropped</option>
-								<option value="SP">Sample under process</option>
-								<option value="SE">Sample processed/tested</option>
-								<option value="RD">Report dispatched</option>
+								<option value="SP">Sample Under Process</option>
+								<option value="SE">Sample Processed/Tested</option>
+								<option value="RD">Report Dispatched</option>
 							</select>
 						</div>
-						<div class="form-group col-sm-4" style="display: none"
+						<div class="form-group col-sm-3" style="display: none"
 							id="assign_to">
 							<label for="Country Code">Assign to :</label> <select
 								name="assignTo" id="assignUser" class="form-control ">
 							</select>
 						</div>
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-3">
 							<button style="margin-top: 2em;" type="button"
 								onclick="updateAppointmentStatus();"
 								class="btn btn-sm btn-success">Update Status</button>
@@ -68,8 +68,8 @@
 							<th>Visit date time</th>
 							<th>Status</th>
 							<th>Assigned to</th>
-							<th>Due Amount</th>
-							<th>Balance</th>
+							<th>Due Amt</th>
+							<th>Paid Amt</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -80,10 +80,10 @@
 									onclick="isCheckAppointment(${app.appointmentId})" /> <em>
 										<a
 										href="${pageContext.request.contextPath}/appointment/appointment-view-popup?appId=${app.appointmentId}">
-											AP ${app.appointmentId}</a>
+											AP${app.appointmentId}</a>
 								</em></td>
 								<td>${app.name}</td>
-								<td>${app.mobileNo}</td>
+								<td>${app.contactNo}</td>
 								<td>${app.appointmentDate}-${app.appointmentTime}</td>
 								<td><c:choose>
 										<c:when test="${app.appStatus == 'AP'}">
@@ -114,27 +114,27 @@
 									</c:choose></td>
 								<td>${app.assignToUserDto.firstName} ${app.assignToUserDto.lastName}</td>
 								<td><c:choose>
-										<c:when test="${app.andInvoiceDto.paymentAmmount > 0}">
+										<c:when test="${app.addInvoiceDto.dueAmount > 0}">
 											<em> <a class="billingiframe"
 												href="${pageContext.request.contextPath}/appointment/cleardue-popup?appId=${app.appointmentId}
-										&advPay=${app.andInvoiceDto.advancePayment}
-										&dueAmt=${app.andInvoiceDto.paymentAmmount}
-										&paymentDate=${app.andInvoiceDto.paymentDate}
-										&discountAmmount=${app.andInvoiceDto.discountAmmount}
-										&discountReason=${app.andInvoiceDto.discountReason}">
-													${app.andInvoiceDto.paymentAmmount} </a>
+										&advPay=${empty app.addInvoiceDto.advancePayment ? 0 : app.addInvoiceDto.advancePayment}
+										&dueAmt=${empty app.addInvoiceDto.dueAmount ? 0 : app.addInvoiceDto.dueAmount}
+										&paymentDate=${app.addInvoiceDto.paymentDate}
+										&discountAmount=${empty app.addInvoiceDto.discountAmount ? 0 : app.addInvoiceDto.discountAmount}
+										&discountReason=${not empty app.addInvoiceDto.discountReason ? app.addInvoiceDto.discountReason : 'None'}">
+										${app.addInvoiceDto.dueAmount} </a>
 											</em>
 										</c:when>
 										<c:otherwise>
-											<em> ${app.andInvoiceDto.paymentAmmount} </em>
+											<em> ${app.addInvoiceDto.dueAmount} </em>
 										</c:otherwise>
 									</c:choose></td>
 								<td><c:choose>
-										<c:when test="${app.andInvoiceDto.paymentAmmount > 0}">
-										${app.andInvoiceDto.advancePayment}
+										<c:when test="${app.addInvoiceDto.dueAmount > 0}">
+										${empty app.addInvoiceDto.advancePayment ? 0.0 : app.addInvoiceDto.advancePayment}
 										</c:when>
 										<c:otherwise>
-										${app.andInvoiceDto.totalAmmount}
+										${app.addInvoiceDto.totalAmount}
 										</c:otherwise>
 									</c:choose></td>
 								<td><div class="box-tools pull-center">
@@ -156,18 +156,23 @@
 												class="btn btn-sm btn-warning btn-box-tool">
 												<i class="fa fa-upload" style="color: white"></i>
 											</button>
-										</a> <a href="#">
+										</a> 
+										<c:if test="${app.isWhatsappActive == 'Y'}">
+										<a href="#">
 											<button type="button"
 												class="btn btn-sm btn-success btn-box-tool">
 												<i class="fa fa-whatsapp" style="color: white"></i>
 											</button>
-										</a> <a href="#">
+										</a>
+										</c:if> 
+										<c:if test="${app.emailId != ''}">
+										<a href="#">
 											<button type="button"
 												class="btn btn-sm btn-primary btn-box-tool">
 												<i class="fa fa-envelope" style="color: white"></i>
 											</button>
 										</a>
-
+										</c:if>
 									</div></td>
 							</tr>
 						</c:forEach>

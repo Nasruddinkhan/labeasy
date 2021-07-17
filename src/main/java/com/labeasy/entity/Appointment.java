@@ -42,12 +42,14 @@ public class Appointment extends BaseBean implements Serializable {
 	private Long appointmentId;
 	@Column(name = "name", length = 50)
 	private String name;
-	@Column(name = "room_no_bldg_name", length = 50)
-	private String roomNoBldNo;
-	@Column(name = "area_locality_street_name", length = 50)
-	private String areLocStreetName;
-	@Column(name = "mobile_no", length = 10)
-	private String mobileNo;
+	@Column(name = "address_line_1", length = 100) 
+	private String addressLine1;
+	@Column(name = "address_line_2", length = 100)
+	private String addressLine2;
+	@Column(name = "contact_no", length = 15) 
+	private String contactNo;
+	@Column(name = "alternate_contact_no", length = 15) 
+	private String alternateContactNo;
 	@Column(name = "email_id", length = 60)
 	private String emailId;
 	@Column(name = "status", columnDefinition = "char(2) ")
@@ -58,23 +60,23 @@ public class Appointment extends BaseBean implements Serializable {
 	private String gender;
 	@Column(name = "age")
 	private Integer age;
-	@Column(name = "address ")
-	private String address;
+	@Column(name = "region")
+	private String region;
 	@Column(name = "city_id")
 	private String cityId;
-	@Column(name = "prefred_lab", length = 100)
-	private String prefredLab;
+	@Column(name = "preferred_lab", length = 100)
+	private String preferredLab;
 	@Column(name = "appointment_date")
 	private LocalDate appointmentDate;
 	@Column(name = "appointment_time")
 	private LocalTime appointmentTime;
-	@Column(name = "reffred_by", length = 100)
-	private String reffredBy;
+	@Column(name = "referred_by", length = 100)
+	private String referredBy;
 	
 	@Column(name = "is_active", columnDefinition = "boolean default true")
 	private boolean isActive;
-	@Column(name = "customer_visited", columnDefinition = "char(1) default 'N'")
-	private String customerVisited;
+	@Column(name = "visit_type", columnDefinition = "char(1) default 'N'")
+	private String visitType;
 	@ManyToMany
 	@JoinTable(name = "appointment_test_mapping", joinColumns = {
 			@JoinColumn(name = "appointment_id") }, inverseJoinColumns = { @JoinColumn(name = "test_id") })
@@ -92,7 +94,9 @@ public class Appointment extends BaseBean implements Serializable {
 	private String invoiceStatus;
 	@Column(name = "phelebo_email_status", columnDefinition = "char(1) default 'N'")
 	private String pheleboEmail;
-	@Column(name = "is_email_whatsapp")
-	private boolean isEmailWhatsapp;
+	@Column(name = "is_whatsapp_active", length = 5)
+	private String isWhatsappActive;
+	@Column(name = "pin_code ")
+	private String pinCode;
 
 }

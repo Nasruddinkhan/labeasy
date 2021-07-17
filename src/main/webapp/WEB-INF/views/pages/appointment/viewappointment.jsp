@@ -5,8 +5,8 @@
 <section class="content">
 	<div class="box box-primary ">
 		<div class="box-header with-border">
-			<h3 class="box-title">View Appointment
-				-${appointment.appointmentId} Name: -${appointment.name}</h3>
+			<h3 class="box-title">View Appointment 
+				Id - <b>AP${appointment.appointmentId}</b></h3>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool"
 					data-widget="collapse">
@@ -17,24 +17,18 @@
 		</div>
 		<div class="box-body">
 			<div class="row">
-				<div class="col-sm-3 txtCenter">
+				<div class="col-sm-3">
 					<strong>Name :</strong>
 				</div>
-				<div class="col-sm-3">AP${appointment.name}</div>
-				<div class="col-sm-3 txtCenter">
+				<div class="col-sm-3">${appointment.name}</div>
+				<div class="col-sm-3 ">
 					<strong>Gender :</strong>
 				</div>
 				<div class="col-sm-3">
 					<c:choose>
-						<c:when test="${appointment.gender == 'M'}">
-												Male
-											</c:when>
-						<c:when test="${appointment.gender == 'F'}">
-												Female
-											</c:when>
-						<c:otherwise>
-											 Transgender
-											</c:otherwise>
+						<c:when test="${appointment.gender == 'M'}">Male</c:when>
+						<c:when test="${appointment.gender == 'F'}">Female</c:when>
+						<c:otherwise>Transgender</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
@@ -43,13 +37,13 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-sm-3">
-					<strong>Mobile :</strong>
+					<strong>Contact :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.mobileNo}</div>
+				<div class="col-sm-3">${appointment.contactNo}</div>
 				<div class="col-sm-3">
 					<strong>Referred By :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.reffredBy}</div>
+				<div class="col-sm-3">${appointment.referredBy}</div>
 			</div>
 
 		</div>
@@ -58,7 +52,7 @@
 				<div class="col-sm-3">
 					<strong>Email :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.emailId}</div>
+				<div class="col-sm-3">${empty appointment.emailId ? 'None' : appointment.emailId}</div>
 				<div class="col-sm-3">
 					<strong>Appointment Date :</strong>
 				</div>
@@ -69,9 +63,9 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-sm-3">
-					<strong>Preffrred Lab :</strong>
+					<strong>Preferred Lab :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.appointmentId}</div>
+				<div class="col-sm-3">${empty appointment.preferredLab ? 'None' : appointment.preferredLab}</div>
 				<div class="col-sm-3">
 					<strong>Age :</strong>
 				</div>
@@ -84,11 +78,20 @@
 				<div class="col-sm-3">
 					<strong>Assignee :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.assignTo}</div>
+				<div class="col-sm-3">${appointment.assignToUserDto.firstName} ${appointment.assignToUserDto.lastName}</div>
 				<div class="col-sm-3">
-					<strong>Remark :</strong>
+					<strong>Visit type :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.remarks}</div>
+				<div class="col-sm-3">
+					<c:choose>
+						<c:when test="${appointment.visitType == 'N'}">
+							Online Appointment
+						</c:when>
+						<c:otherwise>
+							Customer visited
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
 
 		</div>
@@ -97,7 +100,12 @@
 				<div class="col-sm-3">
 					<strong>Address :</strong>
 				</div>
-				<div class="col-sm-3">${appointment.address}</div>
+				<div class="col-sm-3">${appointment.addressLine1} ${appointment.addressLine2} ${appointment.cityId} ${appointment.pinCode}</div>
+				
+				<div class="col-sm-3">
+					<strong>Remark :</strong>
+				</div>
+				<div class="col-sm-3">${empty appointment.remarks ? 'None' : appointment.remarks}</div>
 			</div>
 
 		</div>
@@ -118,26 +126,26 @@
 				<thead>
 					<tr>
 						<th>InvoiceNo</th>
-						<th>B.Date</th>
-						<th>T.Amt</th>
-						<th>Dis. Amt</th>
-						<th>Dis.Res</th>
-						<th>Paid.Amt</th>
-						<th>Due Amount</th>
+						<th>Bill Date</th>
+						<th>Discount Amt</th>
+						<th>Discount Reason</th>
+						<th>Paid Amt</th>
+						<th>Due Amt</th>
+						<th>Total Amt</th>
 						<th>Invoice</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${appointment.andInvoices}" var="andInvoices">
+					<c:forEach items="${appointment.addInvoices}" var="addInvoices">
 						<tr>
-							<td>${andInvoices.billingId}</td>
-							<td>${andInvoices.paymentDate}</td>
-							<td>${andInvoices.totalAmmount}</td>
-							<td>${andInvoices.discountAmmount}</td>
-							<td>${andInvoices.discountReason}</td>
-							<td>${andInvoices.advancePayment}</td>
-							<td>${andInvoices.paymentAmmount}</td>
-							<td onclick="openInvoiceInNewTab('${andInvoices.invoiceUrl}')">Invoice</td>
+							<td>${addInvoices.billingId}</td>
+							<td>${addInvoices.paymentDate}</td>
+							<td>${empty addInvoices.discountAmount ? 0.0 : addInvoices.discountAmount}</td>
+							<td>${not empty addInvoices.discountReason ? addInvoices.discountReason : 'None'}</td>
+							<td>${empty addInvoices.advancePayment ? 0.0 : addInvoices.advancePayment}</td>
+							<td>${empty addInvoices.dueAmount ? 0.0 : addInvoices.dueAmount}</td>
+							<td>${addInvoices.totalAmount}</td>
+							<td onclick="openInvoiceInNewTab('${addInvoices.invoiceUrl}')">Invoice</td>
 						</tr>
 					</c:forEach>
 
@@ -161,8 +169,8 @@
 			<table class="table table-sm table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>Test-ID</th>
-						<th>Test-Name</th>
+						<th>Test ID</th>
+						<th>Test Name</th>
 						<th>Price</th>
 					</tr>
 				</thead>
