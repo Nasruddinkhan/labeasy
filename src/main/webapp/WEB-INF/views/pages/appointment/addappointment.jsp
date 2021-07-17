@@ -1,14 +1,11 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<form:form method="POST" modelAttribute="appointment" onsubmit="return validateAppointmentForm()"
-	action="${pageContext.request.contextPath}/appointment/add-appointment">
+<form:form method="POST" modelAttribute="appointmentdetails" onsubmit="return validateAppointmentForm()"
+	action="${pageContext.request.contextPath}/appointment/add-appointment" autocomplete="off">
 	<body
-		onload="setOnLoadData('${appointment.appointmentId}', '${appointment.testList}', '${selectedTestName}')">
+		onload="setOnLoadData('${appointmentdetails.appointmentId}', '${appointmentdetails.testList}', '${selectedTestName}')">
 		<section class="content">
 			<div class="box box-danger">
 				<div class="box-header with-border">
@@ -17,14 +14,13 @@
 						<!-- click to open inquiry form  -->
 						<button type="button" class="btn btn-box-tool"
 							data-toggle="tooltip" title="View Appointments">
-							<a
-								href="${pageContext.request.contextPath}/appointment/view-appointment-page"><em
+							<a href="${pageContext.request.contextPath}/appointment/view-appointment-page"><em
 								class="fa fa-plus"></em> View Appointments</a>
 						</button>
 					</div>
 				</div>
 				<form:hidden path="testList" id="testList" class="form-control" />
-
+				<form:hidden path="isWhatsappActive" id="isWhatsappActive" class="form-control"/> 
 				<div class="box-body">
 					<div class="row">
 						<div class="form-group col-sm-3">
@@ -38,63 +34,79 @@
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Gender :</label>
 							<form:select path="gender" id="gender" class="form-control">
-								<form:option value="">--select--</form:option>
+								<form:option value="">----select----</form:option>
 								<form:option value="M">Male</form:option>
 								<form:option value="F">Female</form:option>
 								<form:option value="T">Transgender</form:option>
 							</form:select>
 						</div>
-
 						<div class="form-group col-sm-3">
-							<label for="Country Code">Mobile :</label>
-							<form:input type="text" id="mobile" path="mobileNo" class="form-control" />
+							<label for="Country Code">Visit Type :</label>
+							<form:select path="visitType" class="form-control " id="visit_type">
+								<form:option value="N">Online Appointment</form:option>
+								<form:option value="Y">Customer Visited</form:option>
+							</form:select>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Reffered by :</label>
-							<form:input type="text" path="reffredBy" id="reffered" class="form-control" />
+							<form:input type="text" path="referredBy" id="referredBy" class="form-control" />
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="Country Code">Contact : </label>
+							<button type="button" class="btn btn-xs btn-toggle active" data-toggle="button" id="whatsappActiveBtn"
+							aria-pressed="true" style="margin:2px 0;" onclick="isWhatsappActiv()" title="Reports on whatsapp, if whatsapp active?">
+        						<div class="handle"></div>
+      						</button>
+							<form:input type="text" id="contactNo" path="contactNo" class="form-control" />
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="Country Code">Alternate Contact :</label>
+							<form:input type="text" id="alternateContactNo" path="alternateContactNo" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Email :</label>
 							<form:input type="text" path="emailId" id="email" class="form-control" />
 						</div>
+					</div>
+					<div class="row">
 						<div class="form-group col-sm-3">
-							<label for="Country Code">Address :</label>
-							<form:input type="text" path="address" id="address" class="form-control" />
+							<label for="Country Code">Address Line1 :</label>
+							<form:input type="text" path="addressLine1" id="room_no" class="form-control"
+							 placeholder="Room/Building/Society/Chawl name"/>
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="Country Code">Address Line2 :</label>
+							<form:input type="text" path="addressLine2"
+								id="addressLine2" class="form-control" placeholder="Street/Landmark/Area Location"/>
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">City :</label>
 							<form:input type="text" path="cityId" id="city" class="form-control" />
+						</div>	
+						<div class="form-group col-sm-3">
+							<label for="Country Code">Pincode :</label>
+							<form:input type="text" path="pinCode" id="pinCode" class="form-control" />
+						</div>	
+					</div>
+				<div class="row">
+					<div class="form-group col-sm-3">
+							<label for="Country Code">Region :</label>
+							<form:select path="region" class="form-control " id="region">
+								<form:option value="">----select----</form:option>
+								<form:option value="Central">Central</form:option>
+								<form:option value="Western">Western</form:option>
+								<form:option value="Harbour">Harbour</form:option>
+								<form:option value="Suburban">Suburban</form:option>
+							</form:select>
+						</div>
+						<div class="form-group col-sm-9">
+							<label for="Country Code">Remarks (reason for test) :</label>
+							<form:textarea type="text" path="remarks" class="form-control" id="remarks" />
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-sm-3">
-							<label for="Country Code">Room No :</label>
-							<form:input type="text" path="roomNoBldNo" id="room_no" class="form-control" />
-						</div>
-						<div class="form-group col-sm-3">
-							<label for="Country Code">Area Location Street :</label>
-							<form:input type="text" path="areLocStreetName"
-								id="area_location" class="form-control" />
-						</div>
-						<div class="form-group col-sm-3">
-							<label for="Country Code">Visit Type:</label>
-							<form:select path="customerVisited" class="form-control " id="visit_type">
-								<form:option value="N">Online Appointment</form:option>
-								<form:option value="Y">Customer Visited</form:option>
-							</form:select>
-						</div>
-
-
-						<div class="form-group col-sm-3">
-							<label for="Country Code">Remarks (reason for test) :</label>
-							<form:textarea type="text" path="remarks" class="form-control" id="remarks"/>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="box-body">
 						<div class="form-group col-sm-2">
 							<label for="Country Code">Appointment date :</label>
 							<div class="input-group">
@@ -113,12 +125,12 @@
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Test preferred Lab :</label>
-							<form:input type="text" path="prefredLab" id="prefredLab" class="form-control" />
+							<form:input type="text" path="preferredLab" id="preferredLab" class="form-control" />
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Appointment assign to :</label>
 							<form:select type="text" path="assignTo" class="form-control" id="assign_to">
-								<form:option value="">----SELECT ASSIGN----</form:option>
+								<form:option value="">----select----</form:option>
 								<form:options items="${phlebotomistList}" itemValue="key"
 									itemLabel="value" />
 							</form:select>
@@ -126,15 +138,14 @@
 						</div>
 						<div class="form-group col-sm-3">
 							<label for="Country Code">Payment mode :</label>
-							<form:select path="andInvoiceDto.paymentMode"
+							<form:select path="addInvoiceDto.paymentMode"
 								class="form-control " id="payment">
-								<form:option value="">--select--</form:option>
+								<form:option value="">----select----</form:option>
 								<form:option value="O">Online</form:option>
 								<form:option value="F">Offline</form:option>
 							</form:select>
 						</div>
 
-					</div>
 				</div>
 
 
@@ -184,14 +195,14 @@
 
 											<label for="Country Code" style="font-size: 11px;">Total
 												Amt:</label>
-											<form:input type="text" path="andInvoiceDto.totalAmmount"
+											<form:input type="text" path="addInvoiceDto.totalAmount"
 												id="total_amt" class="form-group form-control"
 												readonly="true" />
 										</div>
 										<div class="form-group col-sm-6">
 											<label for="Country Code" style="font-size: 11px;">Discount
 												(if any):</label>
-											<form:input type="text" path="andInvoiceDto.discountAmmount"
+											<form:input type="text" path="addInvoiceDto.discountAmount"
 											
 												id="discount" onkeyup="discountAndPaidAmmount(this);"
 												class="form-group form-control" />
@@ -202,7 +213,7 @@
 												Amount:</label>
 											<form:input type="text"
 												onkeyup="discountAndPaidAmmount(this)"
-												path="andInvoiceDto.advancePayment" id="paid_amt"
+												path="addInvoiceDto.advancePayment" id="paid_amt"
 												class="form-group form-control" />
 
 										</div>
@@ -217,19 +228,19 @@
 										<div class="form-group col-sm-12">
 											<label for="Country Code" style="font-size: 11px;">Discount
 												Reason amount :</label>
-											<form:input type="text" path="andInvoiceDto.discountReason"
+											<form:input type="text" path="addInvoiceDto.discountReason"
 												class="form-group form-control" />
 										</div>
 										<div class="form-group col-sm-12">
 											<label for="Country Code" style="font-size: 11px;">Balance
 												amount :</label>
-											<form:input type="text" path="andInvoiceDto.paymentAmmount"
+											<form:input type="text" path="addInvoiceDto.dueAmount"
 												id="balance_id" class="form-group form-control"
 												readonly="true" />
 										</div>
-											<div class="form-group col-sm-12">
+											<%--<div class="form-group col-sm-12">
 											<label for="Country Code" style="font-size: 11px;">isEmailWhatsapp:</label>
-											<%-- <form:checkbox path="andInvoiceDto.isEmailWhatsapp"
+											 <form:checkbox path="addInvoiceDto.isEmailWhatsapp"
 												 class="form-group form-control"
 												/> --%>
 										</div>
@@ -246,10 +257,10 @@
 
 						<button type="submit" class="btn btn-primary">
 							<c:choose>
-								<c:when test="${not empty appointment.appointmentId}">
+								<c:when test="${not empty appointmentdetails.appointmentId}">
 									<form:hidden class="form-control" path="appointmentId" />
 									<form:hidden class="form-control"
-										path="andInvoiceDto.billingId" />
+										path="addInvoiceDto.billingId" />
 									<form:hidden class="form-control" path="createdDate" />
 									<form:hidden class="form-control" path="createdBy" />
 					Update 

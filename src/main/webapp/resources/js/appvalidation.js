@@ -63,4 +63,12 @@
 			return true;
 		return false;
 	}
+	isFieldEmptyOrZeroValidation = (fieldId, _msg) => {
+		var isInValidVar = isEmpty($(fieldId).val());
+		if (isInValidVar || $(fieldId).val() == 0) {
+			toastr.error(_msg);
+			isInValidVar = true;
+		}
+		return !isInValidVar;
+	}
 })();

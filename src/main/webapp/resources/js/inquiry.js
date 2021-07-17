@@ -30,8 +30,28 @@
 		const isValidMobileNumber = isValidMobileMinLength ? isValidateMobile('#mobile_no', 'Number must start from 9 to 6') : false;
 		const isValidEmptyEmail = isValidMobileNumber ? isFieldValidation('#email_id', 'Email cannot be Empty'):flase;
 		const isValidEmail = isValidEmptyEmail ? isValidateEmail('#email_id', 'Enter Proper Email') : false;
-		const isValidRemark = isValidEmail ? isFieldValidation('#remarks', 'Remark Cannot be Empty'):false;
+		const isValidRemark = isValidEmail ? isFieldValidation('textarea#remarks', 'Remark Cannot be Empty'):false;
 		return (isValidMobileNumber && isValidMobileMinLength && isValidName && isValidEmptyNumber && isValidEmptyEmail && isValidEmail && isValidRemark);
+	}
+	
+	inquiryEdit = function(inqId, inqName, inqMobile, inqEmail, inqRemarks) {
+		$('#inq_id').val(inqId);
+		$('#name').val(inqName);
+		$('#mobile_no').val(inqMobile);
+		$('#email_id').val(inqEmail);
+		$('textarea#remarks').val(inqRemarks);
+		$("#inq_btn_add").html('Update');
+		$('#inquiry-modal').modal('show');
+	}
+	
+	activitiesHistory = function() {
+		var tblRow = '';
+		$("#tbl").empty();
+		/*selectedtestList.forEach(ele => {
+			tblRow += "<tr><td>" + ele + "</td></tr>";
+		});*/
+		$("#tbl").append(tblRow);
+		$('#activities-history-modal').modal('show');
 	}
 })();
 

@@ -2,7 +2,7 @@
 <section class="sidebar">
 	<ul class="sidebar-menu" data-widget="tree">
 		<li><a href="${pageContext.request.contextPath}/dasboard"> <i
-				class="fa fa-question-circle"></i> <span>Dashboard</span>
+				class="fa fa-home"></i> <span>Dashboard</span>
 
 		</a></li>
 		<li><a
@@ -10,7 +10,7 @@
 				<i class="fa fa-question-circle"></i> <span>Inquiry</span>
 
 		</a></li>
-		<li class="treeview"><a href="#"> <i class="fa fa-calendar"></i>
+		<li class="treeview"><a href="#"> <i class="fa fa-address-book-o"></i>
 				<span>Manage Appointment</span> <span class="pull-right-container">
 					<span class="fa fa-angle-left pull-right"></span>
 			</span>
@@ -41,7 +41,7 @@
 			</ul></li>
 
 
-		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
+		<li class="treeview"><a href="#"> <i class="fa fa-user-secret"></i>
 				<span>Role Master</span> <span class="pull-right-container">
 					<span class="fa fa-angle-left pull-right"></span>
 			</span>
@@ -52,7 +52,7 @@
 						class="fa fa-plus text-yellow"></i> Add Role</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/role-master/show-user-role"><i
-						class="fa fa-plus text-yellow"></i>Define Role Menus</a></li>
+						class="fa fa-plus text-yellow"></i>Role Permissions</a></li>
 			</ul></li>
 		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
 				<span>User Master</span> <span class="pull-right-container">

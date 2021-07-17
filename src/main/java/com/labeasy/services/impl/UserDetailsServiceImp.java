@@ -163,7 +163,7 @@ public class UserDetailsServiceImp implements UserService {
 		if (Objects.nonNull(user.getAppointment())) {
 			int count = user.getAppointment().stream().map(Appointment::getAppStatus).filter(isApplicationStatus::test)
 					.collect(Collectors.toList()).size();
-			name = name + " " + count;
+			name = name + " - " + count;
 		}
 		return new DropDownDto(String.valueOf(user.getId()), name);
 	}

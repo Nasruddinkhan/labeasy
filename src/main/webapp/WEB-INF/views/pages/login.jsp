@@ -40,7 +40,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="#"><b>Easy</b>Lab</a>
+			<b>Lab</b>Easy
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
@@ -49,7 +49,7 @@
 			<form action='<spring:url value="/login"/>' onsubmit="return validateLoginForm()" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" name="username" id="username"
-						placeholder="username"> <span
+						placeholder="User name"> <span
 						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">

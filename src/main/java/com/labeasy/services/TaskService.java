@@ -37,14 +37,14 @@ public class TaskService {
 		List<AppointmentDto> appointmentDtos = appointmentService
 				.findAllInvoiceObject(ApplicationStatus.INACTIVE.getValue());
 		appointmentDtos.forEach(obj -> {
-			 obj.getAndInvoices().stream().map(m -> transformAppointMent(m, obj))
+			 obj.getAddInvoices().stream().map(m -> transformAppointMent(m, obj))
 					.collect(Collectors.toList());
 		});
 
 	}
 	private AppointmentDto transformAppointMent(BillingAndInvoiceDto andInvoiceDto, AppointmentDto appointmentDto) {
 		AppointmentDto dto = ObjectUtilMapper.map(appointmentDto, AppointmentDto.class);
-		dto.setAndInvoiceDto(andInvoiceDto);
+		dto.setAddInvoiceDto(andInvoiceDto);
 		String filePath =  generateInvoice.createPDF(dto);
 		String s3Path = awsService.uploadFile(new File(filePath), "labeasy-invoice", "http://labeasy-invoice.s3-website-us-east-1.amazonaws.com");
 		appointmentRepo.updateInvoiceURL(s3Path, andInvoiceDto.getBillingId());

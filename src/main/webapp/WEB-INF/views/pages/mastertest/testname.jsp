@@ -1,7 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section class="content">
@@ -15,11 +13,6 @@
 					<em class="fa fa-plus" data-toggle="modal" data-target="#test-name">
 						Add Test Name</em>
 				</button>
-
-
-
-
-
 			</div>
 		</div>
 		<div class="box-body">
@@ -45,13 +38,13 @@
 							<td>${testName.b2bprice}</td>
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
-											class="btn btn-sm btn-info btn-box-tool">
+											class="btn btn-sm btn-info btn-box-tool"
+											onclick="testNameEdit('${testName.testId}','${testName.groupId}','${testName.testcode}','${testName.name}','${testName.description}','${testName.price}','${testName.b2bprice}')">
 											<i class="fa fa-edit" style="color: white"></i>
-										</button> </a> <a href="#"><button type="button"
-											class="btn btn-sm btn-danger btn-box-tool">
-
-											<i class="fa fa-trash" style="color: white"></i>
-										</button> </a>
+										</button> </a> 
+										<button type="button" class="btn btn-xs btn-toggle active" data-toggle="button" aria-pressed="true">
+        									<div class="handle"></div>
+      									</button>
 
 								</div></td>
 						</tr>
@@ -63,6 +56,7 @@
 		<div class="modal fade" id="test-name">
 			<div class="modal-dialog">
 				<form method="POST" id="add-test-form" autocomplete="off">
+				<input type="hidden" id="test_id" name="test_id">
 					<div class="modal-content">
 
 						<div class="modal-header">
@@ -75,7 +69,8 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
-									<label>Test Group :</label> <select id="groupId" name="groupId"
+									<label>Test Group :</label> 
+									<select id="groupId" name="groupId"
 										class="form-control" disabled="disabled">
 										<option>--Select--</option>
 										<c:forEach items="${testGroupList}" var="testGroup">

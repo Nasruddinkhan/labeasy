@@ -38,6 +38,12 @@
 	}
 	setOnLoadData = function(appId, testList, selectedTestName) {
 		console.log(selectedTestName);
+		if($("#isWhatsappActive").val() == 'N') {
+			$("#whatsappActiveBtn").removeClass("active");
+		}
+		if($("#isWhatsappActive").val() == '') {
+			$("#isWhatsappActive").val('Y')
+		}
 		const appointmentId = parseInt(appId);
 		if (appointmentId > 0) {
 			const tests = JSON.parse(testList)
@@ -134,7 +140,24 @@
 		const isValidName = isFieldValidation('#name', 'Name cannot be Empty');
 		const isValidAge = isValidName ? isFieldValidation('#age', 'Age cannot be Empty') : false;
 		const isValidGender = isValidAge ? isFieldValidation('#gender', 'Gender cannot be Empty') : false;
-		return (isValidName && isValidAge && isValidGender);
+		const isValidVisitType = isValidGender ? isFieldValidation('#visit_type', 'Visit type cannot be Empty'):false;
+		const isValidReferredBy = isValidVisitType ? isFieldValidation('#referredBy', 'Referred by cannot be Empty'):false;
+		const isValidContactNo = isValidReferredBy ? isFieldValidation('#contactNo', 'Contact number cannot be Empty'):false;
+		const isValidCity = isValidContactNo ? isFieldValidation('#city', 'City cannot be Empty'):false;  
+		const isValidPincode = isValidCity ? isFieldValidation('#pinCode', 'Pincode cannot be Empty'):false;
+		const isValidRegion = isValidPincode ? isFieldValidation('#region', 'Region cannot be Empty') : false;
+		const isValidAppointmentDate = isValidRegion ? isFieldValidation('#appointmentDate', 'Appointment date time cannot be Empty') : false;
+		const isTestSelectedVal =  isValidAppointmentDate ? isFieldEmptyOrZeroValidation('#selected_test', 'Please select test') : false;
+		return (isValidName && isValidAge && isValidGender && isValidVisitType && isValidReferredBy 
+				&& isValidContactNo && isValidCity && isValidRegion && isValidAppointmentDate && isTestSelectedVal);
+	}
+	
+	
+	isWhatsappActiv = function() {
+		if($('#isWhatsappActive').val() == 'Y')
+			$('#isWhatsappActive').val('N');
+		else
+			$('#isWhatsappActive').val('Y');
 	}
 	
 	 openInvoiceInNewTab = function(url) {

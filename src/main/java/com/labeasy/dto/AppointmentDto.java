@@ -20,31 +20,33 @@ import lombok.ToString;
 public final  class AppointmentDto {
 	private Long appointmentId;
 	private String name;
-	private String mobileNo;
+	private String contactNo;
+	private String alternateContactNo;
 	private String emailId;
 	private String appStatus;
 	private String remarks;
 	private Integer age;
 	private String gender;
-	private String address;
+	private String region;
 	private String cityId;
-	private BillingAndInvoiceDto andInvoiceDto;
-	private Set<BillingAndInvoiceDto> andInvoices ;
+	private BillingAndInvoiceDto addInvoiceDto;
+	private Set<BillingAndInvoiceDto> addInvoices ;
 	private String testList;
-	private String prefredLab;
+	private String preferredLab;
 	private String appointmentDate;
 	private LocalTime appointmentTime;
-	private String reffredBy;
+	private String referredBy;
 	private Long assignTo;
 	private UserDto assignToUserDto;
-	private String roomNoBldNo;
-	private String areLocStreetName;
+	private String addressLine1;  
+	private String addressLine2;
     private String createdBy;
     private LocalDateTime createdDate;
     private Set<TestNamesDto> testNames;
-    private String customerVisited;
-	private boolean isEmailWhatsapp;
+    private String visitType;
+	private String isWhatsappActive;
 	private String isEmailStatus;
+	private String pinCode;
 
 
 }

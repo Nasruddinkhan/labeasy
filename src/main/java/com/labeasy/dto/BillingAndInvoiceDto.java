@@ -16,12 +16,12 @@ import lombok.ToString;
 @ToString
 public class BillingAndInvoiceDto {
 	private Long billingId;
-	private Double paymentAmmount;
+	private Double dueAmount;
 	private String paymentMode;
 	private Double advancePayment;
-	private Double totalAmmount;
+	private Double totalAmount;
 	private LocalDateTime paymentDate;
-	private Double discountAmmount;
+	private Double discountAmount;
 	private String discountReason;
 	private String invoiceUrl;
 }

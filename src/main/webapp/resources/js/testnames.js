@@ -28,4 +28,18 @@
 		const isValidB2BPrice = isValidPrice ? isFieldValidation('#b2bprice', 'B2B Price Cannot Be Empty'):false;
 		return (isValidTestCode && isValidTestName && isValidDescription && isValidPrice && isValidB2BPrice);
 	}
+	
+	testNameEdit = function(testId, groupId, testcode, name, description, price, b2bprice) {
+		$('#add-test-form')[0].reset();
+		$('#test_id').val(testId);
+		$('#groupId').val(groupId);
+		$('#testcode').val(testcode);
+		$('#name').val(name);
+		$('#description').val(description);
+		$('#price').val(price);
+		$('#b2bprice').val(b2bprice);
+		
+		//$("#test_grp_btn_add").html('Update');
+		$('#test-name').modal('show');
+	}
 })();

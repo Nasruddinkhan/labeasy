@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -37,7 +36,7 @@
 					<c:forEach items="${usersList}" var="user">
 						<tr>
 							<td>${user.id}</td>
-							<td>${user.firstName}${user.lastName}</td>
+							<td>${user.firstName} ${user.lastName}</td>
 							<td>${user.mobileNo}</td>
 							<td>${user.emailId}</td>
 							<td>${user.doj}</td>
@@ -51,12 +50,16 @@
 										href="${pageContext.request.contextPath}/user-master/edit-user/${user.id}"><button
 											type="button" class="btn btn-sm btn-info btn-box-tool">
 											<i class="fa fa-edit" style="color: white"></i>
-										</button> </a> <a href="#"><button type="button"
-											class="btn btn-sm btn-danger btn-box-tool">
-
-											<i class="fa fa-trash" style="color: white"></i>
-										</button> </a>
-
+										</button> </a> 
+										
+										<button type="button" class="btn btn-xs btn-toggle active" data-toggle="button" aria-pressed="true">
+        									<div class="handle"></div>
+      									</button>
+      									
+      									<a href="#"><button
+											type="button" class="btn btn-sm btn-danger btn-box-tool">
+											<i class="fa fa-times" style="color: white"></i>
+										</button> </a> 
 								</div></td>
 						</tr>
 					</c:forEach>
