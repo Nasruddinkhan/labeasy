@@ -10,7 +10,7 @@ import com.labeasy.services.impl.AuditAwareImpl;
 class HomeController {
     @GetMapping(value ={"/","/dasboard"})
     public String index(Model model) {
-    	 model.addAttribute("message", "welcome "+AuditAwareImpl.getLoggedUser().getEmailId());
+    	 model.addAttribute("message",AuditAwareImpl.getLoggedUser().getEmailId());
          return "welcome";
     }
    
