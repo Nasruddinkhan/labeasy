@@ -34,6 +34,10 @@ public class UserRole extends BaseBean implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator =  "userrolesseq")
 	@SequenceGenerator(name = "userrolesseq", sequenceName = "user_roles_seq" , allocationSize = 1,initialValue =  1)
     private Long roleId;
+    @Column(name = "role_code", length = 20)
+    private String roleCode;
+    @Column(name = "role_type", length = 50)
+    private String roleType;
     @Column(name = "role_name", length = 50)
     private String roleName;
     @Column(name = "description", length = 250)

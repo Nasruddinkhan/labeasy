@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.labeasy.dto.MyUserDetails;
 import com.labeasy.dto.UserDto;
+import com.labeasy.dto.UserRoleDto;
+import com.labeasy.entity.User;
 
 @Component
 public class AuditAwareImpl implements AuditorAware<String> {
@@ -26,7 +28,10 @@ public class AuditAwareImpl implements AuditorAware<String> {
 	
 
 	public static UserDto getLoggedUser() {
-		return map( ((MyUserDetails)  SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser(), UserDto.class);
+		User details= ((MyUserDetails)  SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+		UserDto userDto = map(details, UserDto.class);
+		userDto.setUserRoleDto(map(details.getUserRole(), UserRoleDto.class));
+		return userDto;
 	} 
 
 }

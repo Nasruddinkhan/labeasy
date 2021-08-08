@@ -51,7 +51,7 @@
 					href="${pageContext.request.contextPath}/role-master/show-user-role"><i
 						class="fa fa-plus text-yellow"></i> Add Role</a></li>
 				<li><a
-					href="#"><i
+					href="${pageContext.request.contextPath}/role-master/show-role-permissions"><i
 						class="fa fa-plus text-yellow"></i>Role Permissions</a></li>
 			</ul></li>
 		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>

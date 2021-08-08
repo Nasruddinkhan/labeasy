@@ -44,11 +44,12 @@
 		
 		return (isValidRoleName && isValiddescription);
 	}
-	roleEdit = function(roleId, roleName, description) {
+	roleEdit = function(roleId, roleCode, roleName, roleType, description) {
 		$('#role_id').val(roleId);
+		$('#rolecode').val(roleCode);
 		$('#rolename').val(roleName);
 		$('#description').val(description);
-		
+		$('#roletype').val(roleType);
 		$('#add-role-modal').modal('show');
 	}
 })();
