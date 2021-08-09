@@ -24,7 +24,6 @@ class HomeController {
 	@GetMapping(value = { "/", "/dasboard" })
 	public String index(Model model, HttpSession session) {
 		model.addAttribute("message", "welcome " + AuditAwareImpl.getLoggedUser().getEmailId());
-		model.addAttribute("menu", dashBoardService.findAllMenus());
 	    session.setAttribute("menu", dashBoardService.findAllMenus()); 
 
 		return "welcome";
