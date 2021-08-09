@@ -15,9 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class UserRoleDto  {
-
+	
+	@JsonProperty("rolecode")
+    private String roleCode;
+	
     @JsonProperty("role_id")
     private Long roleId;
+    
+    @JsonProperty("roletype")
+    private String roleType;
 
     @JsonProperty("rolename")
     private String roleName;

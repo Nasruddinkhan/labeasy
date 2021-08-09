@@ -40,4 +40,6 @@ public class UserDto {
 	private UserRoleDto userRoleDto;
 	//private Set<UserDto> subordinates; 
 	private UserDto reportingUser;
+	private String password;
+	private String rePassword;
 }

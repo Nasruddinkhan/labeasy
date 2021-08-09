@@ -51,7 +51,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="${pageContext.request.contextPath}/user-profile/view-profile-details"" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                 <form action='<spring:url value="/logout"/>' method="post">

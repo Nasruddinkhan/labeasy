@@ -46,4 +46,12 @@ public class RoleMasterController {
 		return new ResponseEntity<>(userRoleService.addUserRole(userRoleDto), HttpStatus.CREATED);
 	}
 	
+	
+	
+	@GetMapping("/show-role-permissions")
+	public String showRolePermissions(ModelMap model) {
+		return "accessrights";
+	}
+	
+	
 }

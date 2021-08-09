@@ -6,8 +6,18 @@
 <section class="content">
 	<div class="box box-primary ">
 		<div class="box-header with-border">
-			<h3 class="box-title">Dashboard</h3>
-
+			<!-- <h3 class="box-title"></h3> -->
+			<ul class="nav nav-tabs">
+			  <li class="nav-item active">
+			    <a class="nav-link" data-toggle="tab" href="#home">Dashboard</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#menu1">Daily Inquiries</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#menu2">Daily Appointments</a>
+			  </li>
+			</ul>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool "
 					data-widget="collapse">
@@ -200,6 +210,45 @@
 				</div>
 			</div>
 		</div>
+		
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<div id="myPlot" style="width:100%;max-width:700px"></div>
+
+<script>
+var xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
+var yArray = [44, 49, 44, 24, 15];
+
+var layout = {title:"World Wide Wine Production"};
+
+var data = [{labels:xArray, values:yArray, hole:.4, type:"pie"}];
+
+Plotly.newPlot("myPlot", data, layout);
+</script>
+		
+		
+	
+	
+	<div id="myPlot2" style="width:100%;max-width:700px"></div>
+
+<script>
+var xArray2 = ["Italy", "France", "Spain", "USA", "Argentina"];
+var yArray2 = [55, 49, 44, 24, 15];
+
+var data2 = [{
+  x:xArray2,
+  y:yArray2,
+  type:"bar"
+}];
+
+var layout2 = {title:"World Wide Wine Production"};
+
+Plotly.newPlot("myPlot2", data2, layout2);
+</script>	
+		
+		
+		
+		
 	</div>
 </section>
 

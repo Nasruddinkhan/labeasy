@@ -22,6 +22,7 @@
 				<thead>
 					<tr>
 						<th width="12%">Role Id</th>
+						<th width="">Role Code</th>
 						<th width="">Role Name</th>
 						<th>Description</th>
 						<th width="">Role Type</th>
@@ -32,19 +33,21 @@
 					<c:forEach items="${userRoleList}" var="userRole">
 						<tr>
 							<td>${userRole.roleId}</td>
+							<td>${userRole.roleCode}</td>
 							<td>${userRole.roleName}</td>
 							<td>${userRole.description}</td>
-							<td></td>
+							<td>${userRole.roleType}</td>
 							<td><div class="box-tools pull-center">
 									<a href="#"><button type="button"
 											class="btn btn-sm btn-info btn-box-tool"
-											onclick="roleEdit('${userRole.roleId}','${userRole.roleName}','${userRole.description}')">
+											onclick="roleEdit('${userRole.roleId}','${userRole.roleCode}','${userRole.roleName}','${userRole.roleType}','${userRole.description}')">
 											<i class="fa fa-edit" style="color: white"></i>
 										</button></a>
+										<a href="${pageContext.request.contextPath}/role-master/show-role-permissions">
 										<button type="button"
 											class="btn btn-sm btn-danger btn-box-tool">
 										<i class="fa fa-clock-o" style="color: white"></i>
-										</button>
+										</button></a>
 										<button type="button" class="btn btn-xs btn-toggle active"
 											data-toggle="button" aria-pressed="true">
 											<div class="handle"></div>
@@ -73,6 +76,10 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="form-group col-sm-6">
+									<label>Role Code :</label> <input type="text" id="rolecode"
+										name="rolecode" class="form-control" />
+								</div>
+								<div class="form-group col-sm-6">
 									<label>Role Name :</label> <input type="text" id="rolename"
 										name="rolename" class="form-control" />
 								</div>
@@ -80,9 +87,9 @@
 									<label>Role Type :</label> <select name="roletype"
 										id="roletype" class="form-control ">
 										<option value="">--select--</option>
-										<option value="AP">Lab Admin</option>
-										<option value="AP">Lab Supervisor</option>
-										<option value="AP">Lab User</option>
+										<option value="Lab Admin">Lab Admin</option>
+										<option value="Lab Supervisor">Lab Supervisor</option>
+										<option value="Lab User">Lab User</option>
 									</select>
 								</div>
 								<div class="form-group col-sm-6">
