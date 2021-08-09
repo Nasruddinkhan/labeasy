@@ -7,8 +7,6 @@ import java.util.concurrent.Executors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
@@ -16,8 +14,8 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import com.labeasy.services.TaskService;
 
 @Configuration
-@EnableAsync
-@EnableScheduling
+//@EnableAsync
+//@EnableScheduling
 public class ScheduledFixedRate implements SchedulingConfigurer {
 
 	private final TaskService taskService; 
@@ -28,7 +26,7 @@ public class ScheduledFixedRate implements SchedulingConfigurer {
 		this.taskService = taskService;
 	}
 
-	@Scheduled(cron = "30 * * * * *")
+	//@Scheduled(cron = "30 * * * * *")
 	public void scheduleFixedRateTaskAsync() throws InterruptedException {
 		System.out.println("start");
 		taskService.generateInvoice(); //change to facade design pattern

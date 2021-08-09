@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.labeasy.dto.B2BRegistrationDto;
-import com.labeasy.dto.UserDto;
-import com.labeasy.event.OnUserRegistrationCompleteEvent;
 import com.labeasy.services.B2BRegistrationService;
 
 @Controller
