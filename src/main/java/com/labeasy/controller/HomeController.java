@@ -1,17 +1,33 @@
 package com.labeasy.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.labeasy.services.DashboardService;
 import com.labeasy.services.impl.AuditAwareImpl;
 
 @Controller
 class HomeController {
-    @GetMapping(value ={"/","/dasboard"})
-    public String index(Model model) {
-    	 model.addAttribute("message",AuditAwareImpl.getLoggedUser().getEmailId());
-         return "welcome";
-    }
-   
+ 
+	private final DashboardService dashBoardService;
+	
+	@Autowired
+	public HomeController(DashboardService dashBoardService) {
+		super();
+		this.dashBoardService = dashBoardService;
+	}
+
+	@GetMapping(value = { "/", "/dasboard" })
+	public String index(Model model, HttpSession session) {
+		model.addAttribute("message", "welcome " + AuditAwareImpl.getLoggedUser().getEmailId());
+		model.addAttribute("menu", dashBoardService.findAllMenus());
+	    session.setAttribute("menu", dashBoardService.findAllMenus()); 
+
+		return "welcome";
+	}
+
 }
