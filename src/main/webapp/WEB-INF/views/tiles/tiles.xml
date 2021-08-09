@@ -91,7 +91,16 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/mastertest/testname.jsp" />
 	</definition>
-
+	<definition name="testpackage" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/mastertest/testpackage.jsp" />
+	</definition>
+	<definition name="viewtestpackages" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/mastertest/viewtestpackages.jsp" />
+	</definition>
 
 	<definition name="addrole" extends="base-definition">
 		<put-attribute name="title" value="Welcome" />

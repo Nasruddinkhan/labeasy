@@ -33,13 +33,17 @@
 			<ul class="treeview-menu " id="treeview-menu-plus-ul">
 				<li><a
 					href="${pageContext.request.contextPath}/master-test/show-test-group "><i
-						class="fa fa-plus text-yellow"></i> Test Group</a></li>
+						class="fa fa-plus text-yellow"></i> Add Test Group</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/master-test/show-test-name"><i
-						class="fa fa-plus text-red"></i> Test Name </a></li>
-
+						class="fa fa-plus text-red"></i> Add Test Name </a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/master-test/show-add-test-package"><i
+						class="fa fa-plus text-yellow"></i> Add Test Package</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/master-test/show-view-test-packages"><i
+						class="fa fa-plus text-red"></i> View Test Packages </a></li>		
 			</ul></li>
-
 
 		<li class="treeview"><a href="#"> <i class="fa fa-user-secret"></i>
 				<span>Role Master</span> <span class="pull-right-container">

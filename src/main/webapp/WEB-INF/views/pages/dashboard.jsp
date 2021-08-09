@@ -36,7 +36,7 @@
 							<p>New Appointments</p>
 						</div>
 						<div class="icon">
-							<i class="fa fa-shopping-cart"></i>
+							<i class="fa fa-files-o"></i>
 						</div>
 						<a href="#" class="small-box-footer"> More info <i
 							class="fa fa-arrow-circle-right"></i>
@@ -53,7 +53,7 @@
 							<p>New Enquiries</p>
 						</div>
 						<div class="icon">
-							<i class="ion ion-stats-bars"></i>
+							<i class="fa fa-phone"></i>
 						</div>
 						<a href="#" class="small-box-footer"> More info <i
 							class="fa fa-arrow-circle-right"></i>
@@ -70,7 +70,7 @@
 							<p>User Registred</p>
 						</div>
 						<div class="icon">
-							<i class="ion ion-person-add"></i>
+							<i class="fa fa-users"></i>
 						</div>
 						<a href="#" class="small-box-footer"> More info <i
 							class="fa fa-arrow-circle-right"></i>
@@ -87,7 +87,7 @@
 							<p>Test Master</p>
 						</div>
 						<div class="icon">
-							<i class="ion ion-pie-graph"></i>
+							<i class="fa fa-flask"></i>
 						</div>
 						<a href="#" class="small-box-footer"> More info <i
 							class="fa fa-arrow-circle-right"></i>
@@ -105,7 +105,7 @@
 							<p>Appointments Tracker</p>
 						</div>
 						<div class="icon">
-							<i class="fa fa-shopping-cart"></i>
+							<i class="fa fa-search"></i>
 						</div>
 						<a href="#" class="small-box-footer"> More info <i
 							class="fa fa-arrow-circle-right"></i>
@@ -139,7 +139,7 @@
 							<p>Daily Reports</p>
 						</div>
 						<div class="icon">
-							<i class="ion ion-person-add"></i>
+							<i class="fa fa-file-text-o "></i>
 						</div>
 						<a href="#" class="small-box-footer"> More info <i
 							class="fa fa-arrow-circle-right"></i>
