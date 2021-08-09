@@ -27,10 +27,9 @@ public class DashboardServiceImpl implements DashboardService {
 	@Override
 	public Set<ParentMenuDto> findAllMenus() {
 		// TODO Auto-generated method stub
-		Set<ParentMenuDto> list = menuRepository.findAll().stream()
+		return menuRepository.findAll().stream()
 				.filter(m-> (Objects.isNull(m.getSubmenuId())  )).map(m-> getMenu(m)).collect(Collectors.toSet());
-		System.out.println(list);
-		return list;
+		
 	}
 
 	private ParentMenuDto getMenu(Menus m) {
