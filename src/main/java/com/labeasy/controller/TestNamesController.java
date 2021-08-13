@@ -49,4 +49,16 @@ public class TestNamesController {
 		System.out.println("TestNamesController.addTestName() [" + testNamesDto + "]");
 		return new ResponseEntity<>(testNamesService.addTestName(testNamesDto), HttpStatus.CREATED);
 	}
+	
+	@GetMapping("/show-add-test-package")
+	public String showTestPackage(ModelMap model) {
+		onLoads(model);
+		return "testpackage";
+	}
+	
+	@GetMapping("/show-view-test-packages")
+	public String viewTestPackages(ModelMap model) {
+		return "viewtestpackages";
+	}
+	
 }

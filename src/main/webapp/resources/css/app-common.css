@@ -1,0 +1,35 @@
+/*makes Active with green color*/
+.btn-toggle.active {
+    background-color: #00a65a; 
+}
+
+.btn-toggle {
+    color: #6b7381;
+    background: #dd4b39; 
+}
+
+.btn-toggle.btn-xs > .handle {
+    position: absolute;
+    top: 0.135rem;
+    right: 0.135rem;
+    width: 1.60rem;
+    height: 1.60rem;
+    border-radius: 0.75rem;
+    background: #fff;
+    transition: right 0.25s;
+}
+
+.btn-toggle.btn-xs.active > .handle {
+    right: 2.125rem;
+    transition: right 0.25s;
+}
+
+.btn-toggle.btn-xs {
+    margin: 0 0;
+    padding: 0;
+    position: relative;
+    border: none;
+    height: 2rem;
+    width: 4rem;
+    border-radius: 1rem;
+}

@@ -20,4 +20,5 @@ public class ParentMenuDto {
 	private String lableName;
 	private boolean subMenu;
 	private Set<ParentMenuDto> childmenu;
+	private int menuOrder;
 }
